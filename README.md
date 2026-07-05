@@ -1,4 +1,1 @@
-501 Elite Baseball clean final build.
-
-Upload the contents of this package to the root of your GitHub repository.
-Keep shield.svg in the root.
+501 Elite functional v1. Upload contents to the site root. Keep shield.svg in root.
