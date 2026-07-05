@@ -1,2 +1,1 @@
-// 501 Elite Baseball
-document.documentElement.classList.add("loaded");
+document.documentElement.classList.add('ready');
