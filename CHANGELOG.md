@@ -1,11 +1,8 @@
 # 501 Elite Website Changelog
 
-## Commit 19 - Screenshot Style Homepage
-- Rebuilt mobile homepage to match the provided visual reference.
-- Added cropped header logo asset from supplied logo image.
-- Added seam arc and stadium/camo hero styling.
-## Commit 20 - Parent Hub Dashboard
-- Built Parent Hub dashboard with Quick Pay, Fall 2026 schedule, documents, and contact cards.
-- Wired Venmo and Cash App links.
-- Added PayPal placeholder without exposing API credentials.
-- Updated homepage Quick Pay preview links.
+## Commit 21 - Professional Organization
+- Added hamburger menu for mobile.
+- Removed Parent Hub/Quick Pay content from homepage.
+- Added metallic button system.
+- Added premium card styling.
+- Preserved Parent Hub dashboard as its own page.
