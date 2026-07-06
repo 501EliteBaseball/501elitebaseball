@@ -188,3 +188,73 @@
   .socials{font-size:15px;gap:10px;justify-content:flex-end;}
   .site-footer small{font-size:8.5px;grid-column:1/-1;text-align:right;justify-self:end;}
 }
+
+/* Commit 28: functional menu, brighter 501 hero, beveled tile buttons, tighter footer */
+.site-header{overflow:visible;}
+.mobile-menu{z-index:120;}
+.menu-toggle{position:relative;z-index:130;}
+.menu-toggle[aria-expanded="true"]{box-shadow:0 0 0 2px rgba(240,31,69,.42),0 14px 30px rgba(0,0,0,.44),inset 0 1px rgba(255,255,255,.25);}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-toggle span{transition:transform .18s ease,opacity .18s ease;}
+
+.hero-stage:before{filter:brightness(1.34) saturate(1.18) contrast(1.04);}
+.hero-stage:after{background:linear-gradient(90deg,#010814 0%,rgba(1,8,20,.83) 26%,rgba(1,8,20,.08) 66%,rgba(1,8,20,.42) 100%);}
+.hero-stage{background:radial-gradient(circle at 82% 15%,rgba(255,244,214,.20),transparent 16%),linear-gradient(90deg,rgba(2,8,20,.94) 0%,rgba(3,15,32,.78) 42%,rgba(3,15,32,.20) 70%,rgba(2,8,20,.52) 100%),url('digital-camo.jpg') center/cover no-repeat;}
+
+.brand-btn{
+  min-height:48px;
+  border-color:rgba(255,255,255,.46);
+  box-shadow:0 9px 16px rgba(0,0,0,.30),inset 0 1px rgba(255,255,255,.42),inset 0 -1px rgba(0,0,0,.45),inset 11px 0 20px rgba(255,255,255,.08),inset -11px 0 20px rgba(0,0,0,.16);
+}
+.brand-btn:before{
+  opacity:.86;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.12) 20%,transparent 21%),
+    linear-gradient(45deg,transparent 0 39%,rgba(255,255,255,.24) 40%,rgba(255,255,255,.06) 50%,transparent 51%),
+    linear-gradient(315deg,transparent 0 39%,rgba(255,255,255,.20) 40%,rgba(255,255,255,.05) 50%,transparent 51%),
+    linear-gradient(90deg,rgba(255,255,255,.18),transparent 18%,transparent 82%,rgba(0,0,0,.18));
+}
+.brand-btn:after{
+  content:"";
+  position:absolute;
+  inset:7px 13px;
+  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+  border-top:1px solid rgba(255,255,255,.22);
+  border-bottom:1px solid rgba(0,0,0,.26);
+  pointer-events:none;
+}
+.brand-btn.red{background:linear-gradient(180deg,#fb4a65 0%,#d81636 48%,#9b0924 49%,#79061c 100%)}
+.brand-btn.steel{background:linear-gradient(180deg,#f5f8fc 0%,#cfd7e1 44%,#677589 45%,#0b1b31 100%)}
+.brand-btn.navy{background:linear-gradient(180deg,#284765 0%,#152f4e 44%,#071a31 45%,#020b18 100%)}
+
+.site-footer{
+  grid-template-columns:auto 1fr auto auto;
+  column-gap:36px;
+  padding:9px max(12px,calc((100vw - var(--max))/2 + 12px));
+  min-height:62px;
+}
+.site-footer div:first-child{display:flex;align-items:center;gap:12px;}
+.site-footer img{width:36px;}
+.site-footer p,.site-footer address,.site-footer a{font-size:11px;line-height:1.12;}
+.site-footer address{justify-self:end;text-align:right;min-width:245px;}
+.socials{justify-self:center;font-size:17px;gap:16px;}
+.site-footer small{font-size:11px;justify-self:end;align-self:end;}
+
+@media(max-width:760px){
+  .site-header{overflow:visible;}
+  .mobile-menu{position:absolute;left:0;right:0;top:100%;z-index:120;padding:8px 18px 14px;background:linear-gradient(180deg,rgba(6,30,61,.99),rgba(2,11,24,.99));box-shadow:0 22px 40px rgba(0,0,0,.50);}
+  .mobile-menu.open{display:grid;grid-template-columns:repeat(2,1fr);gap:0 18px;}
+  .mobile-menu a{font-size:10px;padding:10px 0;}
+  .hero-stage:before{filter:brightness(1.42) saturate(1.22) contrast(1.04);background:linear-gradient(90deg,rgba(1,8,20,.92) 0%,rgba(1,8,20,.58) 36%,rgba(1,8,20,.02) 68%,rgba(1,8,20,.34) 100%),linear-gradient(180deg,rgba(1,8,20,.00),rgba(1,8,20,.38) 72%,rgba(1,8,20,.84)),url('hero-team.jpg') right center/auto 88% no-repeat;}
+  .hero-stage:after{background:linear-gradient(90deg,rgba(1,8,20,.88),rgba(1,8,20,.24) 54%,rgba(1,8,20,.52));}
+  .brand-btn{min-height:30px;}
+  .site-footer{grid-template-columns:auto 1fr auto;align-items:center;gap:4px 8px;padding:6px 9px;min-height:50px;}
+  .site-footer div:first-child{gap:5px;}
+  .site-footer img{width:20px;}
+  .site-footer p,.site-footer address,.site-footer a{font-size:7.9px;line-height:1.08;}
+  .site-footer address{grid-column:3;grid-row:1 / span 2;min-width:0;justify-self:end;text-align:right;}
+  .socials{grid-column:2;grid-row:1;justify-self:center;font-size:13px;gap:9px;}
+  .site-footer small{grid-column:2;grid-row:2;justify-self:center;text-align:center;font-size:7.4px;align-self:center;}
+}
