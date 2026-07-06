@@ -16,3 +16,9 @@
 - Removed text-based header workaround.
 - Header now uses the cropped horizontal logo.
 
+## Commit 16 - Homepage 2.0 and Payment Preview
+- Rebuilt homepage mobile-first.
+- Added strong visible red/navy digital camo identity.
+- Replaced unstable logo image header with clean branded lockup.
+- Added Quick Pay section for Venmo, Cash App, and PayPal Checkout.
+- Added correct phone and email across footer/contact.
