@@ -349,16 +349,3 @@ body.menu-open{overflow:hidden;}
 @media(max-width:760px){
   .menu-toggle{justify-self:end;}
 }
-
-/* Commit 35: place hamburger in the exact right-side header pocket shown in reference */
-@media(max-width:760px){
-  .header-shell{position:relative;}
-  .menu-toggle{
-    position:absolute;
-    top:50%;
-    right:clamp(92px,25vw,116px);
-    transform:translateY(-50%);
-    justify-self:auto;
-  }
-  .menu-toggle:hover{transform:translateY(-51%);}
-}
