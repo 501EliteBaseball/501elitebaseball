@@ -1,4 +1,5 @@
-# Commit 37 — Hamburger Position Fix
+# Commit 34 — Hamburger Right-Zone Alignment
 
-- Moved the entire hamburger menu button container 25px to the right.
-- No other layout, content, image, or menu-functionality changes.
+- Shifted the full hamburger button to the right within the existing dedicated header space.
+- Kept the button size, shape, icon, colors, and functionality unchanged.
+- No other layout or content changes.
