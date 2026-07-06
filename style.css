@@ -351,4 +351,4 @@ body.menu-open{overflow:hidden;}
 }
 
 /* Commit37 */
-@media(max-width:760px){.menu-toggle{position:relative;left:25px;}}
+@media(max-width:760px){.menu-toggle{position:relative;left:auto;right:15px;justify-self:end;}}
