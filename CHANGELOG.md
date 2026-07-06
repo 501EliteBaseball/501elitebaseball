@@ -1,8 +1,6 @@
 # 501 Elite Website Changelog
 
-## Commit 17 - Finished Assets Homepage
-- Added real digital camo image asset.
-- Added hero composite with camo overlay.
-- Added baseball seam divider asset.
-- Replaced CSS plaid pattern with real brand assets.
-- Kept Quick Pay structure for Venmo, Cash App, and PayPal.
+## Commit 19 - Screenshot Style Homepage
+- Rebuilt mobile homepage to match the provided visual reference.
+- Added cropped header logo asset from supplied logo image.
+- Added seam arc and stadium/camo hero styling.
