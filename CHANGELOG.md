@@ -1,17 +1,14 @@
-# Foundation 001 — Design System
+# Patch 005 — Contact Polish
 
 ## Changed
-- Added a shared 501 Elite design system layer to `style.css`.
-- Unified section spacing across Home, About, Training, Parents, Sponsors, Resources, and Contact.
-- Standardized hero treatment, section headings, card radius, borders, shadows, and hover behavior.
-- Added shield hierarchy rules so shields appear larger and more intentional instead of tiny/off-center.
-- Improved player card readability and sponsor artwork presentation.
-- Added a baseline branded button treatment for contact-style calls to action.
+- Rebuilt Contact page hero with stronger brand treatment.
+- Added premium contact method cards for Email, Phone, and Location.
+- Upgraded contact buttons to match the 501 Elite button language.
+- Added final branded contact CTA panel.
+- Updated `style.css` with scoped Contact page styling.
 
 ## Upload Instructions
 Upload these files directly to the GitHub repo root and overwrite:
+- contact.html
 - style.css
 - CHANGELOG.md
-
-## Notes
-This patch intentionally does not rewrite page content. It creates a shared visual foundation for final polish.

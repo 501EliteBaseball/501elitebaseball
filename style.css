@@ -1473,3 +1473,154 @@ section{scroll-margin-top:90px;}
   .player-card{min-height:118px !important;}
   .sponsor-art-card img{border-radius:16px !important;}
 }
+
+
+/* PATCH 005 — Contact polish */
+.contact-hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(2,10,22,.94),rgba(4,20,42,.82)),
+    url('hero-501.jpg') center/cover;
+}
+.contact-hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(240px,.7fr);
+  gap:clamp(26px,5vw,56px);
+  align-items:center;
+}
+.contact-hero-copy{
+  max-width:720px;
+  color:rgba(255,255,255,.88) !important;
+}
+.contact-hero-card{
+  background:linear-gradient(180deg,rgba(9,31,62,.94),rgba(2,10,22,.98));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 28px 60px rgba(0,0,0,.45), inset 0 1px rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:clamp(26px,4vw,42px);
+  text-align:center;
+}
+.contact-hero-card img{
+  width:clamp(145px,18vw,230px);
+  height:auto;
+  display:block;
+  margin:0 auto 18px;
+  filter:drop-shadow(0 18px 24px rgba(0,0,0,.38));
+}
+.contact-hero-card strong{
+  display:block;
+  font-family:Graduate,serif;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#fff;
+  font-size:clamp(18px,2vw,24px);
+}
+.contact-hero-card span{
+  display:block;
+  margin-top:8px;
+  color:rgba(255,255,255,.76);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:12px;
+}
+.contact-section-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto clamp(28px,5vw,48px);
+}
+.contact-section-head h2,.contact-cta-panel h2{
+  font-family:Graduate,serif;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+}
+.contact-method-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(18px,3vw,28px);
+}
+.contact-method-card{
+  background:linear-gradient(180deg,rgba(9,31,62,.95),rgba(2,10,22,.98));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 24px 52px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.10);
+  border-radius:26px;
+  padding:clamp(24px,4vw,34px);
+  text-align:center;
+}
+.contact-icon{
+  width:68px;
+  height:68px;
+  margin:0 auto 18px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:32px;
+  font-weight:900;
+  background:linear-gradient(180deg,#ff4a68 0%,#e22143 42%,#99071f 100%);
+  box-shadow:0 16px 28px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.30);
+}
+.contact-method-card h3{
+  margin:0 0 10px;
+  color:#fff;
+  font-family:Graduate,serif;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.contact-method-card p{
+  color:rgba(255,255,255,.76);
+  margin:0 0 22px;
+}
+.contact-method-card a,.contact-action-btn{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 26px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  text-decoration:none;
+}
+.contact-method-card a{
+  color:#fff;
+  background:linear-gradient(180deg,#ff4a68 0%,#df1f40 42%,#93071e 100%);
+  border:1px solid rgba(255,255,255,.36);
+  clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+  box-shadow:0 14px 24px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.25);
+}
+.contact-cta-section{
+  background:linear-gradient(180deg,rgba(2,10,22,1),rgba(7,24,49,1));
+}
+.contact-cta-panel{
+  border-radius:30px;
+  padding:clamp(30px,6vw,56px);
+  text-align:center;
+  background:
+    linear-gradient(180deg,rgba(9,31,62,.92),rgba(2,10,22,.98)),
+    url('digital-camo.jpg') center/cover;
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 28px 60px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.10);
+}
+.contact-cta-panel p:not(.eyebrow){
+  max-width:720px;
+  margin-left:auto;
+  margin-right:auto;
+  color:rgba(255,255,255,.82);
+}
+.contact-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+@media(max-width:760px){
+  .contact-hero-grid,.contact-method-grid{
+    grid-template-columns:1fr;
+  }
+  .contact-hero-card img{width:170px;}
+  .contact-method-card{text-align:center;}
+  .contact-actions{align-items:stretch;}
+  .contact-action-btn,.contact-method-card a{width:100%;}
+}
