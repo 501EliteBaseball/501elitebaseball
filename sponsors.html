@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Sponsors | 501 Elite Baseball</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Patch 001B: root-level sponsor artwork integration. */
+    .sponsor-art-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,24px);align-items:start;margin-top:28px;}
+    .sponsor-art-card{display:block;border-radius:18px;overflow:hidden;background:#061426;border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 45px rgba(0,0,0,.35);transition:transform .18s ease,box-shadow .18s ease;}
+    .sponsor-art-card:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(0,0,0,.45);}
+    .sponsor-art-card img{display:block;width:100%;height:auto;}
+    .sponsor-title-art{grid-column:1/-1;max-width:780px;margin:8px auto 0;}
+    .sponsor-title-art img{width:100%;}
+    @media (max-width:900px){.sponsor-art-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.sponsor-title-art{max-width:520px;}}
+    @media (max-width:620px){.sponsor-art-grid{grid-template-columns:1fr;max-width:430px;margin-left:auto;margin-right:auto;}.sponsor-title-art{max-width:430px;}}
+  </style>
 </head>
 <body>
 <header class="site-header">
@@ -78,22 +90,12 @@
     <div class="sponsor-wrap">
       <p class="eyebrow">Sponsorship Levels</p>
       <h2>Choose your level of impact.</h2>
-      <div class="sponsor-art-grid">
-        <article class="sponsor-art-card" aria-label="Bronze sponsor level">
-          <img src="images/sponsors/bronze-sponsor.png" alt="Bronze Sponsor level for 501 Elite Baseball">
-        </article>
-        <article class="sponsor-art-card" aria-label="Silver sponsor level">
-          <img src="images/sponsors/silver-sponsor.png" alt="Silver Sponsor level for 501 Elite Baseball">
-        </article>
-        <article class="sponsor-art-card" aria-label="Gold sponsor level">
-          <img src="images/sponsors/gold-sponsor.png" alt="Gold Sponsor level for 501 Elite Baseball">
-        </article>
-        <article class="sponsor-art-card" aria-label="Platinum sponsor level">
-          <img src="images/sponsors/platinum-sponsor.png" alt="Platinum Sponsor level for 501 Elite Baseball">
-        </article>
-        <article class="sponsor-art-card sponsor-art-card--title" aria-label="Title sponsor level">
-          <img src="images/sponsors/title-sponsor.png" alt="Title Sponsor level for 501 Elite Baseball">
-        </article>
+      <div class="sponsor-art-grid" aria-label="501 Elite sponsorship levels">
+        <a class="sponsor-art-card" href="mailto:info@501elitebaseball.org?subject=Bronze%20Sponsor%20Inquiry"><img src="sponsor-bronze.jpg" alt="Bronze Sponsor level for 501 Elite Baseball"></a>
+        <a class="sponsor-art-card" href="mailto:info@501elitebaseball.org?subject=Silver%20Sponsor%20Inquiry"><img src="sponsor-silver.jpg" alt="Silver Sponsor level for 501 Elite Baseball"></a>
+        <a class="sponsor-art-card" href="mailto:info@501elitebaseball.org?subject=Gold%20Sponsor%20Inquiry"><img src="sponsor-gold.jpg" alt="Gold Sponsor level for 501 Elite Baseball"></a>
+        <a class="sponsor-art-card" href="mailto:info@501elitebaseball.org?subject=Platinum%20Sponsor%20Inquiry"><img src="sponsor-platinum.jpg" alt="Platinum Sponsor level for 501 Elite Baseball"></a>
+        <a class="sponsor-art-card sponsor-title-art" href="mailto:info@501elitebaseball.org?subject=Title%20Sponsor%20Inquiry"><img src="sponsor-title.jpg" alt="Title Sponsor level for 501 Elite Baseball"></a>
       </div>
     </div>
   </section>

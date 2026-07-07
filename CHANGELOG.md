@@ -1,21 +1,21 @@
-# Patch 001 — Sponsor Card Integration
+# Patch 001B – Sponsor Cards Flat Integration
 
-## Modified
-- `sponsors.html`
-- `style.css`
+## Purpose
+Fixes broken sponsor card images caused by folder/path upload limitations on GitHub mobile.
+
+## Deployment
+Upload every file in this patch directly into the repository root and overwrite `sponsors.html` when prompted.
 
 ## Added
-- `images/sponsors/bronze-sponsor.png`
-- `images/sponsors/silver-sponsor.png`
-- `images/sponsors/gold-sponsor.png`
-- `images/sponsors/platinum-sponsor.png`
-- `images/sponsors/title-sponsor.png`
+- sponsor-bronze.jpg
+- sponsor-silver.jpg
+- sponsor-gold.jpg
+- sponsor-platinum.jpg
+- sponsor-title.jpg
 
-## Changes
-- Replaced CSS-generated sponsorship tier cards with the approved original-style sponsor card artwork.
-- Added responsive image layout for the sponsor cards.
-- Title Sponsor is displayed as a full-width featured card.
-- Existing sponsor page structure, hero, exposure section, sponsor wall, and CTA remain unchanged.
+## Modified
+- sponsors.html
 
-## Install
-Drag the contents of this patch folder into the root of the GitHub repository and overwrite existing files when prompted.
+## Notes
+- The image paths are root-level filenames only. No folders are required.
+- The sponsor levels now use the approved original-style sponsor card artwork.
