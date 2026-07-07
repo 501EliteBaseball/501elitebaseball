@@ -1287,3 +1287,12 @@ body.menu-open{overflow:hidden;}
   .sponsor-art-card--title{margin-top:0;}
   .sponsor-art-card--title img{max-width:100%;border-radius:20px;}
 }
+
+
+/* Patch 003A About Premium */
+.about-premium .hero{padding:5rem 1.5rem;background:linear-gradient(rgba(3,21,43,.55),rgba(3,21,43,.8)),url('hero-baseball.jpg') center/cover}
+.about-premium section{padding:4.5rem 1.5rem}
+.about-premium .card,.about-premium .pillar,.about-premium .feature-card{background:linear-gradient(180deg,#0b223f,#07172d);border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+.about-premium h2{font-size:2.2rem;margin-bottom:1rem}
+.about-premium .grid{gap:2rem}
+.about-premium .cta,.about-premium .button{border-radius:999px}

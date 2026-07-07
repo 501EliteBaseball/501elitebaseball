@@ -1,4 +1,2 @@
-# Patch003
-- Refined About hero
-- Added 501 Difference section
-- Updated headings
+# Patch003A
+Updated About page styling.
