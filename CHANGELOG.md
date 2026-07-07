@@ -1,8 +1,9 @@
-# 501 Elite Website — Sprint 1B
+# 501 Elite Website — Sprint 1C
 
-## Refine, Don't Reinvent
-- Cleaned up the homepage header treatment.
-- Replaced oversized player placeholder graphics with shield-based cards.
-- Updated sponsor tier cards to use the official shield and metallic tier finishes.
-- Expanded the About page content and storytelling.
-- Added Sprint 1B notes.
+## Sponsor Shield + Metallic Tier Polish
+
+- Sponsor page only.
+- Enlarged shield usage across sponsorship tier cards.
+- Removed unnecessary badge/backplate effects behind shields.
+- Improved tier cards with more intentional metallic finishes.
+- Refined Title Sponsor card with red/white/blue digital camo treatment.
