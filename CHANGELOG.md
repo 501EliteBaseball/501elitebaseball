@@ -1,16 +1,12 @@
-# Patch 002 — Training Page
+# Patch 002A — Training Page Visual Refinement
 
 ## Changed
-- Rebuilt the current Training page destination (`standard.html`) into a full Player Development / Training page.
-- Added a premium training hero, development pillars, training pathway, practice library, 501 Standard section, philosophy block, and future training roadmap.
-- Uses existing site assets only: `hero-team.jpg`, `digital-camo.jpg`, and `Shield Vector.svg`.
+- Upgraded Training hero presentation with stronger spacing, hierarchy, and a shield-based development card.
+- Refined development pillar cards with larger shield accents, better spacing, and stronger contrast.
+- Improved pathway, resource, and standard sections with cleaner card styling and more premium visual rhythm.
+- Preserved the existing page flow and content; this is a visual refinement, not a rewrite.
 
 ## Upload Instructions
-Upload these files directly to the GitHub repo root:
-- `standard.html`
-- `CHANGELOG.md`
-
-Overwrite the existing `standard.html` when prompted.
-
-## Notes
-The site navigation currently points the Training menu item to `standard.html`, so this patch intentionally updates that file instead of adding a new page path.
+Upload these files directly to the GitHub repo root and overwrite existing files:
+- standard.html
+- CHANGELOG.md
