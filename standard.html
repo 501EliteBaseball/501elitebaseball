@@ -24,6 +24,85 @@
     @media(max-width:760px){.training-hero{min-height:520px;padding:56px 18px 46px;background:linear-gradient(90deg,rgba(1,8,20,.85),rgba(1,8,20,.50)),url('hero-team.jpg') center/cover no-repeat}.training-hero h1{font-size:43px}.training-hero p{font-size:16px}.training-statement{padding:18px}.training-statement .training-wrap{grid-template-columns:92px 1fr;gap:16px}.training-statement img{width:82px;height:82px}.training-dark,.training-light,.standard-feature{padding:54px 18px}.training-head h2{font-size:31px}.training-head p{font-size:16px}.pillar-grid,.pathway-grid,.future-grid{grid-template-columns:1fr}.pillar-card{min-height:auto;padding:30px 22px}.pillar-card img{width:230px;height:230px}.standard-panel{grid-template-columns:1fr;text-align:center;min-height:auto}.standard-panel figure{border-right:0;border-bottom:1px solid rgba(255,255,255,.16);min-height:190px}.standard-panel div{padding:26px 22px 30px}.standard-panel img{width:245px;height:245px}.coach-note{padding:28px}.coach-note img{width:230px}}
 
   </style>
+
+<style>
+/* PATCH 002E — Training final shield + spacing refinement */
+.training-card,
+.development-card,
+.standard-card,
+.pillar-card,
+.resource-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.training-card img[src*="shield-training"],
+.development-card img[src*="shield-training"],
+.standard-card img[src*="shield-training"],
+.pillar-card img[src*="shield-training"],
+img.training-shield,
+.training-shield {
+  display: block !important;
+  width: clamp(112px, 30vw, 168px) !important;
+  max-width: 168px !important;
+  height: auto !important;
+  margin: 0 auto 1.25rem auto !important;
+  object-fit: contain !important;
+  transform: none !important;
+}
+
+.standard-card img[src*="shield-training"],
+.standard-card .training-shield {
+  width: clamp(124px, 34vw, 190px) !important;
+  max-width: 190px !important;
+  margin-bottom: 1.35rem !important;
+}
+
+.development-card,
+.pillar-card,
+.standard-card {
+  text-align: center !important;
+  padding-top: clamp(1.75rem, 5vw, 2.5rem) !important;
+  padding-bottom: clamp(1.75rem, 5vw, 2.5rem) !important;
+}
+
+.development-card h3,
+.pillar-card h3,
+.standard-card h3 {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.7rem !important;
+  line-height: 1.08 !important;
+}
+
+.development-card p,
+.pillar-card p,
+.standard-card p {
+  max-width: 34rem;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 760px) {
+  .training-card img[src*="shield-training"],
+  .development-card img[src*="shield-training"],
+  .standard-card img[src*="shield-training"],
+  .pillar-card img[src*="shield-training"],
+  img.training-shield,
+  .training-shield {
+    width: 142px !important;
+    max-width: 142px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .standard-card img[src*="shield-training"],
+  .standard-card .training-shield {
+    width: 156px !important;
+    max-width: 156px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="site-header">
@@ -57,7 +136,7 @@
 
   <section class="training-statement">
     <div class="training-wrap">
-      <img src="shield-training.png" alt="501 Elite Shield">
+      <img src="shield-training.png" alt="501 Elite Shield" class="training-shield">
       <strong>Effort, attitude, and accountability are trained daily.</strong>
     </div>
   </section>
@@ -70,10 +149,10 @@
         <p>At 8U, the goal is not to overload players. The goal is to build a foundation they can carry into every future season.</p>
       </div>
       <div class="pillar-grid">
-        <article class="pillar-card"><img src="shield-training.png" alt=""><h3>Throwing System</h3><p>Arm care, grip, footwork, direction, accuracy, and confidence with the baseball.</p></article>
-        <article class="pillar-card"><img src="shield-training.png" alt=""><h3>Hitting Development</h3><p>Approach, timing, balance, barrel control, and competitive at-bats.</p></article>
-        <article class="pillar-card"><img src="shield-training.png" alt=""><h3>Defensive Skill</h3><p>Glove work, body position, communication, instincts, and making the routine play.</p></article>
-        <article class="pillar-card"><img src="shield-training.png" alt=""><h3>Athleticism</h3><p>Speed, coordination, agility, movement quality, and body control.</p></article>
+        <article class="pillar-card"><img src="shield-training.png" alt="" class="training-shield"><h3>Throwing System</h3><p>Arm care, grip, footwork, direction, accuracy, and confidence with the baseball.</p></article>
+        <article class="pillar-card"><img src="shield-training.png" alt="" class="training-shield"><h3>Hitting Development</h3><p>Approach, timing, balance, barrel control, and competitive at-bats.</p></article>
+        <article class="pillar-card"><img src="shield-training.png" alt="" class="training-shield"><h3>Defensive Skill</h3><p>Glove work, body position, communication, instincts, and making the routine play.</p></article>
+        <article class="pillar-card"><img src="shield-training.png" alt="" class="training-shield"><h3>Athleticism</h3><p>Speed, coordination, agility, movement quality, and body control.</p></article>
       </div>
     </div>
   </section>
@@ -117,15 +196,15 @@
         <p>Our development philosophy is built around three core standards that shape confident players and better people.</p>
       </div>
       <article class="standard-panel">
-        <figure><img src="shield-training.png" alt="501 Elite Shield"></figure>
+        <figure><img src="shield-training.png" alt="501 Elite Shield" class="training-shield"></figure>
         <div><small>Core Standard</small><h3>Own Your Effort</h3><p>Show up ready to work. Focus on the details. Finish every rep. Players learn that effort is something they can control every single day.</p></div>
       </article>
       <article class="standard-panel red">
-        <figure><img src="shield-training.png" alt="501 Elite Shield"></figure>
+        <figure><img src="shield-training.png" alt="501 Elite Shield" class="training-shield"></figure>
         <div><small>Core Standard</small><h3>Own Your Attitude</h3><p>Respond the right way to mistakes, coaching, competition, and pressure. We train players to reset, compete, and keep moving forward.</p></div>
       </article>
       <article class="standard-panel">
-        <figure><img src="shield-training.png" alt="501 Elite Shield"></figure>
+        <figure><img src="shield-training.png" alt="501 Elite Shield" class="training-shield"></figure>
         <div><small>Core Standard</small><h3>Own Your Future</h3><p>Baseball gives us daily chances to build confidence, toughness, leadership, and character that lasts beyond the game.</p></div>
       </article>
     </div>
@@ -134,7 +213,7 @@
   <section class="training-dark">
     <div class="training-wrap">
       <div class="coach-note">
-        <img src="shield-training.png" alt="501 Elite Shield">
+        <img src="shield-training.png" alt="501 Elite Shield" class="training-shield">
         <div>
           <p class="training-kicker">Our Philosophy</p>
           <h2>Better Players. Better People.</h2>
@@ -158,7 +237,7 @@
   </section>
 </main>
 
-<footer class="footer"><div class="wrap foot"><img class="shield" src="shield-training.png" alt="501 Elite Shield"><span>Own Your Effort.<br>Own Your Attitude.<br>Own Your Future.</span><span><a href="tel:5015201695">501-520-1695</a><br><a href="mailto:info@501elitebaseball.org">info@501elitebaseball.org</a><br>Hot Springs, Arkansas</span><span>© 2026 501 Elite Baseball</span></div></footer>
+<footer class="footer"><div class="wrap foot"><img class="shield training-shield" src="shield-training.png" alt="501 Elite Shield"><span>Own Your Effort.<br>Own Your Attitude.<br>Own Your Future.</span><span><a href="tel:5015201695">501-520-1695</a><br><a href="mailto:info@501elitebaseball.org">info@501elitebaseball.org</a><br>Hot Springs, Arkansas</span><span>© 2026 501 Elite Baseball</span></div></footer>
 <script src="main.js"></script>
 </body>
 </html>
