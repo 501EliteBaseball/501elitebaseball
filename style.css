@@ -1296,3 +1296,180 @@ body.menu-open{overflow:hidden;}
 .about-premium h2{font-size:2.2rem;margin-bottom:1rem}
 .about-premium .grid{gap:2rem}
 .about-premium .cta,.about-premium .button{border-radius:999px}
+
+
+/* =========================================================
+   FOUNDATION 001 — 501 ELITE DESIGN SYSTEM
+   Purpose: unify heroes, cards, shields, typography, buttons,
+   spacing, and page rhythm across the site without rebuilding
+   page content.
+   ========================================================= */
+:root{
+  --elite-radius: 22px;
+  --elite-radius-lg: 30px;
+  --elite-border: 1px solid rgba(255,255,255,.22);
+  --elite-card-bg: linear-gradient(180deg,rgba(8,30,60,.94),rgba(2,10,22,.98));
+  --elite-card-bg-light: linear-gradient(180deg,#ffffff,#edf2f8);
+  --elite-shadow: 0 22px 48px rgba(0,0,0,.34);
+  --elite-shadow-light: 0 18px 38px rgba(7,23,45,.14);
+  --elite-section-pad: clamp(56px,8vw,92px) 24px;
+  --elite-inner-pad: clamp(22px,4vw,38px);
+}
+
+/* Shared page rhythm */
+section{scroll-margin-top:90px;}
+.sponsor-section,.training-dark,.training-light,.standard-feature,.hub-dashboard,.hub-light,.about-light-v11b,.about-dark-v11b,.about-dark-v12,.about-cta-v11b,.cta-panel{
+  padding-top: clamp(56px,8vw,88px) !important;
+  padding-bottom: clamp(56px,8vw,88px) !important;
+}
+.hub-wrap,.sponsor-wrap,.training-wrap,.about-wrap,.wrap{
+  max-width: var(--max);
+}
+
+/* Shared hero discipline */
+.hub-hero,.sponsor-hero,.about-hero-v11b,.training-hero{
+  position:relative;
+  border-bottom:3px solid var(--red) !important;
+  overflow:hidden;
+}
+.hub-hero:after,.sponsor-hero:after,.about-hero-v11b:after,.training-hero:after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--red),rgba(255,255,255,.8),var(--red),transparent);
+  box-shadow:0 0 26px rgba(240,31,69,.55);
+  pointer-events:none;
+}
+.hub-hero h1,.sponsor-hero h1,.about-hero-v11b h1,.training-hero h1{
+  font-family:Graduate,serif !important;
+  text-transform:uppercase !important;
+  line-height:1.04 !important;
+  letter-spacing:.015em !important;
+  text-shadow:0 7px 0 rgba(0,0,0,.38),0 20px 38px rgba(0,0,0,.62) !important;
+}
+.hub-lead,.sponsor-hero__copy,.about-lead,.training-hero p,.lead{
+  max-width:720px;
+  font-weight:800 !important;
+  line-height:1.55 !important;
+}
+
+/* Shared section headings */
+.eyebrow,.kicker,.training-kicker{
+  font-weight:950 !important;
+  letter-spacing:.18em !important;
+  text-transform:uppercase !important;
+}
+.hub-section-head h2,.sponsor-wrap>h2,.training-head h2,.about-wrap>h2,.cta-panel h2,.about-cta-card h2{
+  font-family:Graduate,serif !important;
+  text-transform:uppercase !important;
+  line-height:1.08 !important;
+}
+
+/* Shared card system */
+.value-row article,.player-card,.hub-tile,.next-card,.resource-card,.doc-card,.announcement-list article,.standard-callout,.impact-grid article,.exposure-stack div,.sponsor-wall div,.feature-card,.founder-card,.about-hero-card,.about-cta-card,.pillar-card,.path-step,.resource-tile,.standard-panel,.coach-note,.future-grid span{
+  border-radius: var(--elite-radius) !important;
+  border: var(--elite-border) !important;
+  box-shadow: var(--elite-shadow) !important;
+}
+.hub-tile,.next-card,.standard-callout,.impact-grid article,.feature-card,.founder-card,.about-hero-card,.pillar-card,.resource-tile,.standard-panel,.coach-note{
+  background:var(--elite-card-bg) !important;
+}
+.path-step,.future-grid span,.announcement-list article,.doc-card,.resource-card{
+  box-shadow:var(--elite-shadow-light) !important;
+}
+.hub-tile,.impact-grid article,.feature-card,.pillar-card,.resource-tile,.path-step,.future-grid span,.announcement-list article{
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+@media (hover:hover){
+  .hub-tile:hover,.impact-grid article:hover,.feature-card:hover,.pillar-card:hover,.resource-tile:hover,.path-step:hover,.future-grid span:hover{
+    transform:translateY(-3px);
+    border-color:rgba(240,31,69,.52) !important;
+    box-shadow:0 28px 58px rgba(0,0,0,.40) !important;
+  }
+}
+
+/* Shield hierarchy: no tiny brand marks */
+.site-footer img[src*="Shield"],.site-footer .shield{width:clamp(46px,6vw,72px) !important;height:auto !important;}
+.about-hero-card img,.founder-card img,img.training-shield,.training-shield,.pillar-card img[src*="shield"],.standard-panel img[src*="shield"],.coach-note img[src*="shield"]{
+  display:block !important;
+  height:auto !important;
+  object-fit:contain !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  transform:none !important;
+}
+.about-hero-card img{width:clamp(150px,22vw,240px) !important;}
+.founder-card img{width:clamp(120px,18vw,180px) !important;}
+.pillar-card img[src*="shield"],.training-shield{width:clamp(145px,24vw,230px) !important;max-width:230px !important;}
+.standard-panel img[src*="shield"]{width:clamp(190px,26vw,300px) !important;max-width:300px !important;}
+.coach-note img[src*="shield"]{width:clamp(190px,28vw,300px) !important;max-width:300px !important;}
+
+/* Player card cleanup: readable placeholder system */
+.player-card{
+  background:linear-gradient(180deg,rgba(8,29,57,.95),rgba(2,10,22,.98)),url('digital-camo.jpg') center/cover !important;
+  min-height:185px !important;
+}
+.player-card strong{color:#fff !important;text-shadow:0 4px 12px rgba(0,0,0,.75),2px 2px 0 var(--red) !important;}
+.player-card span,.player-card small{color:#fff !important;text-shadow:0 3px 9px rgba(0,0,0,.75) !important;}
+
+/* Sponsor art layout */
+.sponsor-art-grid{
+  gap:clamp(18px,3vw,32px) !important;
+  align-items:stretch !important;
+}
+.sponsor-art-card{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 !important;
+}
+.sponsor-art-card img{
+  width:100% !important;
+  height:auto !important;
+  border-radius:22px !important;
+  filter:drop-shadow(0 22px 34px rgba(0,0,0,.36));
+}
+.sponsor-art-card--title img{border-radius:24px !important;}
+
+/* Button standard */
+.brand-btn,.hub-tile strong,.resource-tile a,.sponsor-cta a{
+  font-weight:950 !important;
+}
+.brand-btn{
+  min-height:52px !important;
+  border-radius:0 !important;
+}
+.actions{align-items:center;}
+
+/* Contact button baseline */
+.contact-card a,.contact-actions a,.contact-method a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 28px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#fff;
+  background:linear-gradient(180deg,#ff4a68 0%,#e22143 38%,#b00d28 39%,#8d071e 100%);
+  border:1px solid rgba(255,255,255,.40);
+  clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+  box-shadow:0 11px 20px rgba(0,0,0,.30),inset 0 1px rgba(255,255,255,.24),inset 0 -1px rgba(0,0,0,.45);
+}
+
+@media(max-width:760px){
+  .sponsor-section,.training-dark,.training-light,.standard-feature,.hub-dashboard,.hub-light,.about-light-v11b,.about-dark-v11b,.about-dark-v12,.about-cta-v11b,.cta-panel{
+    padding-top:44px !important;
+    padding-bottom:44px !important;
+  }
+  .hub-hero h1,.sponsor-hero h1,.about-hero-v11b h1,.training-hero h1{font-size:clamp(34px,10vw,48px) !important;}
+  .pillar-card img[src*="shield"],.training-shield{width:158px !important;max-width:158px !important;}
+  .standard-panel img[src*="shield"],.coach-note img[src*="shield"]{width:185px !important;max-width:185px !important;}
+  .player-card{min-height:118px !important;}
+  .sponsor-art-card img{border-radius:16px !important;}
+}

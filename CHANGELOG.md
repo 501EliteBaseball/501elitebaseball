@@ -1,9 +1,17 @@
-# Patch 004 - Parents Hub
+# Foundation 001 — Design System
 
-Modified:
-- parents.html
+## Changed
+- Added a shared 501 Elite design system layer to `style.css`.
+- Unified section spacing across Home, About, Training, Parents, Sponsors, Resources, and Contact.
+- Standardized hero treatment, section headings, card radius, borders, shadows, and hover behavior.
+- Added shield hierarchy rules so shields appear larger and more intentional instead of tiny/off-center.
+- Improved player card readability and sponsor artwork presentation.
+- Added a baseline branded button treatment for contact-style calls to action.
 
-Goals:
-- Establish premium Parent Hub
-- Resources, handbook, forms, FAQ, communication sections
-- Prepare for Google Forms integration
+## Upload Instructions
+Upload these files directly to the GitHub repo root and overwrite:
+- style.css
+- CHANGELOG.md
+
+## Notes
+This patch intentionally does not rewrite page content. It creates a shared visual foundation for final polish.
