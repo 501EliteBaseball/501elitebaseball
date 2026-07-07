@@ -1,12 +1,16 @@
-# Patch 001D — Title Sponsor Rotation Fix
+# Patch 002 — Training Page
 
 ## Changed
-- Replaced `title-sponsor.png` with a corrected landscape orientation.
-- Included `sponsors.html` using flat/root asset paths.
+- Rebuilt the current Training page destination (`standard.html`) into a full Player Development / Training page.
+- Added a premium training hero, development pillars, training pathway, practice library, 501 Standard section, philosophy block, and future training roadmap.
+- Uses existing site assets only: `hero-team.jpg`, `digital-camo.jpg`, and `Shield Vector.svg`.
 
 ## Upload Instructions
 Upload these files directly to the GitHub repo root:
-- sponsors.html
-- title-sponsor.png
+- `standard.html`
+- `CHANGELOG.md`
 
-Overwrite existing files when prompted.
+Overwrite the existing `standard.html` when prompted.
+
+## Notes
+The site navigation currently points the Training menu item to `standard.html`, so this patch intentionally updates that file instead of adding a new page path.
