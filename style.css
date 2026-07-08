@@ -3699,3 +3699,262 @@ button.brand-btn.navy{
     font-size:12px !important;
   }
 }
+
+/* =========================================================
+   COMMIT 37 — Gemstone UI System v1.0
+   Sapphire secondary + payment gemstone variants.
+   ========================================================= */
+
+:root{
+  --gem-btn-w:min(82vw,318px);
+  --gem-btn-h:72px;
+  --gem-shadow:drop-shadow(0 18px 24px rgba(0,0,0,.42));
+  --gem-focus:0 0 0 3px rgba(255,255,255,.82),0 0 0 6px rgba(77,143,224,.50);
+}
+
+/* Shared gemstone sizing/behavior for both primary and secondary CTAs. */
+.brand-btn.red,
+.brand-btn.primary,
+.brand-btn.steel,
+.brand-btn.navy,
+.brand-btn.secondary,
+.cta-button,
+.btn-primary,
+.donate-paypal-button,
+button.brand-btn.red,
+button.brand-btn.navy{
+  position:relative !important;
+  isolation:isolate !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:var(--gem-btn-w) !important;
+  max-width:318px !important;
+  min-width:220px !important;
+  height:var(--gem-btn-h) !important;
+  min-height:var(--gem-btn-h) !important;
+  margin-top:8px !important;
+  margin-bottom:8px !important;
+  padding:0 34px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  clip-path:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  color:#fff !important;
+  line-height:1 !important;
+  text-shadow:0 2px 5px rgba(0,0,0,.95),0 0 10px rgba(0,0,0,.62),0 -1px 0 rgba(255,255,255,.24) !important;
+  transform:translateZ(0) !important;
+  transition:transform .20s ease,filter .20s ease !important;
+}
+
+.brand-btn.red::before,
+.brand-btn.primary::before,
+.cta-button::before,
+.btn-primary::before,
+button.brand-btn.red::before{
+  background:url("gem-button-ruby.png") center/100% 100% no-repeat !important;
+  filter:var(--gem-shadow) drop-shadow(0 0 18px rgba(240,31,69,.18)) !important;
+}
+
+/* Sapphire becomes the official secondary/information CTA. */
+.brand-btn.steel::before,
+.brand-btn.navy::before,
+.brand-btn.secondary::before,
+button.brand-btn.navy::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  background:url("gem-button-sapphire.png") center/100% 100% no-repeat !important;
+  opacity:1 !important;
+  mix-blend-mode:normal !important;
+  pointer-events:none !important;
+  transform:none !important;
+  border-radius:0 !important;
+  clip-path:none !important;
+  filter:var(--gem-shadow) drop-shadow(0 0 18px rgba(77,143,224,.20)) !important;
+}
+
+.brand-btn.steel::after,
+.brand-btn.navy::after,
+.brand-btn.secondary::after,
+button.brand-btn.navy::after{
+  content:"" !important;
+  position:absolute !important;
+  left:15% !important;
+  right:15% !important;
+  top:17% !important;
+  height:1px !important;
+  z-index:1 !important;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.70),transparent) !important;
+  opacity:.55 !important;
+  transform:none !important;
+  pointer-events:none !important;
+}
+
+.brand-btn.steel > *,
+.brand-btn.navy > *,
+.brand-btn.secondary > *,
+button.brand-btn.navy > *,
+.brand-btn.steel b,
+.brand-btn.navy b,
+.brand-btn.secondary b,
+button.brand-btn.navy b{
+  position:relative !important;
+  z-index:2 !important;
+  color:#fff !important;
+}
+
+/* PayPal donations use the cobalt PayPal gemstone, not Ruby. */
+.donate-paypal-button::before,
+.paypal-gem::before{
+  background:url("gem-button-paypal.png") center/100% 100% no-repeat !important;
+  filter:var(--gem-shadow) drop-shadow(0 0 18px rgba(0,87,216,.22)) !important;
+}
+
+/* Payment direct-link gems. */
+.support-pay-link,
+.support-handles-mini a,
+.payment-card--cashapp,
+.payment-card--venmo{
+  position:relative !important;
+  isolation:isolate !important;
+  overflow:visible !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  color:#fff !important;
+  text-shadow:0 2px 5px rgba(0,0,0,.88) !important;
+  transition:transform .20s ease,filter .20s ease !important;
+}
+.support-pay-link::before,
+.support-handles-mini a::before,
+.payment-card--cashapp::before,
+.payment-card--venmo::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  background:url("gem-button-sapphire.png") center/100% 100% no-repeat !important;
+  opacity:1 !important;
+  pointer-events:none !important;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.34));
+}
+.venmo-link::before,
+.support-handles-mini a[href*="venmo"]::before,
+.payment-card--venmo::before{
+  background-image:url("gem-button-venmo.png") !important;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.34)) drop-shadow(0 0 18px rgba(0,140,255,.22));
+}
+.cashapp-link::before,
+.support-handles-mini a[href*="cash.app"]::before,
+.payment-card--cashapp::before{
+  background-image:url("gem-button-emerald.png") !important;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.34)) drop-shadow(0 0 18px rgba(0,168,107,.22));
+}
+.support-pay-link span,
+.support-pay-link strong,
+.support-pay-link em,
+.support-handles-mini a,
+.payment-card--cashapp b,
+.payment-card--cashapp span,
+.payment-card--cashapp strong,
+.payment-card--venmo b,
+.payment-card--venmo span,
+.payment-card--venmo strong{
+  position:relative !important;
+  z-index:2 !important;
+  color:#fff !important;
+}
+.support-pay-link em{
+  background:rgba(255,255,255,.10) !important;
+}
+.support-handles-mini{
+  gap:12px !important;
+}
+.support-handles-mini a{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:62px !important;
+  min-width:min(260px,82vw) !important;
+  max-width:318px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding:0 24px !important;
+  border-radius:0 !important;
+  font-weight:950 !important;
+  letter-spacing:.035em !important;
+  text-transform:uppercase !important;
+}
+
+@media (hover:hover){
+  .brand-btn.red:hover,
+  .brand-btn.primary:hover,
+  .brand-btn.steel:hover,
+  .brand-btn.navy:hover,
+  .brand-btn.secondary:hover,
+  .cta-button:hover,
+  .btn-primary:hover,
+  .donate-paypal-button:hover,
+  button.brand-btn.red:hover,
+  button.brand-btn.navy:hover,
+  .support-pay-link:hover,
+  .support-handles-mini a:hover,
+  .payment-card--cashapp:hover,
+  .payment-card--venmo:hover{
+    transform:translateY(-2px) scale(1.012) !important;
+    filter:saturate(1.08) brightness(1.04) !important;
+  }
+}
+
+.brand-btn.red:active,
+.brand-btn.primary:active,
+.brand-btn.steel:active,
+.brand-btn.navy:active,
+.brand-btn.secondary:active,
+.cta-button:active,
+.btn-primary:active,
+.donate-paypal-button:active,
+button.brand-btn.red:active,
+button.brand-btn.navy:active,
+.support-pay-link:active,
+.support-handles-mini a:active,
+.payment-card--cashapp:active,
+.payment-card--venmo:active{
+  transform:translateY(1px) scale(.98) !important;
+  filter:brightness(.94) !important;
+}
+
+.brand-btn:focus-visible,
+.donate-paypal-button:focus-visible,
+.support-pay-link:focus-visible,
+.support-handles-mini a:focus-visible,
+.payment-card:focus-visible{
+  outline:0 !important;
+  box-shadow:var(--gem-focus) !important;
+}
+
+@media(max-width:760px){
+  :root{
+    --gem-btn-w:min(82vw,270px);
+    --gem-btn-h:62px;
+  }
+  .brand-btn.red,
+  .brand-btn.primary,
+  .brand-btn.steel,
+  .brand-btn.navy,
+  .brand-btn.secondary,
+  .cta-button,
+  .btn-primary,
+  .donate-paypal-button,
+  button.brand-btn.red,
+  button.brand-btn.navy{
+    min-width:min(236px,82vw) !important;
+    max-width:270px !important;
+    padding:0 24px !important;
+    font-size:12px !important;
+  }
+}
