@@ -9,7 +9,7 @@
 <body>
 <header class="site-header">
   <div class="header-shell">
-    <a class="brand" href="index.html"><img src="header-logo.png" alt="501 Elite Baseball"></a>
+    <a class="brand" href="index.html" aria-label="501 Elite Baseball Home"><span class="sr-only">501 Elite Baseball</span></a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -19,13 +19,12 @@
       <a href="standard.html">Training</a>
       <a class="active" href="sponsors.html">Sponsors</a>
       <a href="parents.html">Parents</a>
+      <a href="payments.html">Payments</a>
       <a href="contact.html">Contact</a>
     </nav>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <nav id="mobileMenu" class="mobile-menu">
-    <a href="index.html">Home</a><a href="about.html">About</a><a href="teams.html">Teams</a><a href="gallery.html">Gallery</a><a href="resources.html">Resources</a><a href="standard.html">Training</a><a class="active" href="sponsors.html">Sponsors</a><a href="parents.html">Parents</a><a href="contact.html">Contact</a>
-  </nav>
+  <nav id="mobileMenu" class="mobile-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="teams.html">Teams</a><a href="gallery.html">Gallery</a><a href="resources.html">Resources</a><a href="standard.html">Training</a><a class="active" href="sponsors.html">Sponsors</a><a href="parents.html">Parents</a><a href="payments.html">Payments</a><a href="contact.html">Contact</a></nav>
 </header>
 <main class="sponsor-page">
   <section class="sponsor-hero">
@@ -131,7 +130,12 @@
     <a class="brand-btn red" href="mailto:info@501elitebaseball.org?subject=501%20Elite%20Sponsorship%20Inquiry">Start Sponsorship Conversation <b>→</b></a>
   </section>
 </main>
-<footer class="site-footer"><div class="footer-brand"><img src="shield-mark.png" alt="501 Elite Shield"><p>Own Your Effort. Own Your Attitude. Own Your Future.</p></div><div class="socials"><span>f</span><span>◎</span><span>▶</span></div><address><a href="tel:5015201695">501-520-1695</a> <span>•</span> <a href="mailto:info@501elitebaseball.org">info@501elitebaseball.org</a> <span>•</span> Hot Springs, AR</address><small>© 2026 501 Elite Baseball</small></footer>
+<footer class="site-footer compact-footer">
+  <div class="footer-left"><img src="shield-mark.png" alt="501 Elite Shield"><p>Own Your Effort.<br>Own Your Attitude.<br>Own Your Future.</p></div>
+  <nav class="footer-links" aria-label="Footer navigation"><a href="payments.html">Pay Team Fees</a><a href="parents.html">Parent Hub</a><a href="sponsors.html">Sponsors</a><a href="contact.html">Contact</a></nav>
+  <address><a href="tel:5015201695">501-520-1695</a><span>•</span><a href="mailto:info@501elitebaseball.org">info@501elitebaseball.org</a><span>•</span>Hot Springs, AR</address>
+  <small>© 2026 501 Elite Baseball</small>
+</footer>
 <script src="main.js"></script>
 </body>
 </html>

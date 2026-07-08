@@ -1,25 +1,17 @@
-# Option 1 — Permanent Dist Deploy Fix
+# Version 1.0 Gold Master Polish
 
-## What changed
-This replaces the old deploy script that used `rsync`, which Cloudflare does not have.
+## Included
+- Rebuilt header around approved full-width 501 Elite banner artwork.
+- Added dedicated Payments page with PayPal hosted button.
+- Added prominent Parents payment section.
+- Added Payments to desktop/mobile navigation and footer.
+- Rebuilt compact footer layout.
+- Cropped shield asset so it scales correctly and appears larger across the site.
+- Increased button size and readability site-wide.
+- Replaced Title Sponsor artwork with updated image.
+- Improved sponsor contrast issues.
+- Updated Executive Director copy to communicate equal leadership.
+- Preserved deployment fix using clean `dist` deploy.
 
-## Files
-- `deploy.sh` now creates a clean `/dist` folder every deployment.
-- `wrangler.jsonc` tells Cloudflare to deploy only `/dist`.
-- `package.json` keeps the deploy command stable.
-
-## Cloudflare setting
-Deploy command should be:
-
-```bash
-bash deploy.sh
-```
-
-## Upload instructions
-Upload these three files to the GitHub root and overwrite existing files:
-
-- deploy.sh
-- wrangler.jsonc
-- package.json
-
-Then retry deployment.
+## Upload
+Upload these files to the GitHub root and overwrite existing files. Keep Cloudflare deploy command as `bash deploy.sh`.
