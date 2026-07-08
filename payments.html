@@ -26,9 +26,9 @@
     <div class="wrap payments-grid">
       <div class="payment-copy">
         <p class="kicker"><span></span>501 Elite Payment Center<span></span></p>
-        <h1>Payments & Donations</h1>
-        <p class="payments-lead">Use this page for team fees, uniforms, registration, and support for 501 Elite Baseball. Enter the payment details first so the transaction can be matched cleanly after checkout.</p>
-        <div class="actions"><a class="brand-btn red" href="#team-fees">Pay Team Fees <b>→</b></a><a class="brand-btn steel" href="#donate">Donate <b>→</b></a></div>
+        <h1>Team Fees & Player Payments</h1>
+        <p class="payments-lead">Use this page for team fees, uniforms, registration, and tournament costs. Enter the payment details first so the transaction can be matched cleanly after checkout.</p>
+        <div class="actions"><a class="brand-btn red" href="#team-fees">Pay Team Fees</a></div>
       </div>
       <aside class="payment-panel payment-center-card">
         <img src="shield-card.png" alt="501 Elite Shield">
@@ -66,7 +66,7 @@
             <input type="number" id="payAmount" placeholder="Amount" min="0" step="0.01">
           </label>
           <label class="full">Note / Memo
-            <textarea id="payNote" rows="3" placeholder="Example: Fall league fee, uniform balance, donation in support of player, etc."></textarea>
+            <textarea id="payNote" rows="3" placeholder="Example: Fall league fee, uniform balance, tournament fee, etc."></textarea>
           </label>
         </form>
 
@@ -89,24 +89,22 @@
     </div>
   </section>
 
-  <section class="payment-center-section donate-section" id="donate">
-    <div class="wrap donate-layout">
-      <div>
-        <p class="eyebrow">Give to 501 Elite</p>
-        <h2>Make a Donation</h2>
-        <p>Donations help support player development, equipment, tournament costs, and family resources. Donors can choose their amount through PayPal.</p>
+  <section class="payment-center-section payment-alternates" aria-label="Alternate team payment options">
+    <div class="wrap payment-alt-wrap">
+      <div class="payment-alt-copy">
+        <p class="eyebrow">Other Team Payment Options</p>
+        <h2>Need Venmo or Cash App?</h2>
+        <p>Use these only for team-related payments when requested. Include the generated memo from Step 1 so payments can be matched correctly.</p>
       </div>
-      <form class="paypal-donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="hosted_button_id" value="AC4DC4MYLQ9U8">
-        <button type="submit" class="brand-btn red donate-paypal-button">Donate with PayPal <b>→</b></button>
-      </form>
-        <div class="support-handles-mini">
-          <a href="https://venmo.com/u/EliteBaseball-501" target="_blank" rel="noopener">Venmo: <strong>@EliteBaseball-501</strong></a>
-          <a href="https://cash.app/$501EliteBaseball" target="_blank" rel="noopener">Cash App: <strong>$501EliteBaseball</strong></a>
-        </div>
-        <a class="brand-btn navy" href="support.html">Give Page <b>→</b></a>
+      <div class="payment-alt-gems">
+        <a class="brand-btn venmo-gem" href="https://venmo.com/u/EliteBaseball-501" target="_blank" rel="noopener">Venmo</a>
+        <p class="payment-handle">@EliteBaseball-501</p>
+        <a class="brand-btn cashapp-gem" href="https://cash.app/$501EliteBaseball" target="_blank" rel="noopener">Cash App</a>
+        <p class="payment-handle">$501EliteBaseball</p>
+      </div>
     </div>
   </section>
+
 </main>
 
 <script>

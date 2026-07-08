@@ -5424,3 +5424,281 @@ body{color:var(--text-on-dark);}
 .library-coming-soon{padding:64px 24px;background:radial-gradient(circle at 100% 0%,rgba(240,31,69,.18),transparent 28%),linear-gradient(180deg,#061d39,#020914);color:#eef3f8}.coming-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,520px);gap:30px;align-items:center}.coming-panel h2{font-family:Graduate,serif;text-transform:uppercase;font-size:clamp(32px,4vw,54px);line-height:1.08;margin:0 0 14px}.coming-panel p{color:#cfd9e6;font-weight:750;line-height:1.55}.coming-list{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}.coming-list span{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);border-radius:999px;padding:11px 13px;color:#e4ecf5;font-weight:900;text-transform:uppercase;letter-spacing:.09em;font-size:11px}
 @media(max-width:1050px){.library-hero-grid,.library-feature-card,.coming-panel{grid-template-columns:1fr}.library-category-grid,.publication-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.library-feature-actions{grid-template-columns:1fr 1fr}.coming-list{justify-content:flex-start}}
 @media(max-width:760px){.library-hero-grid{min-height:auto;padding:46px 0;gap:24px}.library-hero h1{font-size:clamp(36px,11vw,54px)}.library-lead{font-size:16px}.library-hero-card{padding:22px;border-radius:20px}.library-hero-card img{width:92px}.library-featured,.library-shelves,.library-publications,.library-coming-soon{padding:46px 18px}.library-feature-card{padding:24px;border-radius:22px}.library-feature-card:before{font-size:72px}.library-feature-copy p{font-size:15px}.library-feature-actions{grid-template-columns:1fr}.library-category-grid,.publication-grid{grid-template-columns:1fr}.library-category-card{min-height:0}.publication-card{min-height:0}.publication-meta{display:grid}.coming-list span{font-size:10px}}
+
+/* =========================================================
+   v2.0.10 QA HOTFIX — readability, payment cleanup, true gems
+   ========================================================= */
+
+:root{
+  --platinum-surface:#e6edf5;
+  --platinum-card:#edf3f8;
+  --platinum-border:#c6d2df;
+  --ink-strong:#08182f;
+  --ink-body:#263b55;
+  --ink-muted:#52677f;
+}
+
+/* Contact page readability reset: remove blended blue/low-contrast copy. */
+.contact-hero,
+.contact-methods-section{
+  color:var(--ink-strong) !important;
+}
+.contact-hero.page-hero{
+  background:
+    radial-gradient(circle at 84% 14%,rgba(240,31,69,.10),transparent 26%),
+    linear-gradient(180deg,#eef3f8,#dfe8f1) !important;
+  border-bottom:3px solid var(--red) !important;
+}
+.contact-hero .eyebrow,
+.contact-methods-section .eyebrow{
+  color:var(--red) !important;
+  text-shadow:none !important;
+}
+.contact-hero h1,
+.contact-methods-section h2,
+.contact-method-card h3{
+  color:var(--ink-strong) !important;
+  text-shadow:none !important;
+}
+.contact-hero-copy,
+.contact-section-head p,
+.contact-method-card p{
+  color:var(--ink-body) !important;
+  font-weight:850 !important;
+  line-height:1.6 !important;
+  text-shadow:none !important;
+}
+.contact-hero-card,
+.contact-method-card{
+  background:linear-gradient(180deg,#f3f7fb,#e2ebf3) !important;
+  border:1px solid var(--platinum-border) !important;
+  color:var(--ink-strong) !important;
+  box-shadow:0 22px 44px rgba(7,23,45,.14) !important;
+}
+.contact-hero-card *,
+.contact-method-card *{
+  color:var(--ink-strong) !important;
+  text-shadow:none !important;
+}
+.contact-hero-card span,
+.contact-method-card p{
+  color:var(--ink-body) !important;
+}
+.contact-method-card a{
+  color:#dfefff !important;
+  text-shadow:0 2px 5px rgba(0,0,0,.85) !important;
+}
+
+/* Payment center: remove donation language and improve legibility. */
+.payment-center-hero .payments-lead,
+.payment-copy p,
+.payment-helper,
+.payment-intent-card p,
+.payment-intent-card label,
+.payment-widget-card p,
+.payment-alt-copy p{
+  color:var(--ink-body) !important;
+  font-weight:850 !important;
+  line-height:1.6 !important;
+  text-shadow:none !important;
+}
+.payment-center-hero.page-hero{
+  background:
+    radial-gradient(circle at 88% 8%,rgba(18,62,116,.16),transparent 24%),
+    linear-gradient(180deg,#eef3f8,#dfe8f1) !important;
+  color:var(--ink-strong) !important;
+}
+.payment-center-hero h1,
+.payment-center-hero .payment-copy h1{
+  color:var(--ink-strong) !important;
+  text-shadow:none !important;
+}
+.payment-center-hero .kicker{
+  color:var(--red) !important;
+  text-shadow:none !important;
+}
+.payment-center-card,
+.payment-checkout-card{
+  background:linear-gradient(180deg,#08284c,#020b18) !important;
+  color:#e9f1fa !important;
+}
+.payment-center-card p,
+.payment-checkout-card p,
+.payment-center-card h2,
+.payment-checkout-card strong,
+.payment-checkout-card .eyebrow{
+  color:#e9f1fa !important;
+  text-shadow:none !important;
+}
+.payment-intent-card{
+  background:linear-gradient(180deg,#f4f7fb,#e4ecf4) !important;
+  border:1px solid var(--platinum-border) !important;
+  color:var(--ink-strong) !important;
+}
+.payment-intent-card h2,
+.payment-summary-box strong{
+  color:var(--ink-strong) !important;
+}
+.payment-summary-box{
+  background:linear-gradient(180deg,#071a33,#020914) !important;
+  border:1px solid rgba(180,212,255,.25) !important;
+}
+.payment-summary-box p,
+.payment-summary-box small,
+.payment-summary-box strong{
+  color:#e9f1fa !important;
+}
+.payment-alternates{
+  background:linear-gradient(180deg,#e9f0f7,#dce7f1) !important;
+  color:var(--ink-strong) !important;
+  border-top:1px solid var(--platinum-border);
+}
+.payment-alt-wrap{
+  display:grid;
+  grid-template-columns:1fr minmax(280px,420px);
+  gap:28px;
+  align-items:center;
+}
+.payment-alt-copy h2{
+  font-family:Graduate,serif;
+  text-transform:uppercase;
+  color:var(--ink-strong);
+  font-size:clamp(28px,4vw,44px);
+  margin:0 0 12px;
+}
+.payment-alt-gems{
+  display:grid;
+  justify-items:center;
+  gap:6px;
+}
+.payment-handle,
+.support-gem-item strong{
+  margin:0 0 10px !important;
+  color:var(--ink-body) !important;
+  font-size:14px !important;
+  font-weight:950 !important;
+  letter-spacing:.03em !important;
+  text-align:center !important;
+  overflow-wrap:anywhere;
+}
+
+/* Parent Hub: remove noisy payment/donation block cleanly if old HTML lingers. */
+.parents-page .payment-center--featured{
+  display:none !important;
+}
+
+/* Cash App / Venmo official gem buttons. */
+.brand-btn.venmo-gem,
+.brand-btn.cashapp-gem{
+  position:relative !important;
+  isolation:isolate !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:var(--gem-btn-w) !important;
+  max-width:318px !important;
+  min-width:220px !important;
+  height:var(--gem-btn-h) !important;
+  min-height:var(--gem-btn-h) !important;
+  padding:0 34px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  clip-path:none !important;
+  color:#fff !important;
+  font-family:Inter,Arial,sans-serif !important;
+  font-size:clamp(12px,3vw,15px) !important;
+  font-weight:950 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.075em !important;
+  text-shadow:0 2px 5px rgba(0,0,0,.92),0 0 10px rgba(0,0,0,.54) !important;
+}
+.brand-btn.venmo-gem::before,
+.brand-btn.cashapp-gem::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  background:center/100% 100% no-repeat !important;
+  opacity:1 !important;
+  pointer-events:none !important;
+  filter:drop-shadow(0 18px 24px rgba(0,0,0,.40));
+}
+.brand-btn.venmo-gem::before{
+  background-image:url("gem-button-venmo.png") !important;
+  filter:drop-shadow(0 18px 24px rgba(0,0,0,.40)) drop-shadow(0 0 18px rgba(0,140,255,.24));
+}
+.brand-btn.cashapp-gem::before{
+  background-image:url("gem-button-emerald.png") !important;
+  filter:drop-shadow(0 18px 24px rgba(0,0,0,.40)) drop-shadow(0 0 18px rgba(0,168,107,.24));
+}
+.brand-btn.venmo-gem::after,
+.brand-btn.cashapp-gem::after{
+  content:"" !important;
+  position:absolute !important;
+  left:15% !important;
+  right:15% !important;
+  top:17% !important;
+  height:1px !important;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.70),transparent) !important;
+  opacity:.52 !important;
+  pointer-events:none !important;
+  transform:none !important;
+}
+.support-gem-list{
+  display:grid !important;
+  gap:14px !important;
+  justify-items:center !important;
+}
+.support-gem-item{
+  display:grid !important;
+  justify-items:center !important;
+  gap:2px !important;
+}
+.support-gem-item .brand-btn{
+  margin:0 auto !important;
+}
+.support-page .support-card.support-handle-card{
+  background:linear-gradient(180deg,#eef4f9,#dfe9f3) !important;
+  border:1px solid var(--platinum-border) !important;
+}
+
+/* Keep old direct-giving link style from overpowering the gems if cached HTML remains. */
+.support-pay-link.venmo-link::before{background-image:url("gem-button-venmo.png") !important;}
+.support-pay-link.cashapp-link::before{background-image:url("gem-button-emerald.png") !important;}
+
+/* Remove remaining visible arrow glyphs inside gems. */
+.brand-btn b,
+.cta-button b,
+.donate-paypal-button b{
+  display:none !important;
+}
+@media(hover:hover){
+  .brand-btn:hover b,
+  .cta-button:hover b,
+  .donate-paypal-button:hover b{
+    transform:none !important;
+  }
+}
+
+@media(max-width:900px){
+  .payment-alt-wrap{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+}
+@media(max-width:760px){
+  .brand-btn.venmo-gem,
+  .brand-btn.cashapp-gem{
+    min-width:min(236px,82vw) !important;
+    max-width:270px !important;
+    height:62px !important;
+    min-height:62px !important;
+    padding:0 24px !important;
+    font-size:12px !important;
+  }
+  .contact-hero.page-hero,
+  .payment-center-hero.page-hero{
+    padding:48px 18px !important;
+  }
+}
