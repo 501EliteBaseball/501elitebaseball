@@ -6315,3 +6315,200 @@ body{color:var(--text-on-dark);}
     text-wrap:balance !important;
   }
 }
+
+/* v2.1.4 — Desktop Page Polish
+   Goal: unify desktop page rhythm after the nav/hero/layout/card passes.
+   Mobile remains governed by existing <=760px rules. */
+@media (min-width: 1051px){
+  /* Global desktop rhythm */
+  .page-hero,
+  .team-hero,
+  .hub-hero{
+    min-height:420px;
+    display:flex;
+    align-items:center;
+  }
+
+  .page-hero .wrap,
+  .section .wrap,
+  .team-wrap,
+  .hub-wrap{
+    width:min(100%,1320px);
+  }
+
+  .section,
+  .team-light,
+  .team-dark,
+  .hub-dashboard,
+  .hub-light,
+  .hub-dark{
+    padding-top:88px !important;
+    padding-bottom:88px !important;
+  }
+
+  /* Page hero content should feel intentional instead of stretched. */
+  .page-hero h1,
+  .team-hero h1,
+  .hub-hero h1{
+    max-width:920px;
+    text-wrap:balance;
+  }
+  .page-hero p,
+  .team-lead,
+  .hub-lead{
+    max-width:760px;
+    color:#d9e3ef !important;
+    line-height:1.58 !important;
+    font-weight:760 !important;
+  }
+
+  /* Desktop navigation polish: one clean navigation system. */
+  .site-header .menu-toggle{
+    display:none !important;
+  }
+  .header-shell{
+    grid-template-columns:232px 1fr !important;
+    max-width:1360px !important;
+    padding-left:30px !important;
+    padding-right:30px !important;
+  }
+  .main-nav{
+    justify-content:flex-end !important;
+    gap:18px !important;
+  }
+  .main-nav a{
+    font-size:12px !important;
+    letter-spacing:.095em !important;
+    color:#dce6f1 !important;
+  }
+  .main-nav a:hover,
+  .main-nav a.active{
+    color:#ff5b78 !important;
+  }
+
+  /* Library / document system: make it read like a premium catalog. */
+  .doc-grid,
+  .hub-card-grid,
+  .team-action-grid,
+  .cards,
+  .grid2,
+  .roster,
+  .roster-wall,
+  .season-board,
+  .schedule-row{
+    gap:22px !important;
+  }
+  .doc-card,
+  .resource,
+  .card,
+  .player,
+  .announcement-list article{
+    background:linear-gradient(180deg,#eef3f8,#dfe8f2) !important;
+    border-color:#c5d2e1 !important;
+  }
+  .doc-card p,
+  .resource p,
+  .card p,
+  .player p,
+  .announcement-list p{
+    color:#3d4f67 !important;
+    line-height:1.58 !important;
+  }
+
+  /* Parent Hub and payment areas: no cheap floating buttons/cards. */
+  .quick-pay-card,
+  .payment-card,
+  .support-card,
+  .contact-card{
+    background:linear-gradient(180deg,#eef3f8,#dfe7f1) !important;
+    border:1px solid #c4d1df !important;
+    box-shadow:0 18px 38px rgba(7,23,45,.13) !important;
+  }
+  .quick-pay-card p,
+  .payment-card p,
+  .support-card p,
+  .contact-card p,
+  .quick-pay-card li,
+  .payment-card li,
+  .support-card li,
+  .contact-card li{
+    color:#36485f !important;
+    line-height:1.58 !important;
+  }
+
+  /* Desktop CTA panels should be centered, calm, and platinum. */
+  .cta-panel{
+    background:linear-gradient(180deg,#eef3f8,#dfe8f2) !important;
+    padding-top:86px !important;
+    padding-bottom:86px !important;
+  }
+  .cta-panel p{
+    max-width:720px;
+    margin-left:auto;
+    margin-right:auto;
+    color:#374a63 !important;
+    line-height:1.62 !important;
+  }
+  .cta-panel .actions,
+  .cta-panel .payment-actions,
+  .cta-panel .support-actions{
+    justify-content:center !important;
+  }
+
+  /* Buttons: keep gems centered and eliminate arrow/offset remnants. */
+  .brand-btn,
+  .gem-btn,
+  .gem-button,
+  .payment-gem,
+  .support-gem,
+  a[class*="gem"]{
+    justify-content:center !important;
+    text-align:center !important;
+    gap:0 !important;
+  }
+  .brand-btn::after,
+  .gem-btn::after,
+  .gem-button::after,
+  .payment-gem::after,
+  .support-gem::after,
+  a[class*="gem"]::after{
+    content:"" !important;
+  }
+
+  /* Payment gems with handles should feel like engraved payment plaques. */
+  .payment-gem,
+  .support-gem,
+  .give-gem{
+    min-height:72px !important;
+    padding:12px 30px !important;
+    flex-direction:column !important;
+    line-height:1.05 !important;
+  }
+  .payment-gem small,
+  .support-gem small,
+  .give-gem small,
+  .gem-handle{
+    display:block !important;
+    margin-top:6px !important;
+    font-family:Inter,Arial,sans-serif !important;
+    font-size:12px !important;
+    letter-spacing:.04em !important;
+    font-weight:850 !important;
+    text-transform:none !important;
+    opacity:.94 !important;
+  }
+
+  /* Footer: consistent desktop closure. */
+  .site-footer,
+  .footer{
+    min-height:76px !important;
+    background:radial-gradient(circle at 92% 10%,rgba(240,31,69,.18),transparent 24%),linear-gradient(180deg,#061d39,#020914) !important;
+  }
+  .site-footer p,
+  .site-footer address,
+  .site-footer a,
+  .footer span,
+  .footer a{
+    color:#d8e2ee !important;
+  }
+}
