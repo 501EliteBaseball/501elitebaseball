@@ -2725,3 +2725,87 @@ img[src="shield-card.png"],
     max-width:84px !important;
   }
 }
+
+
+/* === FINAL MICRO-POLISH: centered crisp card shields + 33% narrower buttons === */
+
+/* These specific cards use the crisp card shield, centered and never scaled from the tiny footer icon. */
+.about-hero-card img[src="shield-card.png"],
+.payment-widget-card img[src="shield-card.png"],
+.payment-panel img[src="shield-card.png"],
+.contact-hero-card img[src="shield-card.png"]{
+  width:clamp(112px, 24vw, 168px) !important;
+  max-width:168px !important;
+  height:auto !important;
+  display:block !important;
+  margin:0 auto 1rem !important;
+  object-fit:contain !important;
+  position:relative !important;
+  inset:auto !important;
+  transform:none !important;
+}
+
+/* Footer stays micro only */
+.v10-footer img[src="shield-footer.png"]{
+  width:32px !important;
+  max-width:32px !important;
+  margin:0 !important;
+}
+
+/* Button width reduction: keep buttons centered and about 33% narrower without hurting tap height. */
+.brand-btn,
+.slant-btn,
+.cta-button,
+.button,
+.btn,
+a[class*="btn"],
+.contact-method-card a,
+.payment-copy .brand-btn,
+.payment-panel .brand-btn,
+.about-hero-v11b .brand-btn,
+.team-hero .brand-btn,
+.hero-actions .brand-btn,
+.actions .brand-btn,
+.parent-payment-section .brand-btn,
+.payments-hero .brand-btn{
+  width:auto !important;
+  max-width:min(100%, 320px) !important;
+  min-width:clamp(190px, 62vw, 320px) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-left:clamp(18px, 5vw, 28px) !important;
+  padding-right:clamp(18px, 5vw, 28px) !important;
+  justify-self:center !important;
+}
+
+/* Button stacks should center instead of stretching full-width. */
+.actions,
+.hero-actions,
+.payment-actions,
+.contact-actions,
+.about-actions{
+  justify-content:center !important;
+  align-items:center !important;
+}
+
+/* Mobile: still 33% tighter, but never too tiny to tap/read. */
+@media(max-width:760px){
+  .about-hero-card img[src="shield-card.png"],
+  .payment-widget-card img[src="shield-card.png"],
+  .payment-panel img[src="shield-card.png"],
+  .contact-hero-card img[src="shield-card.png"]{
+    width:122px !important;
+    max-width:122px !important;
+  }
+
+  .brand-btn,
+  .slant-btn,
+  .cta-button,
+  .button,
+  .btn,
+  a[class*="btn"],
+  .contact-method-card a{
+    max-width:min(100%, 260px) !important;
+    min-width:min(240px, 82vw) !important;
+  }
+}
