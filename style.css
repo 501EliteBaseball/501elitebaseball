@@ -4409,3 +4409,158 @@ button.brand-btn.red::before{
     letter-spacing:.035em !important;
   }
 }
+
+/* =========================================================
+   501 ELITE SIGNATURE UI v2.0.1 — Gemstone Refinement
+   - Removes arrow glyphs from gemstone CTAs
+   - Centers gemstone labels after arrow removal
+   - Normalizes gem typography and tap/hover polish
+   - Keeps decorative arrows on non-gem cards untouched
+   ========================================================= */
+
+:root{
+  --signature-gem-label:#eef5fb;
+  --signature-gem-shadow:0 1px 3px rgba(0,0,0,.78),0 0 7px rgba(0,0,0,.46);
+}
+
+/* Hide literal arrow nodes used inside gemstone buttons: <b>→</b>, <b>↓</b>. */
+.brand-btn > b,
+.cta-button > b,
+.btn-primary > b,
+.donate-paypal-button > b,
+button.brand-btn > b,
+button.cta-button > b{
+  display:none !important;
+  visibility:hidden !important;
+  width:0 !important;
+  height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  opacity:0 !important;
+  overflow:hidden !important;
+}
+
+/* Remove leftover movement rules that were written for arrow children. */
+@media (hover:hover){
+  .brand-btn:hover b,
+  .brand-btn.red:hover b,
+  .brand-btn.primary:hover b,
+  .brand-btn.steel:hover b,
+  .brand-btn.navy:hover b,
+  .brand-btn.secondary:hover b,
+  .cta-button:hover b,
+  .btn-primary:hover b,
+  .donate-paypal-button:hover b{
+    transform:none !important;
+  }
+}
+
+/* Recenter gemstone labels now that arrows are gone. */
+.brand-btn,
+.brand-btn.red,
+.brand-btn.primary,
+.brand-btn.steel,
+.brand-btn.navy,
+.brand-btn.secondary,
+.cta-button,
+.btn-primary,
+.donate-paypal-button,
+button.brand-btn,
+button.cta-button,
+.support-pay-link,
+.support-handles-mini a,
+.payment-card--cashapp,
+.payment-card--venmo{
+  justify-content:center !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:0 !important;
+  padding-left:30px !important;
+  padding-right:30px !important;
+  color:var(--signature-gem-label) !important;
+  font-family:Graduate,Inter,Arial,sans-serif !important;
+  font-size:clamp(11px,2.7vw,13px) !important;
+  font-weight:800 !important;
+  letter-spacing:.055em !important;
+  line-height:1.08 !important;
+  text-shadow:var(--signature-gem-shadow) !important;
+}
+
+/* Gemstone button inner text should not drift or stretch. */
+.brand-btn > span,
+.brand-btn > strong,
+.brand-btn > em,
+.cta-button > span,
+.cta-button > strong,
+.cta-button > em,
+.btn-primary > span,
+.btn-primary > strong,
+.btn-primary > em,
+.donate-paypal-button > span,
+.donate-paypal-button > strong,
+.donate-paypal-button > em,
+.support-pay-link span,
+.support-pay-link strong,
+.support-handles-mini a span,
+.support-handles-mini a strong,
+.payment-card--cashapp b,
+.payment-card--cashapp span,
+.payment-card--cashapp strong,
+.payment-card--venmo b,
+.payment-card--venmo span,
+.payment-card--venmo strong{
+  transform:none !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:center !important;
+}
+
+/* Remove CTA-style arrow text from payment/support gems; the gem itself is the action. */
+.support-pay-link em,
+.support-handles-mini a em,
+.payment-card--cashapp em,
+.payment-card--venmo em{
+  display:none !important;
+}
+
+/* Tighten decorative gem highlight so it reads as polish, not an arrow substitute. */
+.brand-btn.red::after,
+.brand-btn.primary::after,
+.brand-btn.steel::after,
+.brand-btn.navy::after,
+.brand-btn.secondary::after,
+.cta-button::after,
+.btn-primary::after,
+.donate-paypal-button::after,
+button.brand-btn.red::after,
+button.brand-btn.navy::after{
+  left:18% !important;
+  right:18% !important;
+  top:18% !important;
+  height:1px !important;
+  opacity:.42 !important;
+  transform:none !important;
+}
+
+/* Keep mobile labels centered and comfortable after arrow removal. */
+@media(max-width:760px){
+  .brand-btn,
+  .brand-btn.red,
+  .brand-btn.primary,
+  .brand-btn.steel,
+  .brand-btn.navy,
+  .brand-btn.secondary,
+  .cta-button,
+  .btn-primary,
+  .donate-paypal-button,
+  button.brand-btn,
+  button.cta-button,
+  .support-pay-link,
+  .support-handles-mini a{
+    padding-left:22px !important;
+    padding-right:22px !important;
+    font-size:10.5px !important;
+    letter-spacing:.045em !important;
+    white-space:normal !important;
+  }
+}
