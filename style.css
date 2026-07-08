@@ -3960,30 +3960,93 @@ button.brand-btn.navy:active,
 }
 
 
-/* Commit 38 Typography Polish */
+
+
+/* Commit 39b: surgical mobile layout restore + readable text
+   Fixes the broad typography override from Commit 38 that caused clipped panels,
+   low-contrast white-section copy, and right-side stat card overflow. */
 body{
- -webkit-font-smoothing:antialiased;
- -moz-osx-font-smoothing:grayscale;
- text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
 }
-p, .section-text, .lead, .card p, .hero p, .copy, li{
- color:#d3d9e4 !important;
- line-height:1.62 !important;
- font-weight:500 !important;
+
+/* Keep global copy comfortable without forcing every paragraph weight/color. */
+p{line-height:1.52;}
+.hero-copy,
+.players-intro p,
+.value-row p,
+.hub-lead,
+.team-lead{
+  color:#e4ebf5;
 }
-small,.eyebrow,.kicker,.label{
- color:#b5bfd0 !important;
- letter-spacing:.12em !important;
+.standard-panel p,
+.cta-panel p,
+.section:not(.dark) p,
+.team-light p,
+.hub-light p{
+  color:#26374d !important;
+  font-weight:700;
 }
-h1,h2,h3,h4,h5,h6{
- text-shadow:0 2px 8px rgba(0,0,0,.28) !important;
+.cta-panel .eyebrow,
+.standard-panel .kicker,
+.eyebrow,
+.kicker{
+  opacity:.92;
 }
-.btn-gem,.gem-button{
- text-shadow:0 1px 2px rgba(0,0,0,.35)!important;
- font-weight:700!important;
- letter-spacing:.04em!important;
+.cta-panel h2,
+.standard-panel h2,
+.players-intro h2,
+.hero-content h1{
+  text-shadow:0 4px 12px rgba(0,0,0,.30);
 }
-.hero .btn-gem,.hero .gem-button{
- margin-top:18px!important;
- margin-bottom:18px!important;
+
+@media(max-width:760px){
+  /* The payment/support page can keep the large gem buttons, but the homepage
+     standard panel needs to stack so the stats board cannot be pushed off-screen. */
+  .standard-panel{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+    overflow:hidden !important;
+  }
+  .standard-panel .actions,
+  .standard-panel .brand-btn{
+    width:100% !important;
+  }
+  .standard-panel .brand-btn{
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+  .stats-board{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+  .stat{
+    min-width:0 !important;
+  }
+
+  /* Make the white bottom CTA readable again after typography polish. */
+  .cta-panel{
+    background:#f7f9fc !important;
+    color:var(--ink) !important;
+  }
+  .cta-panel p{
+    color:#26374d !important;
+    opacity:1 !important;
+    font-weight:750 !important;
+    line-height:1.5 !important;
+  }
+  .cta-panel .eyebrow{
+    color:var(--red) !important;
+    opacity:.86 !important;
+  }
+
+  /* Preserve gem readability without making the buttons force layout width. */
+  .players-panel .brand-btn,
+  .hero-stage .brand-btn,
+  .cta-panel .brand-btn{
+    min-width:min(236px,82vw) !important;
+    max-width:270px !important;
+  }
 }
