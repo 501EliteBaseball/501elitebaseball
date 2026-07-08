@@ -5750,3 +5750,135 @@ body{color:var(--text-on-dark);}
   .brand-btn.payment-gem-two-line .gem-brand{font-size:12px !important;}
   .brand-btn.payment-gem-two-line .gem-handle{font-size:10px !important;}
 }
+
+/* v2.1.1: Desktop Luxury Pass — navigation + hero foundation */
+@media (min-width: 761px) {
+  :root{
+    --desktop-max:1320px;
+  }
+
+  body{
+    background:linear-gradient(180deg,#010814,#020b18 46%,#010814);
+  }
+
+  /* Desktop uses the full navigation only. Mobile keeps the hamburger. */
+  .site-header{
+    overflow:visible !important;
+  }
+  .header-shell{
+    max-width:var(--desktop-max) !important;
+    grid-template-columns:200px minmax(0,1fr) !important;
+    gap:28px !important;
+    padding:14px 28px 12px !important;
+  }
+  .brand img{
+    width:188px !important;
+  }
+  .site-header .menu-toggle{
+    display:none !important;
+  }
+  .main-nav{
+    display:flex !important;
+    justify-content:flex-end !important;
+    gap:15px !important;
+    min-width:0 !important;
+    flex-wrap:nowrap !important;
+  }
+  .main-nav a{
+    font-size:11px !important;
+    letter-spacing:.075em !important;
+    padding:18px 0 16px !important;
+    white-space:nowrap !important;
+    color:#dce7f2 !important;
+    text-shadow:0 2px 7px rgba(0,0,0,.72) !important;
+  }
+  .main-nav a:hover,
+  .main-nav a.active{
+    color:#f4f7fb !important;
+  }
+  .main-nav a.active:after,
+  .main-nav a:hover:after{
+    bottom:7px !important;
+    height:2px !important;
+    background:linear-gradient(90deg,transparent,var(--red),transparent) !important;
+  }
+
+  /* Desktop hero should feel intentional and premium, not compressed. */
+  .hero-stage{
+    min-height:690px !important;
+    padding:112px 28px 72px !important;
+    display:flex !important;
+    align-items:center !important;
+  }
+  .hero-stage:before{
+    background:
+      linear-gradient(180deg,rgba(1,8,20,.03),rgba(1,8,20,.88) 82%),
+      url('hero-team.jpg') right center/auto 92% no-repeat !important;
+  }
+  .hero-stage:after{
+    background:linear-gradient(90deg,#010814 0%,rgba(1,8,20,.91) 28%,rgba(1,8,20,.10) 68%,rgba(1,8,20,.56) 100%) !important;
+  }
+  .hero-content,
+  .value-row,
+  .page-hero .wrap,
+  .section .wrap,
+  .team-wrap,
+  .hub-wrap{
+    max-width:var(--desktop-max) !important;
+  }
+  .hero-content h1{
+    font-size:clamp(66px,6.2vw,96px) !important;
+    line-height:1.02 !important;
+    margin-bottom:22px !important;
+  }
+  .hero-copy{
+    max-width:670px !important;
+    font-size:20px !important;
+    line-height:1.62 !important;
+    color:#dbe6f1 !important;
+  }
+  .hero-stage .actions{
+    margin-top:10px !important;
+  }
+
+  /* Establish the desktop content rhythm for the next passes. */
+  .standard-panel,
+  .players-panel{
+    padding-left:max(32px,calc((100vw - var(--desktop-max))/2 + 32px)) !important;
+    padding-right:max(32px,calc((100vw - var(--desktop-max))/2 + 32px)) !important;
+  }
+  .standard-panel{
+    gap:64px !important;
+  }
+  .players-panel{
+    grid-template-columns:340px repeat(5,minmax(130px,1fr)) !important;
+    gap:18px !important;
+    align-items:stretch !important;
+  }
+  .players-intro{
+    align-self:center !important;
+  }
+  .players-intro .actions,
+  .players-intro .brand-btn{
+    justify-content:center !important;
+  }
+  .player-card{
+    min-height:205px !important;
+  }
+  .cta-panel{
+    background:linear-gradient(180deg,#edf3f8,#dce7f0) !important;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1120px){
+  .header-shell{
+    grid-template-columns:170px minmax(0,1fr) !important;
+    gap:18px !important;
+  }
+  .brand img{width:160px !important;}
+  .main-nav{gap:10px !important;}
+  .main-nav a{font-size:10px !important;letter-spacing:.055em !important;}
+  .hero-stage{min-height:620px !important;}
+  .players-panel{grid-template-columns:1fr 1fr !important;}
+  .players-intro{grid-column:1/-1 !important;}
+}
