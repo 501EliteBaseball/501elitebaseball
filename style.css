@@ -5882,3 +5882,224 @@ body{color:var(--text-on-dark);}
   .players-panel{grid-template-columns:1fr 1fr !important;}
   .players-intro{grid-column:1/-1 !important;}
 }
+
+/* v2.1.2 — Desktop Layout & Spacing Pass
+   Focus: desktop section rhythm, card balance, content width, and platinum surface consistency.
+   Mobile rules remain untouched. */
+@media (min-width: 761px){
+  :root{
+    --desktop-max:1320px;
+    --platinum-50:#f2f6fa;
+    --platinum-100:#e8eef5;
+    --platinum-200:#d9e3ed;
+    --steel-text:#42546d;
+  }
+
+  /* Global desktop page rhythm */
+  .page-hero{
+    padding:118px 32px 86px !important;
+  }
+  .section,
+  .team-light,
+  .team-dark,
+  .hub-dashboard,
+  .hub-light,
+  .hub-dark{
+    padding-top:86px !important;
+    padding-bottom:86px !important;
+  }
+  .section .wrap,
+  .page-hero .wrap,
+  .hub-wrap,
+  .team-wrap{
+    max-width:var(--desktop-max) !important;
+  }
+
+  /* Platinum surfaces should feel intentional, not stark white. */
+  .section,
+  .team-light,
+  .hub-light,
+  .team-control-section,
+  .cta-panel{
+    background:linear-gradient(180deg,var(--platinum-50),var(--platinum-100)) !important;
+  }
+  .card,
+  .resource,
+  .player,
+  .doc-card,
+  .announcement-list article,
+  .roster-wall article,
+  .stat{
+    background:linear-gradient(180deg,#f8fafc,var(--platinum-100)) !important;
+    border-color:#cfd9e5 !important;
+    box-shadow:0 18px 34px rgba(7,23,45,.12) !important;
+  }
+
+  /* Better People / Standard section balance */
+  .standard-panel{
+    min-height:560px !important;
+    grid-template-columns:minmax(420px,.95fr) minmax(520px,1.05fr) !important;
+    align-items:center !important;
+  }
+  .standard-panel h2,
+  .players-intro h2,
+  .cta-panel h2{
+    letter-spacing:.012em !important;
+  }
+  .standard-panel p,
+  .cta-panel p{
+    max-width:620px !important;
+    color:#31445d !important;
+    line-height:1.62 !important;
+  }
+  .stats-board{
+    gap:20px !important;
+    align-content:center !important;
+  }
+  .stat{
+    min-height:132px !important;
+    border-radius:0 !important;
+    padding:22px 24px !important;
+  }
+  .stat strong{
+    font-size:34px !important;
+  }
+
+  /* Home value row gets calmer card rhythm on desktop. */
+  .value-row{
+    max-width:var(--desktop-max) !important;
+    margin-top:58px !important;
+    gap:28px !important;
+  }
+  .value-row article{
+    min-height:235px !important;
+    padding:34px 30px !important;
+    background:
+      linear-gradient(160deg,rgba(9,32,63,.92),rgba(2,10,22,.96)),
+      url('digital-camo.jpg') center/cover !important;
+    border-color:rgba(226,235,245,.32) !important;
+  }
+  .value-row p{
+    color:#cfdbe8 !important;
+    max-width:320px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  /* Meet Our Players desktop composition */
+  .players-panel{
+    min-height:520px !important;
+    align-items:center !important;
+  }
+  .players-intro{
+    text-align:left !important;
+    max-width:340px !important;
+  }
+  .players-intro p{
+    color:#cfdbe8 !important;
+    line-height:1.62 !important;
+    margin-bottom:24px !important;
+  }
+  .players-intro .actions{
+    display:flex !important;
+    justify-content:flex-start !important;
+    width:auto !important;
+  }
+  .players-intro .brand-btn{
+    width:auto !important;
+    min-width:245px !important;
+  }
+  .player-card{
+    min-height:220px !important;
+    padding:22px !important;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, filter .18s ease !important;
+  }
+  .player-card:hover{
+    transform:translateY(-5px) !important;
+    border-color:rgba(226,235,245,.55) !important;
+    box-shadow:0 28px 52px rgba(0,0,0,.36) !important;
+    filter:brightness(1.05) !important;
+  }
+  .player-card strong{
+    font-size:42px !important;
+  }
+  .player-card span{
+    font-size:15px !important;
+  }
+
+  /* Generic desktop grids: fewer cramped columns, stronger rhythm. */
+  .cards,
+  .grid2,
+  .roster,
+  .doc-grid,
+  .hub-card-grid,
+  .team-action-grid,
+  .roster-wall,
+  .season-board,
+  .schedule-row{
+    gap:22px !important;
+  }
+  .cards,
+  .grid2{
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr)) !important;
+  }
+  .hub-card-grid,
+  .doc-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+  .card,
+  .resource,
+  .player,
+  .doc-card,
+  .announcement-list article{
+    padding:28px !important;
+  }
+
+  /* Two-column page/card sections get better balance. */
+  .hub-split,
+  .team-hero-grid{
+    grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr) !important;
+    gap:56px !important;
+  }
+  .hub-hero-grid{
+    grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr) !important;
+    gap:56px !important;
+  }
+
+  /* Payment/support style panels: less floating, more composed. */
+  .payment-grid,
+  .support-grid,
+  .give-grid,
+  .contact-grid{
+    gap:34px !important;
+    align-items:start !important;
+  }
+  .quick-pay-card,
+  .payment-card,
+  .support-card,
+  .contact-card{
+    background:linear-gradient(180deg,#f8fafc,var(--platinum-100)) !important;
+    border:1px solid #cfd9e5 !important;
+    box-shadow:0 20px 42px rgba(7,23,45,.14) !important;
+  }
+
+  /* Footer desktop balance */
+  .site-footer,
+  .footer{
+    padding-left:max(24px,calc((100vw - var(--desktop-max))/2 + 24px)) !important;
+    padding-right:max(24px,calc((100vw - var(--desktop-max))/2 + 24px)) !important;
+  }
+  .site-footer{
+    min-height:96px !important;
+    column-gap:42px !important;
+  }
+}
+
+@media (min-width: 1121px) and (max-width: 1280px){
+  .players-panel{
+    grid-template-columns:320px repeat(3,minmax(150px,1fr)) !important;
+  }
+  .player-card:nth-of-type(n+5){
+    display:none;
+  }
+}
