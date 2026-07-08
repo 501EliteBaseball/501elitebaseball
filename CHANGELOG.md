@@ -1,17 +1,24 @@
-# 501 Elite RC1 — Version 1.0 Release Candidate
+# Deployment Fix v2 — Clean Static Assets Deploy
 
-## Scope
-Coordinated launch-candidate polish across the full website.
+## Changed
+- Added `deploy.sh` to create a clean `dist` folder before deployment.
+- Added `package.json` with a stable deploy script.
+- Added `wrangler.jsonc` pointing Wrangler at `dist`.
+- Prevents `node_modules` and oversized dependency files from being deployed.
+- Copies all root-level static site assets into `dist`.
 
-## Updated
-- Home: balanced player card grid, tightened CTA section, improved card consistency.
-- About: real founder cards for Adam Thomas and Chase Grimmett, larger shields, button overflow protection, better readability.
-- Teams: updated leadership, assistant coaches, cleaner command-center styling.
-- Training: final shield/spacing rules and Pathway heading adjustment.
-- Parents: added Payment Center buttons and cleaned dashboard/card treatment.
-- Sponsors: fixed visibility in sponsor info cards and protected sponsor art sizing.
-- Contact: reduced redundancy to two primary contact options.
-- Global: compact footer, integrated header logo treatment, shield sizing system, card/button/footer consistency.
+## Cloudflare Setting
+Set the Cloudflare Deploy command to:
+
+```bash
+bash deploy.sh
+```
 
 ## Upload Instructions
-Upload all files in this ZIP to the GitHub repo root and overwrite existing files.
+Upload these files to the GitHub repo root:
+- deploy.sh
+- package.json
+- wrangler.jsonc
+- CHANGELOG.md
+
+Then retry the Cloudflare deployment.

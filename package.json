@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "deploy": "wrangler deploy"
+    "deploy": "bash deploy.sh"
   },
   "devDependencies": {
     "wrangler": "^4.108.0"
