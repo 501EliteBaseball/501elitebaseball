@@ -3204,3 +3204,315 @@ a[class*="btn"],
 .payment-panel p{
   color:#e8edf5 !important;
 }
+
+
+/* =========================================================
+   LUXURY UI PHASE 1 — Button System 2.0
+   Red/Navy metallic buttons only. Silver/steel retired.
+   ========================================================= */
+
+:root{
+  --btn-red-top:#ff5a77;
+  --btn-red-mid:#d31636;
+  --btn-red-deep:#750717;
+  --btn-navy-top:#1b4c82;
+  --btn-navy-mid:#09284b;
+  --btn-navy-deep:#020914;
+  --btn-glow-red:rgba(240,31,69,.42);
+  --btn-glow-navy:rgba(64,142,226,.30);
+}
+
+/* Universal premium button base */
+.brand-btn,
+.slant-btn,
+.cta-button,
+.button,
+.btn,
+a[class*="btn"],
+button.brand-btn,
+button.cta-button,
+.donate-paypal-button,
+.contact-method-card a,
+.support-pay-link em{
+  position:relative !important;
+  isolation:isolate;
+  overflow:hidden !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:14px !important;
+  min-height:50px !important;
+  width:auto !important;
+  max-width:min(100%, 324px) !important;
+  min-width:clamp(188px, 58vw, 324px) !important;
+  padding:0 clamp(18px, 4.8vw, 28px) !important;
+  border-radius:0 !important;
+  clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%) !important;
+  border:1px solid rgba(255,255,255,.44) !important;
+  color:#fff !important;
+  font-family:Inter,Arial,sans-serif !important;
+  font-size:clamp(12px, 3vw, 14px) !important;
+  font-weight:950 !important;
+  letter-spacing:.075em !important;
+  text-transform:uppercase !important;
+  text-align:center !important;
+  text-shadow:0 2px 4px rgba(0,0,0,.75),0 -1px 0 rgba(255,255,255,.16) !important;
+  box-shadow:
+    0 15px 28px rgba(0,0,0,.38),
+    0 3px 0 rgba(0,0,0,.48),
+    inset 0 1px 0 rgba(255,255,255,.52),
+    inset 0 -2px 0 rgba(0,0,0,.40),
+    inset 0 0 0 1px rgba(255,255,255,.08) !important;
+  transform:translateZ(0);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease,
+    border-color .18s ease !important;
+  -webkit-tap-highlight-color:transparent;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  cursor:pointer;
+}
+
+/* Physical bevel layers */
+.brand-btn::before,
+.slant-btn::before,
+.cta-button::before,
+.button::before,
+.btn::before,
+a[class*="btn"]::before,
+button.brand-btn::before,
+button.cta-button::before,
+.donate-paypal-button::before,
+.contact-method-card a::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,.05) 16%,transparent 28%,rgba(255,255,255,.10) 43%,transparent 56%,rgba(255,255,255,.18) 72%,transparent 100%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,rgba(0,0,0,.03) 1px 3px);
+  mix-blend-mode:screen;
+  opacity:.72;
+  pointer-events:none;
+}
+
+.brand-btn::after,
+.slant-btn::after,
+.cta-button::after,
+.button::after,
+.btn::after,
+a[class*="btn"]::after,
+button.brand-btn::after,
+button.cta-button::after,
+.donate-paypal-button::after,
+.contact-method-card a::after{
+  content:"";
+  position:absolute;
+  left:-45%;
+  top:-25%;
+  width:44%;
+  height:150%;
+  z-index:1;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.36),transparent);
+  transform:skewX(-18deg) translateX(-140%);
+  transition:transform .45s ease;
+  pointer-events:none;
+}
+
+/* Primary red metallic */
+.brand-btn.red,
+.brand-btn.primary,
+.cta-button,
+.btn-primary,
+.donate-paypal-button,
+button.brand-btn.red{
+  background:
+    linear-gradient(180deg,var(--btn-red-top) 0%,#f01f45 22%,var(--btn-red-mid) 50%,#9b0b22 52%,var(--btn-red-deep) 100%) !important;
+  box-shadow:
+    0 16px 30px rgba(0,0,0,.40),
+    0 4px 0 #4d050e,
+    0 0 22px var(--btn-glow-red),
+    inset 0 1px 0 rgba(255,255,255,.54),
+    inset 0 -2px 0 rgba(0,0,0,.48),
+    inset 0 0 0 1px rgba(255,255,255,.10) !important;
+}
+
+/* Secondary navy metallic — replaces all silver/steel */
+.brand-btn.steel,
+.brand-btn.navy,
+.brand-btn.secondary,
+.slant-btn,
+.button,
+.btn,
+a[class*="btn"]:not(.red):not(.primary):not(.donate-paypal-button),
+.contact-method-card a,
+button.brand-btn.navy{
+  background:
+    linear-gradient(180deg,var(--btn-navy-top) 0%,#123f70 23%,var(--btn-navy-mid) 50%,#06172d 52%,var(--btn-navy-deep) 100%) !important;
+  color:#fff !important;
+  border-color:rgba(180,212,255,.38) !important;
+  box-shadow:
+    0 16px 30px rgba(0,0,0,.40),
+    0 4px 0 #00060d,
+    0 0 18px var(--btn-glow-navy),
+    inset 0 1px 0 rgba(255,255,255,.50),
+    inset 0 -2px 0 rgba(0,0,0,.50),
+    inset 0 0 0 1px rgba(255,255,255,.08) !important;
+}
+
+/* Any legacy steel text/gradient becomes navy and readable */
+.brand-btn.steel,
+a.brand-btn.steel,
+button.brand-btn.steel{
+  color:#fff !important;
+  text-shadow:0 2px 4px rgba(0,0,0,.82) !important;
+}
+
+/* Hover + active interactions */
+@media (hover:hover){
+  .brand-btn:hover,
+  .slant-btn:hover,
+  .cta-button:hover,
+  .button:hover,
+  .btn:hover,
+  a[class*="btn"]:hover,
+  button.brand-btn:hover,
+  button.cta-button:hover,
+  .donate-paypal-button:hover,
+  .contact-method-card a:hover{
+    transform:translateY(-3px) !important;
+    filter:saturate(1.14) contrast(1.04) brightness(1.04);
+    border-color:rgba(255,255,255,.65) !important;
+    box-shadow:
+      0 22px 42px rgba(0,0,0,.48),
+      0 5px 0 rgba(0,0,0,.48),
+      0 0 28px rgba(240,31,69,.25),
+      inset 0 1px 0 rgba(255,255,255,.62),
+      inset 0 -2px 0 rgba(0,0,0,.46) !important;
+  }
+
+  .brand-btn:hover::after,
+  .slant-btn:hover::after,
+  .cta-button:hover::after,
+  .button:hover::after,
+  .btn:hover::after,
+  a[class*="btn"]:hover::after,
+  button.brand-btn:hover::after,
+  button.cta-button:hover::after,
+  .donate-paypal-button:hover::after,
+  .contact-method-card a:hover::after{
+    transform:skewX(-18deg) translateX(410%);
+  }
+
+  .brand-btn:hover b,
+  .slant-btn:hover b,
+  .cta-button:hover b,
+  .button:hover b,
+  .btn:hover b,
+  a[class*="btn"]:hover b{
+    transform:translateX(4px);
+  }
+}
+
+.brand-btn:active,
+.slant-btn:active,
+.cta-button:active,
+.button:active,
+.btn:active,
+a[class*="btn"]:active,
+button.brand-btn:active,
+button.cta-button:active,
+.donate-paypal-button:active,
+.contact-method-card a:active{
+  transform:translateY(1px) !important;
+  box-shadow:
+    0 8px 16px rgba(0,0,0,.36),
+    0 1px 0 rgba(0,0,0,.55),
+    inset 0 2px 6px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.26) !important;
+}
+
+/* Arrow treatment */
+.brand-btn b,
+.slant-btn b,
+.cta-button b,
+.button b,
+.btn b,
+a[class*="btn"] b{
+  display:inline-block;
+  transition:transform .18s ease;
+  color:#fff !important;
+  text-shadow:0 2px 4px rgba(0,0,0,.75) !important;
+}
+
+/* Center button groups */
+.actions,
+.hero-actions,
+.payment-actions,
+.contact-actions,
+.about-actions,
+.payment-feature-v2 .actions{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:14px !important;
+}
+
+/* Footer buttons stay compact chips, not full 3D slabs */
+.v10-footer nav a{
+  min-width:0 !important;
+  min-height:0 !important;
+  max-width:none !important;
+  width:auto !important;
+  padding:6px 8px !important;
+  clip-path:none !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.04) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+}
+.v10-footer nav a::before,
+.v10-footer nav a::after{
+  display:none !important;
+}
+
+/* Payment cards CTA labels should not inherit full button clipping */
+.support-pay-link em{
+  min-width:0 !important;
+  max-width:none !important;
+  width:auto !important;
+  clip-path:none !important;
+  border-radius:999px !important;
+  padding:8px 11px !important;
+  background:rgba(255,255,255,.12) !important;
+  box-shadow:none !important;
+}
+.support-pay-link em::before,
+.support-pay-link em::after{
+  display:none !important;
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .brand-btn,
+  .slant-btn,
+  .cta-button,
+  .button,
+  .btn,
+  a[class*="btn"],
+  button.brand-btn,
+  button.cta-button,
+  .donate-paypal-button,
+  .contact-method-card a{
+    min-height:48px !important;
+    min-width:min(236px, 82vw) !important;
+    max-width:min(100%, 270px) !important;
+    font-size:12px !important;
+    padding-left:18px !important;
+    padding-right:18px !important;
+    gap:10px !important;
+  }
+}

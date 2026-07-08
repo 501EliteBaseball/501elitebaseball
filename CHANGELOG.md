@@ -1,15 +1,11 @@
-# V1.2A Support Links + Contrast Sweep
+# Luxury UI Phase 1 — Button System 2.0
 
-## Fixed
-- Support page low-contrast text in giving cards.
-- Added a contrast safety sweep for support/payment/sponsor/contact dark-card text.
-
-## Added
-- Functional Venmo link: `https://venmo.com/u/EliteBaseball-501`
-- Functional Cash App link: `https://cash.app/$501EliteBaseball`
-- Clickable Venmo and Cash App giving cards on Support page.
-- Clickable Venmo and Cash App mini links on Payments page when present.
-- `CONTRAST_SCAN_NOTES.md`
+## Changed
+- Replaced legacy silver/steel buttons with premium navy metallic buttons.
+- Added premium red metallic button system for primary actions.
+- Added beveled 3D button depth, brushed-metal texture, gloss highlights, hover lift, and pressed states.
+- Normalized button width, height, typography, spacing, and arrow movement across the site.
+- Preserved compact footer nav chips so the footer stays clean.
 
 ## Upload
 Upload everything inside this ZIP to GitHub root and overwrite.
