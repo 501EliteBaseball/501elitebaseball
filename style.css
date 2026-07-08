@@ -4564,3 +4564,280 @@ button.brand-btn.navy::after{
     white-space:normal !important;
   }
 }
+
+/* =========================================================
+   501 Elite Signature UI v2.0.2
+   Platinum Palette + Text Control
+   Purpose: remove remaining harsh true-white surfaces and tighten
+   site-wide readability without changing page structure.
+   ========================================================= */
+:root{
+  --surface-platinum:#e9eef5;
+  --surface-platinum-2:#dfe7f0;
+  --surface-platinum-3:#f1f4f8;
+  --surface-card:#eef3f8;
+  --surface-card-soft:#e6edf5;
+  --text-ink:#13263f;
+  --text-ink-soft:#334862;
+  --text-steel:#5c6f87;
+  --text-on-dark:#edf3fa;
+  --text-on-dark-soft:#cdd8e6;
+  --line-platinum:#cbd6e3;
+}
+
+/* Calm the default white without muting headings or gemstone highlights. */
+body{color:var(--text-on-dark);}
+.page-hero,
+.team-hero,
+.hub-hero,
+.about-hero-v11b,
+.contact-hero,
+.standard-hero-v11,
+.support-hero,
+.payment-hero,
+.training-hero,
+.gallery-hero{color:var(--text-on-dark) !important;}
+
+/* Convert paper-white light sections into cool platinum/steel surfaces. */
+.standard-panel,
+.cta-panel,
+.section,
+.team-light,
+.team-control-section,
+.hub-light,
+.resource-quick,
+.standard-intro-v11,
+.standard-pillars-v11,
+.standard-family-v11,
+.about-light-v11b,
+.about-cta-v11b,
+.contact-cta-section,
+.contact-cta-panel,
+.support-light,
+.payment-light,
+.gallery-light,
+.training-light{
+  background:linear-gradient(180deg,var(--surface-platinum-3),var(--surface-platinum)) !important;
+  color:var(--text-ink) !important;
+}
+
+/* Cards on light sections should read platinum, not printer paper. */
+.stat,
+.card,
+.resource,
+.player,
+.doc-card,
+.document-card,
+.resource-category-grid article,
+.quick-panel,
+.pillar-grid-v11 article,
+.family-grid-v11 article,
+.founder-card,
+.roster-wall article,
+.announcement-list article,
+.contact-method-card,
+.contact-hero-card,
+.payment-card,
+.support-card,
+.training-card,
+.gallery-card{
+  background:linear-gradient(180deg,var(--surface-card),var(--surface-card-soft)) !important;
+  border-color:var(--line-platinum) !important;
+  color:var(--text-ink) !important;
+  box-shadow:0 16px 32px rgba(7,23,45,.11) !important;
+}
+
+/* Dark featured cards stay dark; only soften their copy. */
+.document-card.featured,
+.dark .card,
+.standard-callout,
+.about-cta-card,
+.team-identity-card,
+.next-card,
+.hub-tile,
+.schedule-card,
+.team-action-card,
+.season-board article,
+.about-pillars-grid article,
+.contact-hero-card.dark,
+.support-dark-card{
+  color:var(--text-on-dark) !important;
+}
+
+/* Establish a predictable text hierarchy. */
+.standard-panel p,
+.cta-panel p,
+.section p,
+.team-section-head p:not(.kicker):not(.eyebrow),
+.development-copy,
+.profile-preview p,
+.resource-category-grid p,
+.quick-panel p,
+.document-card p,
+.pillar-grid-v11 p,
+.family-grid-v11 p,
+.about-copy-stack p,
+.founders-grid p,
+.contact-method-card p,
+.contact-cta-panel p:not(.eyebrow),
+.support-card p,
+.payment-card p,
+.training-card p,
+.gallery-card p{
+  color:var(--text-ink-soft) !important;
+  line-height:1.58 !important;
+}
+
+/* Dark copy: less harsh than pure white, still readable. */
+.hero-copy,
+.players-intro p,
+.value-row p,
+.hub-lead,
+.next-card p,
+.hub-tile p,
+.standard-callout p,
+.schedule-card small,
+.team-lead,
+.team-action-card p,
+.season-board p,
+.about-lead,
+.about-hero-card p,
+.about-pillars-grid p,
+.about-cta-card p,
+.contact-hero-copy,
+.support-lead,
+.payment-lead{
+  color:var(--text-on-dark-soft) !important;
+}
+
+/* Headings stay strong but not stark white unless sitting on dark hero panels. */
+.standard-panel h2,
+.cta-panel h2,
+.section h2,
+.team-section-head h2,
+.profile-preview h2,
+.development-grid h2,
+.resource-quick h2,
+.standard-intro-v11 h2,
+.standard-pillars-v11 h2,
+.standard-family-v11 h2,
+.about-story-grid h2,
+.founders-grid h2,
+.contact-section-head h2,
+.contact-cta-panel h2{
+  color:var(--text-ink) !important;
+  text-shadow:none !important;
+}
+.hero-content h1,
+.players-intro h2,
+.team-hero h1,
+.hub-hero h1,
+.about-hero-v11b h1,
+.contact-hero h1,
+.standard-hero-v11 h1{
+  color:var(--text-on-dark) !important;
+}
+
+/* Muted labels and metadata. */
+.stat span,
+.roster-wall span,
+.team-meta span,
+.document-card span,
+.doc-card span,
+.schedule-card small,
+.contact-method-card small,
+.support-card small,
+.payment-card small{
+  color:var(--text-steel) !important;
+}
+.dark .stat span,
+.team-dark .team-section-head p,
+.hub-dark p,
+.standard-dark-v11 p,
+.about-dark-v11b p{
+  color:var(--text-on-dark-soft) !important;
+}
+
+/* Replace remaining bright-white rule lines with cooler platinum. */
+.brand img,
+.menu-toggle,
+.mobile-menu a,
+.value-row article,
+.player-card,
+.hub-tile,
+.schedule-card,
+.team-action-card,
+.about-pillars-grid article,
+.contact-method-card,
+.payment-card,
+.support-card{
+  border-color:rgba(205,216,230,.28) !important;
+}
+
+/* Gemstone labels: cleaner engraving, no visual tug from hidden arrows. */
+.brand-btn,
+.brand-btn.red,
+.brand-btn.primary,
+.brand-btn.steel,
+.brand-btn.navy,
+.brand-btn.secondary,
+.cta-button,
+.btn-primary,
+.donate-paypal-button,
+.support-pay-link,
+.support-handles-mini a,
+.payment-card--cashapp,
+.payment-card--venmo{
+  text-align:center !important;
+  text-wrap:balance;
+  color:#f1f5fa !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.58),0 0 10px rgba(255,255,255,.12) !important;
+}
+
+/* Remove cheap black button trays/backplates where they exist. */
+.actions,
+.contact-actions,
+.support-actions,
+.payment-actions,
+.hero-actions{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+/* Parent calendar / coming-soon style fixes: no blue-on-blue. */
+.calendar-coming-soon,
+.coming-soon,
+.calendar-card,
+.hub-calendar-card{
+  background:linear-gradient(180deg,var(--surface-card),var(--surface-card-soft)) !important;
+  color:var(--text-ink) !important;
+  border-color:var(--line-platinum) !important;
+}
+.calendar-coming-soon p,
+.coming-soon p,
+.calendar-card p,
+.hub-calendar-card p,
+.calendar-coming-soon span,
+.coming-soon span,
+.calendar-card span,
+.hub-calendar-card span{
+  color:var(--text-ink-soft) !important;
+}
+
+/* Mobile: keep platinum calm and avoid oversized heavy text blocks. */
+@media(max-width:760px){
+  .standard-panel,
+  .cta-panel,
+  .section,
+  .team-light,
+  .hub-light,
+  .about-light-v11b,
+  .contact-cta-section{
+    background:linear-gradient(180deg,#eef3f8,#e2eaf3) !important;
+  }
+  .hero-copy,
+  .players-intro p,
+  .value-row p{
+    color:#d5dfec !important;
+  }
+}
