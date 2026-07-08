@@ -19,27 +19,118 @@
   </div>
   <nav id="mobileMenu" class="mobile-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="teams.html">Teams</a><a href="gallery.html">Gallery</a><a href="resources.html">Resources</a><a href="standard.html">Training</a><a href="sponsors.html">Sponsors</a><a href="parents.html">Parents</a><a class="active" href="payments.html">Payments</a><a href="contact.html">Contact</a></nav>
 </header>
-<main class="payments-page">
-  <section class="payments-hero page-hero">
+<main class="payments-page payment-center-page">
+  <section class="payments-hero page-hero payment-center-hero">
     <div class="wrap payments-grid">
-      <div>
-        <p class="kicker"><span></span>501 Elite Payments<span></span></p>
-        <h1>Team Fees</h1>
-        <p class="payments-lead">Make secure online payments for 501 Elite Baseball through PayPal. Venmo may appear as an option during checkout when available.</p>
-        <div class="actions"><a class="brand-btn steel" href="parents.html">Parent Hub <b>→</b></a><a class="brand-btn navy" href="contact.html">Questions? Contact Us <b>→</b></a></div>
+      <div class="payment-copy">
+        <p class="kicker"><span></span>501 Elite Payment Center<span></span></p>
+        <h1>Payments & Donations</h1>
+        <p class="payments-lead">Use this page for team fees, uniforms, registration, and support for 501 Elite Baseball. Enter the payment details first so the transaction can be matched cleanly after checkout.</p>
+        <div class="actions"><a class="brand-btn red" href="#team-fees">Pay Team Fees <b>→</b></a><a class="brand-btn steel" href="#donate">Donate <b>→</b></a></div>
       </div>
-      <aside class="payment-panel">
+      <aside class="payment-panel payment-center-card">
         <img src="shield-card.png" alt="501 Elite Shield">
-        <h2>Pay Team Fees</h2>
-        <p>Use the secure PayPal button below for team payments.</p>
-        <div id="paypal-container-WSB5YV6L8FB5W" class="paypal-button-box"></div>
-<script>
-  paypal.HostedButtons({ hostedButtonId: "WSB5YV6L8FB5W" }).render("#paypal-container-WSB5YV6L8FB5W");
-</script>
+        <h2>Secure Checkout</h2>
+        <p>Payments are processed securely through PayPal. Venmo may appear during checkout when available.</p>
       </aside>
     </div>
   </section>
+
+  <section class="payment-center-section" id="team-fees">
+    <div class="wrap payment-center-layout">
+      <div class="payment-intent-card">
+        <p class="eyebrow">Step 1</p>
+        <h2>Payment Details</h2>
+        <p class="payment-helper">Complete this before opening PayPal. The summary helps parents include the right memo and helps 501 Elite match payments quickly.</p>
+
+        <form class="payment-intent-form" id="paymentIntentForm">
+          <label>Player Name
+            <input type="text" id="payPlayer" placeholder="Player name" autocomplete="name">
+          </label>
+          <label>Parent / Guardian
+            <input type="text" id="payParent" placeholder="Parent or guardian name" autocomplete="name">
+          </label>
+          <label>Payment Type
+            <select id="payType">
+              <option>Team Fees</option>
+              <option>Registration</option>
+              <option>Uniforms</option>
+              <option>Tournament Fees</option>
+              <option>Equipment</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Amount
+            <input type="number" id="payAmount" placeholder="Amount" min="0" step="0.01">
+          </label>
+          <label class="full">Note / Memo
+            <textarea id="payNote" rows="3" placeholder="Example: Fall league fee, uniform balance, donation in support of player, etc."></textarea>
+          </label>
+        </form>
+
+        <div class="payment-summary-box" id="paymentSummary">
+          <strong>Payment Memo</strong>
+          <p>Fill out the details above to generate a clean payment memo.</p>
+        </div>
+      </div>
+
+      <aside class="payment-widget-card payment-checkout-card">
+        <p class="eyebrow">Step 2</p>
+        <img src="shield-card.png" alt="501 Elite Shield">
+        <strong>Pay with PayPal</strong>
+        <p>After entering the details, use the secure PayPal button below to complete payment.</p>
+        <div id="paypal-container-WSB5YV6L8FB5W" class="paypal-button-box"></div>
+        <script>
+          paypal.HostedButtons({ hostedButtonId: "WSB5YV6L8FB5W" }).render("#paypal-container-WSB5YV6L8FB5W");
+        </script>
+      </aside>
+    </div>
+  </section>
+
+  <section class="payment-center-section donate-section" id="donate">
+    <div class="wrap donate-layout">
+      <div>
+        <p class="eyebrow">Support 501 Elite</p>
+        <h2>Make a Donation</h2>
+        <p>Donations help support player development, equipment, tournament costs, and family resources. Donors can choose their amount through PayPal.</p>
+      </div>
+      <form class="paypal-donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="AC4DC4MYLQ9U8">
+        <button type="submit" class="brand-btn red donate-paypal-button">Donate with PayPal <b>→</b></button>
+      </form>
+    </div>
+  </section>
 </main>
+
+<script>
+(function() {
+  const form = document.getElementById('paymentIntentForm');
+  const summary = document.getElementById('paymentSummary');
+  if (!form || !summary) return;
+
+  const fields = ['payPlayer','payParent','payType','payAmount','payNote'].map(id => document.getElementById(id));
+
+  function clean(value) {
+    return (value || '').trim();
+  }
+
+  function updateSummary() {
+    const player = clean(document.getElementById('payPlayer').value) || 'Player Name';
+    const parent = clean(document.getElementById('payParent').value) || 'Parent Name';
+    const type = clean(document.getElementById('payType').value) || 'Payment';
+    const amount = clean(document.getElementById('payAmount').value);
+    const note = clean(document.getElementById('payNote').value);
+
+    const amountText = amount ? ' — $' + Number(amount).toFixed(2) : '';
+    const memo = `501 Elite | ${type}${amountText} | Player: ${player} | Parent: ${parent}${note ? ' | Note: ' + note : ''}`;
+
+    summary.innerHTML = '<strong>Payment Memo</strong><p>' + memo + '</p><small>Tip: copy this memo into the PayPal note field when available.</small>';
+  }
+
+  fields.forEach(field => field && field.addEventListener('input', updateSummary));
+  updateSummary();
+})();
+</script>
 <footer class="v10-footer" aria-label="Site footer">
   <div class="v10-footer-inner">
     <a class="v10-footer-brand" href="index.html" aria-label="501 Elite Baseball Home">
