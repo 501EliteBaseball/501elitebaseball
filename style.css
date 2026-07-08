@@ -1624,3 +1624,132 @@ section{scroll-margin-top:90px;}
   .contact-actions{align-items:stretch;}
   .contact-action-btn,.contact-method-card a{width:100%;}
 }
+
+
+/* ==========================================================================
+   LAUNCH PASS 001 — consistency, responsiveness, and QA cleanup
+   ========================================================================== */
+
+/* Keep primary brand elements crisp and consistent */
+.brand img{
+  border-radius:0 !important;
+  background:transparent !important;
+}
+
+/* Sponsor asset layout: protect card proportions and clean mobile scaling */
+.sponsor-art-grid{
+  align-items:center !important;
+}
+.sponsor-art-card{
+  min-width:0 !important;
+}
+.sponsor-art-card img{
+  width:100% !important;
+  max-width:390px !important;
+  height:auto !important;
+  object-fit:contain !important;
+}
+.sponsor-art-card--title img{
+  max-width:1080px !important;
+  width:100% !important;
+}
+
+/* Global button consistency */
+.brand-btn,
+.actions a,
+.contact-card a,
+.contact-actions a,
+.contact-method a,
+.page-cta a,
+.resource-card a{
+  min-height:52px;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Footer consistency across all pages */
+.site-footer{
+  min-height:0 !important;
+}
+.site-footer img{
+  width:82px !important;
+  height:auto !important;
+}
+.site-footer address{
+  text-align:left;
+}
+.site-footer small{
+  justify-self:end;
+}
+
+/* Legacy footer class fallback so pages cannot regress */
+.footer{
+  background:radial-gradient(circle at 96% 8%,rgba(240,31,69,.24),transparent 22%),linear-gradient(180deg,#061d39,#020914);
+  border-top:3px solid var(--red);
+}
+.footer .foot{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:28px 24px;
+  display:grid;
+  grid-template-columns:1fr 1.4fr 1.4fr auto;
+  align-items:center;
+  gap:24px;
+}
+.footer .shield{
+  width:82px !important;
+  max-width:82px !important;
+  height:auto !important;
+}
+
+/* Mobile rhythm and overflow protection */
+@media(max-width:900px){
+  .site-footer,
+  .footer .foot{
+    grid-template-columns:1fr !important;
+    text-align:center !important;
+    justify-items:center !important;
+    gap:18px !important;
+    padding-top:28px !important;
+    padding-bottom:28px !important;
+  }
+  .site-footer address,
+  .site-footer small,
+  .footer .foot span{
+    text-align:center !important;
+    justify-self:center !important;
+  }
+}
+
+@media(max-width:760px){
+  body{
+    overflow-x:hidden;
+  }
+  .header-shell{
+    padding-left:18px !important;
+    padding-right:15px !important;
+  }
+  .brand img{
+    max-width:205px !important;
+  }
+  .sponsor-art-grid{
+    grid-template-columns:1fr !important;
+    gap:24px !important;
+  }
+  .sponsor-art-card img{
+    max-width:92vw !important;
+  }
+  .sponsor-art-card--title{
+    margin-top:4px !important;
+  }
+  .sponsor-art-card--title img{
+    max-width:94vw !important;
+  }
+  .page-hero,
+  .contact-hero,
+  .training-hero,
+  .sponsor-hero{
+    overflow:hidden;
+  }
+}
+
