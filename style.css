@@ -5702,3 +5702,51 @@ body{color:var(--text-on-dark);}
     padding:48px 18px !important;
   }
 }
+
+/* v2.0.11: two-line payment gems on Give page. */
+.brand-btn.payment-gem-two-line{
+  flex-direction:column !important;
+  gap:1px !important;
+  line-height:1.05 !important;
+  height:74px !important;
+  min-height:74px !important;
+  padding:0 32px !important;
+  text-align:center !important;
+}
+.brand-btn.payment-gem-two-line .gem-brand,
+.brand-btn.payment-gem-two-line .gem-handle{
+  position:relative !important;
+  z-index:2 !important;
+  display:block !important;
+  width:100% !important;
+  text-align:center !important;
+}
+.brand-btn.payment-gem-two-line .gem-brand{
+  font-family:Graduate,serif !important;
+  font-size:13px !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase !important;
+  color:var(--signature-gem-label,#eef5fb) !important;
+}
+.brand-btn.payment-gem-two-line .gem-handle{
+  font-family:Inter,Arial,sans-serif !important;
+  font-size:11px !important;
+  letter-spacing:.025em !important;
+  text-transform:none !important;
+  font-weight:900 !important;
+  color:#d8e7f4 !important;
+  white-space:nowrap !important;
+  text-shadow:0 2px 5px rgba(0,0,0,.95),0 0 9px rgba(0,0,0,.55) !important;
+}
+.support-gem-item strong{display:none !important;}
+.support-gem-item{gap:10px !important;}
+@media(max-width:760px){
+  .brand-btn.payment-gem-two-line{
+    height:70px !important;
+    min-height:70px !important;
+    max-width:292px !important;
+    padding:0 24px !important;
+  }
+  .brand-btn.payment-gem-two-line .gem-brand{font-size:12px !important;}
+  .brand-btn.payment-gem-two-line .gem-handle{font-size:10px !important;}
+}
