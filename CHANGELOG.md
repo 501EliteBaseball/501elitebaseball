@@ -1,12 +1,9 @@
-# Luxury UI Phase 1 — Button System 2.0
+# Emergency Rollback — Pre Luxury UI V3
 
-## Changed
-- Replaced legacy silver/steel buttons with premium navy metallic buttons.
-- Added premium red metallic button system for primary actions.
-- Added beveled 3D button depth, brushed-metal texture, gloss highlights, hover lift, and pressed states.
-- Normalized button width, height, typography, spacing, and arrow movement across the site.
-- Preserved compact footer nav chips so the footer stays clean.
+This restores the last known-good `style.css` from the repository ZIP provided before the V3 CSS-only patch.
 
-## Upload
-Upload everything inside this ZIP to GitHub root and overwrite.
+Upload/overwrite:
+- style.css
+- CHANGELOG.md
+
 Cloudflare deploy command remains: `bash deploy.sh`.
