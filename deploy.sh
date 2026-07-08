@@ -4,20 +4,22 @@ set -euo pipefail
 rm -rf dist
 mkdir -p dist
 
-# Copy only website assets from repo root into dist.
-# No rsync required. Excludes node_modules automatically.
-find . -maxdepth 1 -type f \( \
-  -name "*.html" -o \
-  -name "*.css" -o \
-  -name "*.js" -o \
-  -name "*.png" -o \
-  -name "*.jpg" -o \
-  -name "*.jpeg" -o \
-  -name "*.webp" -o \
-  -name "*.svg" -o \
-  -name "*.ico" -o \
-  -name "CNAME" \
-\) -exec cp -f {} dist/ \;
+# Copy the static website exactly as it exists in the repository root,
+# while excluding files/folders that should never be deployed as assets.
+rsync -av ./ dist/ \
+  --exclude='dist' \
+  --exclude='.git' \
+  --exclude='.github' \
+  --exclude='.wrangler' \
+  --exclude='node_modules' \
+  --exclude='*.zip' \
+  --exclude='*.log' \
+  --exclude='package-lock.json' \
+  --exclude='pnpm-lock.yaml' \
+  --exclude='yarn.lock' \
+  --exclude='wrangler.jsonc' \
+  --exclude='package.json' \
+  --exclude='deploy.sh'
 
 cat > wrangler.jsonc <<'JSON'
 {

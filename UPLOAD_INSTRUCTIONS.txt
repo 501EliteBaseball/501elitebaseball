@@ -1,0 +1,1 @@
+Upload the files in this zip directly to the GitHub repo root. This light package excludes master/source duplicates and compresses assets for GitHub mobile upload.
