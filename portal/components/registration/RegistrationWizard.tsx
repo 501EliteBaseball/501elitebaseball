@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, ShieldCheck, Sparkles } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase-browser";
+import FamilyStep, {
+  type FamilyForm,
+} from "@/components/registration/steps/FamilyStep";
 
 type StepKey = "parent" | "family" | "player" | "emergency" | "medical" | "uniform" | "review" | "complete";
 
@@ -17,15 +20,6 @@ type ProfileForm = {
   last_name: string;
   phone: string;
   email: string;
-};
-
-type FamilyForm = {
-  family_name: string;
-  address_line_1: string;
-  address_line_2: string;
-  city: string;
-  state: string;
-  postal_code: string;
 };
 
 type PlayerForm = {
@@ -595,26 +589,195 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
 
   function renderFormFields() {
     if (step === "parent") {
+      const inputClassName =
+        "min-h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-950 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#123E74] focus:ring-4 focus:ring-[#123E74]/10";
+
+      const errorInputClassName =
+        "border-[#D7193F] focus:border-[#D7193F] focus:ring-[#D7193F]/10";
+
+      const errorTextClassName =
+        "flex items-center gap-1.5 text-sm font-medium text-[#B31334]";
+
       return (
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">First name</label>
-            <input value={profile.first_name} onChange={(event) => setProfile({ ...profile, first_name: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-            {formErrors.first_name ? <p className="text-sm text-[#D7193F]">{formErrors.first_name}</p> : null}
+        <div className="space-y-6">
+          <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6">
+            <div className="mb-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#123E74]">
+                Primary parent or guardian
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Enter the contact information for the adult completing this registration.
+              </p>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-2">
+                <label
+                  htmlFor="parent-first-name"
+                  className="block text-sm font-semibold text-slate-800"
+                >
+                  First name
+                </label>
+                <input
+                  id="parent-first-name"
+                  name="firstName"
+                  type="text"
+                  autoComplete="given-name"
+                  enterKeyHint="next"
+                  value={profile.first_name}
+                  onChange={(event) =>
+                    setProfile({
+                      ...profile,
+                      first_name: event.target.value,
+                    })
+                  }
+                  aria-invalid={Boolean(formErrors.first_name)}
+                  aria-describedby={
+                    formErrors.first_name
+                      ? "parent-first-name-error"
+                      : undefined
+                  }
+                  className={`${inputClassName} ${
+                    formErrors.first_name ? errorInputClassName : ""
+                  }`}
+                />
+                {formErrors.first_name ? (
+                  <p
+                    id="parent-first-name-error"
+                    role="alert"
+                    className={errorTextClassName}
+                  >
+                    <span aria-hidden="true">●</span>
+                    {formErrors.first_name}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="parent-last-name"
+                  className="block text-sm font-semibold text-slate-800"
+                >
+                  Last name
+                </label>
+                <input
+                  id="parent-last-name"
+                  name="lastName"
+                  type="text"
+                  autoComplete="family-name"
+                  enterKeyHint="next"
+                  value={profile.last_name}
+                  onChange={(event) =>
+                    setProfile({
+                      ...profile,
+                      last_name: event.target.value,
+                    })
+                  }
+                  aria-invalid={Boolean(formErrors.last_name)}
+                  aria-describedby={
+                    formErrors.last_name
+                      ? "parent-last-name-error"
+                      : undefined
+                  }
+                  className={`${inputClassName} ${
+                    formErrors.last_name ? errorInputClassName : ""
+                  }`}
+                />
+                {formErrors.last_name ? (
+                  <p
+                    id="parent-last-name-error"
+                    role="alert"
+                    className={errorTextClassName}
+                  >
+                    <span aria-hidden="true">●</span>
+                    {formErrors.last_name}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="mt-5 space-y-2">
+              <label
+                htmlFor="parent-phone"
+                className="block text-sm font-semibold text-slate-800"
+              >
+                Mobile phone
+              </label>
+              <input
+                id="parent-phone"
+                name="phone"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                enterKeyHint="done"
+                placeholder="(501) 555-0123"
+                value={profile.phone}
+                onChange={(event) =>
+                  setProfile({
+                    ...profile,
+                    phone: event.target.value,
+                  })
+                }
+                aria-invalid={Boolean(formErrors.phone)}
+                aria-describedby={
+                  formErrors.phone
+                    ? "parent-phone-error"
+                    : "parent-phone-hint"
+                }
+                className={`${inputClassName} ${
+                  formErrors.phone ? errorInputClassName : ""
+                }`}
+              />
+              {formErrors.phone ? (
+                <p
+                  id="parent-phone-error"
+                  role="alert"
+                  className={errorTextClassName}
+                >
+                  <span aria-hidden="true">●</span>
+                  {formErrors.phone}
+                </p>
+              ) : (
+                <p id="parent-phone-hint" className="text-sm text-slate-500">
+                  We’ll use this number for important team and registration updates.
+                </p>
+              )}
+            </div>
+
+            <div className="mt-5 space-y-2">
+              <label
+                htmlFor="parent-email"
+                className="block text-sm font-semibold text-slate-800"
+              >
+                Email address
+              </label>
+              <input
+                id="parent-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={profile.email}
+                readOnly
+                aria-describedby="parent-email-hint"
+                className="min-h-14 w-full cursor-not-allowed rounded-2xl border border-slate-200 bg-slate-100 px-4 py-3.5 text-base text-slate-600 shadow-inner outline-none"
+              />
+              <p id="parent-email-hint" className="text-sm leading-5 text-slate-500">
+                This is the email connected to your secure 501 Elite account.
+              </p>
+            </div>
           </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Last name</label>
-            <input value={profile.last_name} onChange={(event) => setProfile({ ...profile, last_name: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-            {formErrors.last_name ? <p className="text-sm text-[#D7193F]">{formErrors.last_name}</p> : null}
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Phone</label>
-            <input value={profile.phone} onChange={(event) => setProfile({ ...profile, phone: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-            {formErrors.phone ? <p className="text-sm text-[#D7193F]">{formErrors.phone}</p> : null}
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Email</label>
-            <input value={profile.email} readOnly className="w-full rounded-2xl border border-slate-200 bg-slate-100 px-4 py-3 text-slate-500" />
+
+          <div className="flex gap-3 rounded-2xl border border-[#123E74]/15 bg-[#123E74]/5 p-4">
+            <div
+              aria-hidden="true"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-bold text-[#123E74] shadow-sm"
+            >
+              i
+            </div>
+            <p className="text-sm leading-6 text-slate-700">
+              You’ll be able to add another parent, guardian, or authorized contact
+              later in the registration.
+            </p>
           </div>
         </div>
       );
@@ -622,39 +785,11 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
 
     if (step === "family") {
       return (
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Family name</label>
-            <input value={family.family_name} onChange={(event) => setFamily({ ...family, family_name: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-            {formErrors.family_name ? <p className="text-sm text-[#D7193F]">{formErrors.family_name}</p> : null}
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Address line 1</label>
-            <input value={family.address_line_1} onChange={(event) => setFamily({ ...family, address_line_1: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-            {formErrors.address_line_1 ? <p className="text-sm text-[#D7193F]">{formErrors.address_line_1}</p> : null}
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Address line 2</label>
-            <input value={family.address_line_2} onChange={(event) => setFamily({ ...family, address_line_2: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-200/50 px-4 py-3" />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">City</label>
-              <input value={family.city} onChange={(event) => setFamily({ ...family, city: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-              {formErrors.city ? <p className="text-sm text-[#D7193F]">{formErrors.city}</p> : null}
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">State</label>
-              <input value={family.state} onChange={(event) => setFamily({ ...family, state: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-              {formErrors.state ? <p className="text-sm text-[#D7193F]">{formErrors.state}</p> : null}
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Postal code</label>
-            <input value={family.postal_code} onChange={(event) => setFamily({ ...family, postal_code: event.target.value })} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3" />
-            {formErrors.postal_code ? <p className="text-sm text-[#D7193F]">{formErrors.postal_code}</p> : null}
-          </div>
-        </div>
+        <FamilyStep
+          family={family}
+          setFamily={setFamily}
+          formErrors={formErrors}
+        />
       );
     }
 
