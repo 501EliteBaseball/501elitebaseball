@@ -415,6 +415,85 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
     };
   }, [family, familyId, loading, saving, step]);
 
+  useEffect(() => {
+    const registrationId = registration?.id ?? null;
+    const registrationPlayerId = registration?.player_id ?? null;
+
+    if (
+      loading ||
+      saving ||
+      step !== "player" ||
+      !familyId ||
+      !registrationId
+    ) {
+      return;
+    }
+
+    if (autosaveTimeout.current) {
+      clearTimeout(autosaveTimeout.current);
+    }
+
+    autosaveTimeout.current = setTimeout(async () => {
+      try {
+        setAutosaveText("Saving player profile…");
+
+        const savedPlayerId = await savePlayer({
+          familyId,
+          playerId: playerId ?? registrationPlayerId,
+          player,
+        });
+
+        if (savedPlayerId !== playerId) {
+          setPlayerId(savedPlayerId);
+        }
+
+        if (registrationPlayerId !== savedPlayerId) {
+          const { error: registrationError } = await supabaseBrowser
+            .from("registrations")
+            .update({ player_id: savedPlayerId })
+            .eq("id", registrationId);
+
+          if (registrationError) {
+            throw registrationError;
+          }
+
+          setRegistration((current) =>
+            current
+              ? {
+                  ...current,
+                  player_id: savedPlayerId,
+                }
+              : current,
+          );
+        }
+
+        setAutosaveText("Player profile saved.");
+      } catch (autosaveError) {
+        setError(
+          autosaveError instanceof Error
+            ? autosaveError.message
+            : "Player profile could not be autosaved.",
+        );
+        setAutosaveText("Autosave paused.");
+      }
+    }, 1000);
+
+    return () => {
+      if (autosaveTimeout.current) {
+        clearTimeout(autosaveTimeout.current);
+      }
+    };
+  }, [
+    familyId,
+    loading,
+    player,
+    playerId,
+    registration?.id,
+    registration?.player_id,
+    saving,
+    step,
+  ]);
+
   function validateStep(nextStep: StepKey) {
     const errors: Record<string, string> = {};
 
