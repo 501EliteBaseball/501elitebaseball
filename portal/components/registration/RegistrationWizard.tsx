@@ -5,6 +5,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, ShieldCheck, Sparkles } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase-browser";
+import {
+  saveFamily,
+  savePlayer,
+  saveProfile,
+} from "@/lib/registration/registration-service";
 import FamilyStep, {
   type FamilyForm,
 } from "@/components/registration/steps/FamilyStep";
@@ -382,37 +387,23 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
         return;
       }
 
-      const { data: profileData, error: profileError } = await supabaseBrowser
-        .from("profiles")
-        .upsert({ id: user.id, email: user.email ?? profile.email, first_name: profile.first_name, last_name: profile.last_name, phone: profile.phone }, { onConflict: "id" })
-        .select("*")
-        .single();
+      await saveProfile({
+        userId: user.id,
+        authEmail: user.email ?? null,
+        profile,
+      });
 
-      if (profileError) throw profileError;
+      const currentFamilyId = await saveFamily({
+        userId: user.id,
+        familyId,
+        family,
+      });
 
-      let currentFamilyId = familyId;
-      let currentRegistration = registration;
-
-      if (!currentFamilyId) {
-        const { data: familyData, error: familyError } = await supabaseBrowser
-          .from("families")
-          .upsert({ id: familyId ?? undefined, primary_parent_id: user.id, family_name: family.family_name, address_line_1: family.address_line_1, address_line_2: family.address_line_2, city: family.city, state: family.state, postal_code: family.postal_code }, { onConflict: "id" })
-          .select("*")
-          .single();
-
-        if (familyError) throw familyError;
-        currentFamilyId = familyData.id;
-        setFamilyId(familyData.id);
-      } else {
-        await supabaseBrowser.from("families").update({
-          family_name: family.family_name,
-          address_line_1: family.address_line_1,
-          address_line_2: family.address_line_2,
-          city: family.city,
-          state: family.state,
-          postal_code: family.postal_code,
-        }).eq("id", currentFamilyId);
+      if (currentFamilyId !== familyId) {
+        setFamilyId(currentFamilyId);
       }
+
+      let currentRegistration = registration;
 
       if (!currentRegistration) {
         const { data: registrationData, error: registrationError } = await supabaseBrowser
@@ -427,36 +418,40 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
       }
 
       let currentPlayerId = playerId ?? currentRegistration?.player_id ?? null;
-      if (step === "player" || step === "emergency" || step === "medical" || step === "uniform" || step === "review") {
-        if (!currentPlayerId) {
-          const { data: playerData, error: playerError } = await supabaseBrowser
-            .from("players")
-            .insert({ family_id: currentFamilyId, first_name: player.first_name, last_name: player.last_name })
-            .select("*")
-            .single();
 
-          if (playerError) throw playerError;
-          currentPlayerId = playerData.id;
+      if (
+        step === "player" ||
+        step === "emergency" ||
+        step === "medical" ||
+        step === "uniform" ||
+        step === "review"
+      ) {
+        currentPlayerId = await savePlayer({
+          familyId: currentFamilyId,
+          playerId: currentPlayerId,
+          player,
+        });
+
+        if (currentPlayerId !== playerId) {
           setPlayerId(currentPlayerId);
+        }
 
-          await supabaseBrowser.from("registrations").update({ player_id: currentPlayerId }).eq("id", currentRegistration.id);
-          currentRegistration = { ...currentRegistration, player_id: currentPlayerId } as RegistrationRecord;
+        if (currentRegistration.player_id !== currentPlayerId) {
+          const { error: registrationPlayerError } = await supabaseBrowser
+            .from("registrations")
+            .update({ player_id: currentPlayerId })
+            .eq("id", currentRegistration.id);
+
+          if (registrationPlayerError) {
+            throw registrationPlayerError;
+          }
+
+          currentRegistration = {
+            ...currentRegistration,
+            player_id: currentPlayerId,
+          };
+
           setRegistration(currentRegistration);
-        } else {
-          await supabaseBrowser.from("players").update({
-            family_id: currentFamilyId,
-            first_name: player.first_name,
-            middle_name: player.middle_name,
-            last_name: player.last_name,
-            preferred_name: player.preferred_name,
-            date_of_birth: player.date_of_birth || null,
-            gender: player.gender,
-            school: player.school,
-            grade: player.grade,
-            jersey_number_preference: player.jersey_number_preference,
-            bats: player.bats,
-            throws: player.throws,
-          }).eq("id", currentPlayerId);
         }
       }
 
