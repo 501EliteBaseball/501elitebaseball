@@ -171,14 +171,16 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
       setFormErrors({});
 
       const {
-      data: { user },
-        error: userError,
-      } = await supabaseBrowser.auth.getUser();
+        data: { session },
+        error: sessionError,
+      } = await supabaseBrowser.auth.getSession();
 
-      if (userError || !user) {
+      if (sessionError || !session?.user) {
         router.replace("/login");
         return;
       }
+
+      const user = session.user;
 
       let { data: profileData } = await supabaseBrowser.from("profiles").select("*").eq("id", user.id).maybeSingle();
 
@@ -322,50 +324,97 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
     }
   }
   useEffect(() => {
-  if (loading || saving || step !== "parent") {
-    return;
-  }
-
-  if (autosaveTimeout.current) {
-    clearTimeout(autosaveTimeout.current);
-  }
-
-  autosaveTimeout.current = setTimeout(async () => {
-    try {
-      setAutosaveText("Saving parent information…");
-
-      const {
-        data: { user },
-        error: userError,
-      } = await supabaseBrowser.auth.getUser();
-
-      if (userError || !user) {
-        return;
-      }
-
-      await saveProfile({
-        userId: user.id,
-        authEmail: user.email ?? null,
-        profile,
-      });
-
-      setAutosaveText("Parent information saved.");
-    } catch (autosaveError) {
-      setError(
-        autosaveError instanceof Error
-          ? autosaveError.message
-          : "Parent information could not be autosaved.",
-      );
-      setAutosaveText("Autosave paused.");
+    if (loading || saving || step !== "parent") {
+      return;
     }
-  }, 1000);
 
-  return () => {
     if (autosaveTimeout.current) {
       clearTimeout(autosaveTimeout.current);
     }
-  };
-}, [loading, profile, saving, step]);
+
+    autosaveTimeout.current = setTimeout(async () => {
+      try {
+        setAutosaveText("Saving parent information…");
+
+        const {
+          data: { user },
+          error: userError,
+        } = await supabaseBrowser.auth.getUser();
+
+        if (userError || !user) {
+          return;
+        }
+
+        await saveProfile({
+          userId: user.id,
+          authEmail: user.email ?? null,
+          profile,
+        });
+
+        setAutosaveText("Parent information saved.");
+      } catch (autosaveError) {
+        setError(
+          autosaveError instanceof Error
+            ? autosaveError.message
+            : "Parent information could not be autosaved.",
+        );
+        setAutosaveText("Autosave paused.");
+      }
+    }, 1000);
+
+    return () => {
+      if (autosaveTimeout.current) {
+        clearTimeout(autosaveTimeout.current);
+      }
+    };
+  }, [loading, profile, saving, step]);
+
+  useEffect(() => {
+    if (loading || saving || step !== "family" || !familyId) {
+      return;
+    }
+
+    if (autosaveTimeout.current) {
+      clearTimeout(autosaveTimeout.current);
+    }
+
+    autosaveTimeout.current = setTimeout(async () => {
+      try {
+        setAutosaveText("Saving family information…");
+
+        const {
+          data: { user },
+          error: userError,
+        } = await supabaseBrowser.auth.getUser();
+
+        if (userError || !user) {
+          return;
+        }
+
+        await saveFamily({
+          userId: user.id,
+          familyId,
+          family,
+        });
+
+        setAutosaveText("Family information saved.");
+      } catch (autosaveError) {
+        setError(
+          autosaveError instanceof Error
+            ? autosaveError.message
+            : "Family information could not be autosaved.",
+        );
+        setAutosaveText("Autosave paused.");
+      }
+    }, 1000);
+
+    return () => {
+      if (autosaveTimeout.current) {
+        clearTimeout(autosaveTimeout.current);
+      }
+    };
+  }, [family, familyId, loading, saving, step]);
+
   function validateStep(nextStep: StepKey) {
     const errors: Record<string, string> = {};
 
