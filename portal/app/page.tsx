@@ -40,7 +40,7 @@ export default function HomePage() {
               href="/register"
               className="flex min-h-14 items-center justify-center rounded-2xl bg-[#D7193F] px-6 text-center text-lg font-bold text-white shadow-[0_14px_30px_rgba(215,25,63,0.26)] transition hover:-translate-y-0.5 hover:bg-[#bf1536] focus:outline-none focus:ring-4 focus:ring-red-200"
             >
-              Begin Registration
+              Join 501 Elite
             </Link>
 
             <Link
