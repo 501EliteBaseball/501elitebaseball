@@ -1,0 +1,19 @@
+# Root dependencies
+node_modules/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Build artifacts
+dist/
+coverage/
+
+# VS Code
+.vscode/settings.json

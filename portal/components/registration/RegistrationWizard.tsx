@@ -178,7 +178,8 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
       setError(null);
       setFormErrors({});
 
-      const {\n        data: { user },
+      const {
+      data: { user },
         error: userError,
       } = await supabaseBrowser.auth.getUser();
 
