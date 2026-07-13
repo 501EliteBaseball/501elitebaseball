@@ -143,10 +143,14 @@ const baseUniform = {
 export default function RegistrationWizard({ step }: RegistrationWizardProps) {
   const router = useRouter();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(step !== "complete");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [autosaveText, setAutosaveText] = useState("Preparing your draft registration…");
+  const [autosaveText, setAutosaveText] = useState(
+    step === "complete"
+      ? "Registration submitted."
+      : "Preparing your draft registration…",
+  );
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const [profile, setProfile] = useState<ProfileForm>(baseProfile);
@@ -161,7 +165,9 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
   const autosaveTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    void initializeRegistration();
+    if (step !== "complete") {
+      void initializeRegistration();
+    }
   }, [step]);
 
   async function initializeRegistration() {
