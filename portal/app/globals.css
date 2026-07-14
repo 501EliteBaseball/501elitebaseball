@@ -152,67 +152,52 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0 18px;
   border: 1px solid rgba(255, 255, 255, 0.32);
-  background: linear-gradient(180deg, #183657, #06182d);
+  border-radius: 999px;
+  background: rgba(3, 21, 43, 0.82);
   color: #fff;
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.os-link:hover {
+  border-color: rgba(255, 255, 255, 0.62);
+  background: #123e74;
 }
 
 .gem-menu-button {
-  position: relative;
   display: grid;
   place-items: center;
   width: 58px;
-  height: 54px;
+  height: 48px;
   padding: 0;
-  border: 1px solid rgba(205, 225, 255, 0.75);
+  border: 1px solid rgba(205, 225, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(3, 21, 43, 0.82);
   color: #fff;
   cursor: pointer;
-  clip-path: polygon(
-    18% 0,
-    82% 0,
-    100% 18%,
-    100% 82%,
-    82% 100%,
-    18% 100%,
-    0 82%,
-    0 18%
-  );
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.45),
-      transparent 20% 80%,
-      rgba(255, 255, 255, 0.25)
-    ),
-    linear-gradient(180deg, #1768e9, #073c98 48%, #020b2a);
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.42),
-    0 0 24px rgba(45, 129, 255, 0.3),
-    inset 0 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.gem-menu-button:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: #123e74;
+  transform: translateY(-1px);
 }
 
 .gem-menu-button svg {
-  width: 27px;
-  height: 27px;
+  width: 24px;
+  height: 24px;
 }
 
 .gem-menu-button.is-open {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.42),
-      transparent 20% 80%,
-      rgba(255, 255, 255, 0.2)
-    ),
-    linear-gradient(180deg, #f23857, #c8102e 50%, #76061b);
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.48),
-    0 0 28px rgba(240, 31, 69, 0.44);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: #d7193f;
 }
 
 .navigation-panel {
@@ -350,30 +335,27 @@ img {
 .gem-cta {
   display: inline-flex;
   min-width: 190px;
-  min-height: 58px;
+  min-height: 54px;
   align-items: center;
   justify-content: center;
   padding: 0 28px;
-  border: 1px solid rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-align: center;
   text-transform: uppercase;
-  clip-path: polygon(11px 0, 100% 0, calc(100% - 11px) 100%, 0 100%);
-  box-shadow:
-    0 18px 36px rgba(0,0,0,.30),
-    0 0 24px rgba(255,255,255,.05),
-    inset 0 1px rgba(255,255,255,.30);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
 }
 
 .gem-cta--ruby {
-  background: linear-gradient(180deg, #ff5b7c, #d7193f 45%, #8b0e28);
+  background: #d7193f;
 }
 
 .gem-cta--sapphire {
-  background: linear-gradient(180deg, #4d8fe0, #123e74 45%, #0b2954);
+  background: #123e74;
 }
 
 .pillar-grid {
