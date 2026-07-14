@@ -49,12 +49,12 @@ export default function HomePage() {
             </p>
 
             <div className="hero-actions">
-              <Link href="/register" className="gem-cta gem-cta--ruby">
-                Join 501 Elite
+              <Link href="/register/start" className="gem-cta gem-cta--ruby">
+                Create Family Account
               </Link>
 
-              <Link href="/training" className="gem-cta gem-cta--sapphire">
-                The 501 Standard
+              <Link href="/login" className="gem-cta gem-cta--sapphire">
+                Parent Sign In
               </Link>
             </div>
           </div>
