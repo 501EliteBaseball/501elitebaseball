@@ -6912,3 +6912,22 @@ input,textarea,select{
   .site-header .menu-toggle.is-open span:nth-child(3),
   .site-header .menu-toggle[aria-expanded="true"] span:nth-child(3){top:23px !important;}
 }
+
+/* Home value-card shield alignment fix */
+.value-row article img[src="shield-card.png"]{
+  display:block;
+  width:72px;
+  height:72px;
+  margin:0 auto 12px;
+  object-fit:contain;
+  object-position:center;
+  align-self:center;
+}
+
+@media(max-width:760px){
+  .value-row article img[src="shield-card.png"]{
+    width:36px;
+    height:36px;
+    margin:0 auto 6px;
+  }
+}
