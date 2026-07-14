@@ -61,7 +61,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  min-height: 104px;
+  min-height: 88px;
   border-bottom: 3px solid var(--red);
   background:
     linear-gradient(90deg, rgba(1, 8, 20, 0.2), rgba(1, 8, 20, 0.54)),
@@ -72,12 +72,12 @@ img {
 .public-header__shell {
   position: relative;
   display: grid;
-  grid-template-columns: 360px 1fr auto;
+  grid-template-columns: 300px 1fr auto;
 
   align-items: center;
   gap: 24px;
   width: min(100%, var(--max-width));
-  min-height: 104px;
+  min-height: 88px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -86,15 +86,15 @@ img {
   display:flex;
   align-items:center;
   justify-content:flex-start;
-  width:360px;
-  min-width:360px;
+  width:300px;
+  min-width:300px;
   flex-shrink:0;
   z-index:20;
 }
 
 .public-header__brand img{
   width:100%;
-  max-width:320px;
+  max-width:260px;
   height:auto;
   transition:transform .25s ease;
 }
@@ -109,8 +109,8 @@ img {
   justify-self: end;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 10px 16px;
+  gap: 24px;
+  padding: 8px 18px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(2, 10, 22, 0.5);
   backdrop-filter: blur(10px);
