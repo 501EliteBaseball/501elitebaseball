@@ -957,3 +957,40 @@ img {
   letter-spacing:.22em;
 }
 
+
+
+/* Registration completion celebration */
+
+@keyframes elite-confetti-fall {
+  0% {
+    opacity: 0;
+    translate: 0 -40px;
+    rotate: 0deg;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 720px;
+    rotate: 760deg;
+  }
+}
+
+.elite-confetti-piece {
+  position: absolute;
+  top: -24px;
+  width: 10px;
+  height: 18px;
+  border-radius: 3px;
+  animation-name: elite-confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elite-confetti-piece {
+    animation: none;
+    opacity: 0;
+  }
+}
