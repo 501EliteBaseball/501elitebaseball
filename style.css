@@ -8597,3 +8597,5 @@ p,.feature-card p,.value-row p,.founder-card p,.about-cta-card p,.publication-ca
   .hero-stage .actions .pill-action{min-width:min(100%,280px)!important}
   .about-cta-card{grid-template-columns:1fr!important;text-align:center!important}
 }
+
+/* deployment trigger 20260715-8 */
