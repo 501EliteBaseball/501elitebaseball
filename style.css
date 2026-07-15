@@ -8626,3 +8626,5 @@ p,.feature-card p,.value-row p,.founder-card p,.about-cta-card p,.publication-ca
  .team-hero .actions{grid-template-columns:1fr!important;width:min(100%,300px)!important}
  .team-hero .actions .pill-action{width:100%!important;min-width:0!important}
 }
+
+/* editorial cleanup deployment 20260715-9 */
