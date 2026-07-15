@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Lock, Mail, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lock, Mail, Sparkles } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
 export default function LoginPage() {
@@ -38,6 +38,14 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen bg-slate-100 px-6 py-8 text-slate-950 sm:px-8">
       <div className="mx-auto flex max-w-xl flex-col gap-8 rounded-[32px] bg-white p-8 shadow-[0_32px_100px_rgba(18,62,116,0.12)]">
+        <a
+          href="https://www.501elitebaseball.com"
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-[#123E74] transition hover:border-[#123E74]/30 hover:bg-slate-50"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to 501 Elite Baseball
+        </a>
+
         <section className="space-y-3 text-center">
           <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#D7193F]/10 text-[#D7193F] shadow-sm shadow-[#D7193F]/10">
             <Sparkles className="h-8 w-8" />
