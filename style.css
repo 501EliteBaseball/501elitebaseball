@@ -8628,3 +8628,54 @@ p,.feature-card p,.value-row p,.founder-card p,.about-cta-card p,.publication-ca
 }
 
 /* editorial cleanup deployment 20260715-9 */
+
+
+/* v3.0 — mobile polish: contrast, uniform controls, registration spotlight */
+@keyframes registrationGlow{
+  0%{background-position:0 0,0% 50%;box-shadow:0 0 0 rgba(233,24,66,0)}
+  50%{box-shadow:0 0 24px rgba(233,24,66,.28)}
+  100%{background-position:0 0,300% 50%;box-shadow:0 0 0 rgba(23,62,109,0)}
+}
+@media (max-width:700px){
+  body{overflow-x:hidden}
+  .actions,.library-actions,.sponsor-actions{
+    display:grid!important;grid-template-columns:1fr!important;width:100%!important;gap:14px!important
+  }
+  .actions .pill-action,.library-actions .pill-action,.sponsor-actions .pill-action,
+  .support-buttons .pill-action,.payment-button-list .pill-action{
+    width:100%!important;min-width:0!important;max-width:none!important;justify-content:center!important;
+    min-height:62px!important;padding:15px 22px!important;text-align:center!important
+  }
+  .contact-option>a,.contact-option .pill-action{
+    display:flex!important;width:100%!important;max-width:100%!important;min-height:62px!important;
+    justify-content:center!important;padding:14px 18px!important;font-size:clamp(13px,3.5vw,17px)!important
+  }
+  .support-hero .actions .pill-action,.hub-hero .actions .pill-action,
+  .team-hero .actions .pill-action{width:100%!important;min-width:0!important}
+
+  .payment-panel p,.payment-center-card p,.support-panel p,.support-card p,
+  .contact-option p,.next-card p,.payment-helper,.payment-center-layout p{
+    color:#405a75!important;opacity:1!important;text-shadow:none!important
+  }
+  .support-hero h1{color:#fff!important;text-shadow:0 2px 12px rgba(0,0,0,.28)!important}
+  .support-hero .payments-lead{color:#f4f8ff!important;opacity:1!important;text-shadow:0 2px 10px rgba(0,0,0,.25)!important}
+  .support-panel h2,.payment-panel h2,.contact-option h2{color:#0b2748!important}
+  .next-card .mini-meta span{color:#617894!important}
+  .next-card .mini-meta strong{color:#0b2748!important}
+
+  .registration-open{
+    position:relative!important;display:block!important;width:100%!important;margin:26px 0 22px!important;
+    padding:20px 22px!important;border:2px solid transparent!important;border-radius:34px!important;
+    text-align:center!important;
+    background:linear-gradient(#fff,#fff) padding-box,
+      linear-gradient(110deg,#ef2148,#ff8da3,#173e6d,#ef2148) border-box!important;
+    background-size:100% 100%,300% 100%!important;
+    animation:registrationGlow 3.4s linear infinite!important
+  }
+  .registration-open strong,.registration-open span{display:block!important;width:100%!important;text-align:center!important}
+  .registration-open strong{font-size:19px!important;line-height:1.35!important}
+  .registration-open span{margin-top:8px!important;font-size:17px!important;line-height:1.45!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .registration-open{animation:none!important;box-shadow:0 0 18px rgba(233,24,66,.18)!important}
+}
