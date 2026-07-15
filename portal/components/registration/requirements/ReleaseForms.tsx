@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2, FileSignature, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, FileSignature, ShieldCheck } from "lucide-react";
+import SectionCompletePrompt from "@/components/registration/requirements/SectionCompletePrompt";
 import {
   loadRegistrationContext,
   loadReleaseAcceptances,
@@ -165,25 +166,13 @@ export default function ReleaseForms() {
 
   if (complete) {
     return (
-      <div className="mx-auto max-w-2xl rounded-[32px] border border-emerald-200 bg-white p-7 text-center shadow-xl sm:p-10">
-        <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-600" />
-        <p className="mt-5 text-sm font-bold uppercase tracking-[0.2em] text-emerald-700">
-          Releases complete
-        </p>
-        <h1 className="mt-3 text-3xl font-semibold text-slate-950">
-          All required forms are signed.
-        </h1>
-        <p className="mt-3 text-slate-500">
-          Each response and signature timestamp has been saved securely.
-        </p>
-        <a
-          href="/registration/documents"
-          className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#123E74] px-6 font-bold text-white"
-        >
-          Upload birth certificate
-          <ArrowRight className="h-4 w-4" />
-        </a>
-      </div>
+      <SectionCompletePrompt
+        eyebrow="Release forms complete"
+        title="All six forms are signed."
+        description="Every response, agreement version, signature, and timestamp has been securely saved. One required document remains."
+        continueHref="/registration/documents"
+        continueLabel="Upload birth certificate"
+      />
     );
   }
 
