@@ -8465,3 +8465,135 @@ main{background:var(--portal-bg)}
   }
 }
 
+
+
+/* v2.8 — annotated desktop quality sweep */
+:root{--readable:#3f5873;--line:#c7d9ec;--soft:#eef6ff}
+
+/* Give every public page a visible identity in the header. */
+.site-header .brand{
+  display:block!important;flex:0 0 118px!important;width:118px!important;height:72px!important;
+  background:url('shield-footer.png') center/64px auto no-repeat!important;
+  opacity:1!important;visibility:visible!important;
+}
+.header-shell{width:min(1440px,calc(100% - 48px))!important;margin-inline:auto!important}
+.main-nav{margin-inline:auto!important}
+
+/* Shared desktop rhythm, centering, and readable light-surface text. */
+.hero-content,.value-row,.about-wrap,.team-wrap,.gallery-wrap,.resources-wrap,.training-wrap,
+.sponsor-wrap,.hub-wrap,.wrap,.contact-wrap,.handbook-wrap{
+  width:min(1320px,calc(100% - 64px));margin-inline:auto;
+}
+p,.feature-card p,.value-row p,.founder-card p,.about-cta-card p,.publication-card p,
+.library-future p,.sponsor-wall div,.mini-metrics span,.support-panel p,.payment-panel p,
+.contact-option p,.hub-tile p{color:var(--readable)}
+.value-row article,.founder-card,.about-cta-card,.publication-card,.sponsor-wall div,
+.payment-panel,.support-panel,.contact-option,.hub-tile{background:#fff}
+
+/* Home hero and registration message. */
+.hero-content{padding-inline:clamp(28px,6vw,96px)!important}
+.registration-open{
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;
+  margin:22px 0 18px;padding:12px 18px;border:1px solid #f5a8b7;border-radius:999px;
+  background:#fff;color:#17395f!important;width:fit-content;max-width:100%;
+}
+.registration-open strong{color:#d91742;text-transform:uppercase;letter-spacing:.04em}
+.registration-open span{color:#405a75}
+.hero-stage .actions{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:14px!important}
+.hero-stage .actions .pill-action{min-width:230px!important;justify-content:center!important}
+.value-row{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}
+.value-row article{min-width:0!important;padding:36px 26px!important}
+.value-row article p{color:#405a75!important}
+
+/* About: names, logo alignment, and contrast. */
+.founders-grid{align-items:stretch!important}
+.founder-card{display:grid!important;grid-template-rows:auto auto auto 1fr!important;text-align:center!important}
+.founder-card img{width:92px!important;height:92px!important;object-fit:contain!important;margin:0 auto 14px!important}
+.founder-card h3{display:block!important;color:#0b2748!important;font-size:24px!important;margin:8px 0!important}
+.about-cta-card{display:grid!important;grid-template-columns:140px 1fr!important;align-items:center!important;gap:34px!important}
+.about-cta-card img{position:static!important;width:120px!important;height:120px!important;object-fit:contain!important;margin:auto!important}
+.about-dark-v12 .feature-card h3{color:#fff!important}
+.about-dark-v12 .feature-card p{color:#d9e7f7!important}
+.about-values-grid article p{color:#405a75!important}
+
+/* Team command center: compact navigation cards instead of oversized dashboard tiles. */
+.team-control-panel,.dashboard-control-panel{padding:26px!important;border-radius:28px!important;background:#fff!important}
+.team-action-grid,.dashboard-actions{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+.team-action-card,.hub-tile{
+  min-height:0!important;padding:22px!important;border:1px solid var(--line)!important;border-radius:22px!important;
+  box-shadow:none!important;background:#f8fbff!important;display:grid!important;gap:7px!important;
+}
+.team-action-card i,.hub-tile i{position:static!important;width:auto!important;height:auto!important;border:0!important;background:none!important;color:#e01943!important;font:800 12px/1 Inter,sans-serif!important}
+.team-action-card>span,.hub-tile>span{display:inline-flex!important;width:fit-content!important;border:0!important;border-radius:999px!important;background:#eaf2fc!important;color:#173e6d!important;padding:7px 11px!important;box-shadow:none!important}
+.team-action-card h3,.hub-tile h3{margin:5px 0!important}
+.team-action-card em,.hub-tile em{display:none!important}
+.team-action-card strong,.hub-tile strong{color:#e01943!important;position:static!important}
+.roster-key span{color:#173e6d!important;background:#eef5fc!important}
+.player-photo-slot{height:250px!important;overflow:hidden!important;border-radius:20px!important;background:#eaf2fa!important}
+.player-photo-slot img,.home-player-card figure img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 28%!important}
+.player-card:nth-child(3n+2) .player-photo-slot img{object-position:center 38%!important}
+.player-card:nth-child(4n) .player-photo-slot img{object-position:center 46%!important}
+.home-player-card:nth-child(2) figure img{object-position:center 38%!important}
+.home-player-card:nth-child(3) figure img{object-position:center 42%!important}
+
+/* Gallery crops. */
+.story-image,.gallery-story-card figure{overflow:hidden!important}
+.story-image img,.gallery-story-card figure img,.storyboard-card img{
+ width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 36%!important
+}
+
+/* Library and training: centered hero, clear text, no washed-out content. */
+.library-hero-grid,.gallery-hero-grid{align-items:center!important}
+.resources-hero h1,.training-hero h1{max-width:1050px!important}
+.library-feature-card p,.publication-card p,.library-future p{color:#405a75!important}
+.publication-tags b,.publication-actions a{color:#173e6d!important}
+.publication-actions a:not(.disabled){color:#fff!important;background:#173e6d!important}
+.training-page,.training-hero{background:#eef6ff!important;color:#0b2748!important}
+.training-hero:before,.training-page:before,.standard-page:before{display:none!important}
+.training-hero p,.training-page p{color:#405a75!important;text-shadow:none!important}
+.training-kicker{color:#d91742!important}
+
+/* Remove the block-pattern visual noise and restore contrast. */
+.standard-page,.standard-section,.support-page,.support-hero{background:#eef6ff!important}
+.standard-page:before,.standard-section:before,.support-hero:before{background:none!important;display:none!important}
+.support-hero h1{color:#0b2748!important}
+.support-hero .payments-lead,.support-panel p{color:#405a75!important;text-shadow:none!important}
+.support-panel{border:1px solid var(--line)!important}
+.payment-panel p,.payment-helper,.payment-center-card p{color:#405a75!important}
+
+/* Sponsors: readable metrics, walls, and CTA. */
+.sponsor-hero__card .mini-metrics span{color:#173e6d!important;font-size:16px!important}
+.sponsor-hero__card .mini-metrics b{font-size:28px!important;color:#e01943!important}
+.sponsor-wall{gap:18px!important}
+.sponsor-wall div{color:#173e6d!important;min-height:130px!important}
+.sponsor-cta{width:min(1160px,calc(100% - 64px))!important;margin-inline:auto!important}
+.sponsor-cta h2{font-size:clamp(44px,5vw,74px)!important;line-height:1.02!important}
+.sponsor-cta p{color:#405a75!important;max-width:850px!important;margin-inline:auto!important}
+
+/* Parent hub and handbook: replace rectangular labels with quiet rounded markers. */
+.dashboard-panel-topline span,.dashboard-panel-topline b{color:#173e6d!important}
+.hub-tile>span{font-family:Inter,sans-serif!important;font-weight:850!important;letter-spacing:.08em!important}
+.handbook-card .pill-action{margin-right:16px!important}
+.handbook-card .status,.handbook-card>span{margin-left:0!important;color:#526b87!important}
+
+/* Contact and payment contrast. */
+.contact-option>a,.contact-option .pill-action{color:#fff!important}
+.contact-option p,.payment-panel p,.payment-center-layout p{color:#405a75!important}
+.contact-option i{color:#fff!important;background:#173e6d!important}
+.mobile-menu a.active{background:#fff2f5!important;color:#c9163d!important;border-color:#f3a8b7!important}
+
+/* Desktop-only normalization. */
+@media (min-width:1051px){
+  .hero-stage,.team-hero,.gallery-hero,.resources-hero,.training-hero,.sponsor-hero,
+  .payments-hero,.contact-hero{padding-left:0!important;padding-right:0!important}
+  .hero-content,.value-row{margin-left:auto!important;margin-right:auto!important}
+}
+@media (max-width:1050px){
+  .header-shell{width:calc(100% - 28px)!important;min-height:82px!important}
+  .site-header .brand{flex-basis:86px!important;width:86px!important;height:68px!important;background-size:56px auto!important}
+  .hero-content,.value-row,.about-wrap,.team-wrap,.gallery-wrap,.resources-wrap,.training-wrap,
+  .sponsor-wrap,.hub-wrap,.wrap,.contact-wrap,.handbook-wrap{width:min(100% - 32px,760px)}
+  .value-row,.team-action-grid,.dashboard-actions{grid-template-columns:1fr!important}
+  .hero-stage .actions .pill-action{min-width:min(100%,280px)!important}
+  .about-cta-card{grid-template-columns:1fr!important;text-align:center!important}
+}
