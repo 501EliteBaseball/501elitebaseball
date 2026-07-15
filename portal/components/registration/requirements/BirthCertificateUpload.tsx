@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle2, FileUp, LockKeyhole, Upload } from "lucide-react";
+import { FileUp, LockKeyhole, Upload } from "lucide-react";
 import SectionCompletePrompt from "@/components/registration/requirements/SectionCompletePrompt";
 import {
   loadBirthCertificate,
@@ -119,29 +119,10 @@ export default function BirthCertificateUpload() {
         </p>
       </div>
 
-      {document ? (
-        <div className="mt-7 rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-emerald-600" />
-            <div>
-              <p className="font-semibold text-emerald-900">
-                Birth certificate uploaded
-              </p>
-              <p className="mt-1 break-all text-sm text-emerald-800">
-                {document.original_filename} · {formatBytes(document.size_bytes)}
-              </p>
-              <p className="mt-1 text-xs uppercase tracking-wide text-emerald-700">
-                Status: {document.status}
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : null}
-
       <label className="mt-7 block cursor-pointer rounded-3xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition hover:border-[#123E74]">
         <Upload className="mx-auto h-8 w-8 text-[#123E74]" />
         <span className="mt-3 block font-semibold text-slate-800">
-          {file ? file.name : document ? "Replace uploaded file" : "Choose a file"}
+          {file ? file.name : "Choose a file"}
         </span>
         <span className="mt-1 block text-sm text-slate-500">
           JPG, PNG, or PDF · 10 MB maximum
@@ -172,14 +153,6 @@ export default function BirthCertificateUpload() {
         </p>
       ) : null}
 
-      {document ? (
-        <a
-          href="/registration/releases"
-          className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-slate-300 px-6 font-semibold text-[#123E74]"
-        >
-          Review release forms
-        </a>
-      ) : null}
     </div>
   );
 }
