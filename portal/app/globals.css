@@ -994,3 +994,214 @@ img {
     opacity: 0;
   }
 }
+
+/* Homepage announcements */
+
+.announcement-banner {
+  position: relative;
+  z-index: 20;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--navy);
+  color: #fff;
+}
+
+.announcement-banner::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--navy-light);
+  content: "";
+}
+
+.announcement-banner--important::before,
+.announcement-banner--urgent::before {
+  background: var(--red-bright);
+}
+
+.announcement-banner--urgent {
+  background: #240815;
+}
+
+.announcement-banner__shell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 18px;
+  width: min(100%, var(--max-width));
+  min-height: 82px;
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+
+.announcement-banner__shell > svg {
+  width: 28px;
+  height: 28px;
+  color: #ff4d6d;
+}
+
+.announcement-banner__content {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 3px 14px;
+  min-width: 0;
+}
+
+.announcement-banner__content > span {
+  color: #ff9caf;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.announcement-banner__content > strong {
+  overflow: hidden;
+  font-family: "Graduate", serif;
+  font-size: 1.08rem;
+  letter-spacing: 0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.announcement-banner__content > p {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  color: #d9e5f4;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.announcement-banner__link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  padding: 0 20px;
+  background: #fff;
+  color: var(--navy) !important;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.announcement-banner__link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.announcement-banner__link:focus-visible,
+.announcement-banner__controls button:focus-visible {
+  outline: 3px solid #7cc7ff;
+  outline-offset: 3px;
+}
+
+.announcement-banner__controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #d9e5f4;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.announcement-banner__controls button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  cursor: pointer;
+}
+
+.announcement-banner__controls button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.announcement-banner__controls svg {
+  width: 17px;
+  height: 17px;
+}
+
+.announcement-input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 11px 14px;
+  background: #fff;
+  color: #0f172a;
+  font: inherit;
+  font-weight: 500;
+  outline: none;
+}
+
+.announcement-input:focus {
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(18, 62, 116, 0.15);
+}
+
+textarea.announcement-input {
+  min-height: 112px;
+}
+
+@media (max-width: 780px) {
+  .announcement-banner__shell {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px 14px;
+    padding: 16px 18px;
+  }
+
+  .announcement-banner__content {
+    grid-template-columns: 1fr;
+  }
+
+  .announcement-banner__content > strong,
+  .announcement-banner__content > p {
+    grid-column: 1;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .announcement-banner__link {
+    grid-column: 2;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .announcement-banner__controls {
+    grid-column: 2;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 480px) {
+  .announcement-banner__shell > svg {
+    align-self: start;
+    margin-top: 2px;
+  }
+
+  .announcement-banner__link {
+    width: 100%;
+  }
+
+  .announcement-banner__controls {
+    justify-self: stretch;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement-banner__link {
+    transition: none;
+  }
+}

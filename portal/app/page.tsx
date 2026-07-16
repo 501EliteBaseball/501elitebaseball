@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
+import HomepageAnnouncementBanner from "@/components/announcements/HomepageAnnouncementBanner";
+import { loadPublicHomepageAnnouncements } from "@/lib/announcements/announcement-public";
+import type { Announcement } from "@/lib/announcements/announcement-types";
 
 const pillars = [
   {
@@ -22,10 +25,19 @@ const pillars = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  let announcements: Announcement[] = [];
+
+  try {
+    announcements = await loadPublicHomepageAnnouncements();
+  } catch {
+    // Keep the public homepage available if announcement storage is unavailable.
+  }
+
   return (
     <>
       <SiteHeader />
+      <HomepageAnnouncementBanner initialAnnouncements={announcements} />
 
       <main>
         <section className="public-hero">

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const AUTH_PAGES = ["/login", "/register", "/forgot-password"];
-const PROTECTED_PAGES = ["/dashboard"];
+const PROTECTED_AREAS = ["/dashboard", "/executive"];
 
 function buildSupabaseClient(req: NextRequest, res: NextResponse) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -54,7 +54,11 @@ export default async function middleware(req: NextRequest) {
   const { data } = await supabase.auth.getSession();
   const isAuthenticated = Boolean(data?.session);
 
-  if (PROTECTED_PAGES.some((path) => pathname === path)) {
+  if (
+    PROTECTED_AREAS.some(
+      (path) => pathname === path || pathname.startsWith(`${path}/`),
+    )
+  ) {
     if (!isAuthenticated) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
@@ -70,5 +74,11 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/login", "/register", "/forgot-password"],
+  matcher: [
+    "/dashboard/:path*",
+    "/executive/:path*",
+    "/login",
+    "/register",
+    "/forgot-password",
+  ],
 };
