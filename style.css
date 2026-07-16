@@ -8679,3 +8679,37 @@ p,.feature-card p,.value-row p,.founder-card p,.about-cta-card p,.publication-ca
 @media (prefers-reduced-motion:reduce){
   .registration-open{animation:none!important;box-shadow:0 0 18px rgba(233,24,66,.18)!important}
 }
+
+
+/* v3.1 — guided registration journey with orbiting CTA accent */
+@keyframes registrationLaserOrbit{to{transform:rotate(1turn)}}
+.registration-open{animation:none!important;box-shadow:0 12px 30px rgba(11,39,72,.10)!important}
+.registration-open>strong,.registration-open>span,.registration-open>small{display:block}
+.registration-open>small{margin-top:12px;color:#60758d;font-weight:700;line-height:1.4}
+.registration-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 0;padding:0;list-style:none}
+.registration-steps li{display:flex;align-items:center;gap:10px;padding:12px;border-radius:16px;background:#f3f7fc;text-align:left}
+.registration-steps li>b{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:#173e6d;color:#fff}
+.registration-steps li span{margin:0!important;color:#405a75!important;font-size:14px;line-height:1.35}
+.registration-steps li strong{display:inline!important;color:#d91742!important;font-size:inherit!important;text-transform:none!important;letter-spacing:0!important}
+.registration-actions{display:grid;grid-template-columns:repeat(2,minmax(250px,1fr));gap:16px;width:min(760px,100%);margin-top:18px}
+.registration-choice{display:grid;gap:9px}
+.choice-label{color:#405a75;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;text-align:center}
+.registration-choice>.pill-action,.registration-laser,.registration-laser .pill-action{width:100%!important;min-width:0!important}
+.registration-laser{position:relative;display:block;padding:4px;border-radius:999px;overflow:hidden;isolation:isolate;background:#173e6d}
+.registration-laser:before{
+  content:"";position:absolute;z-index:0;inset:-180%;
+  background:conic-gradient(from 0deg,transparent 0 76%,#7bc7ff 82%,#173e6d 86%,transparent 92%);
+  animation:registrationLaserOrbit 2.2s linear infinite
+}
+.registration-laser .pill-action{position:relative;z-index:1;border:0!important;background:#e31843!important;min-height:60px!important}
+.staff-access{grid-column:1/-1;justify-self:center;color:#526b87;font-size:13px;font-weight:850;text-decoration:underline;text-underline-offset:4px}
+@media (max-width:700px){
+  .registration-open{padding:22px 18px!important;text-align:center!important}
+  .registration-steps{grid-template-columns:1fr!important;gap:9px!important}
+  .registration-steps li{padding:11px 12px!important}
+  .registration-actions{grid-template-columns:1fr!important;width:100%!important;gap:18px!important}
+  .staff-access{grid-column:auto!important;padding:8px 0!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .registration-laser:before{animation:none!important;background:#5aaeff!important}
+}
