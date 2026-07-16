@@ -6,6 +6,11 @@ import { useMemo, useState } from "react";
 
 export type UniformPreviewSide = "front" | "back";
 
+// Keep the production artwork mapping explicit. The vendor-exported filenames do
+// not describe the jersey side and are easy to reverse accidentally.
+const FRONT_JERSEY_ARTWORK = "/uniforms/OWN THE STANDARD-3.png";
+const BACK_JERSEY_ARTWORK = "/uniforms/OWN THE STANDARD-2.png";
+
 export type UniformPreviewProps = {
   playerName: string;
   jerseyName?: string;
@@ -121,7 +126,7 @@ export default function UniformPreview({
             >
               <div className="absolute inset-0 [backface-visibility:hidden]">
                 <Image
-                  src="/uniforms/OWN THE STANDARD-2.png"
+                  src={FRONT_JERSEY_ARTWORK}
                   alt="Front of the 501 Elite jersey"
                   fill
                   priority
@@ -132,7 +137,7 @@ export default function UniformPreview({
 
               <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
                 <Image
-                  src="/uniforms/OWN THE STANDARD-3.png"
+                  src={BACK_JERSEY_ARTWORK}
                   alt={`Back of ${displayName}'s 501 Elite jersey`}
                   fill
                   priority
