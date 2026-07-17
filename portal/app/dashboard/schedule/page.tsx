@@ -1,1 +1,1 @@
-import{CalendarDays}from"lucide-react";import E from"@/components/app/AppEmptyState";export default function P(){return <E title="Schedule" icon={CalendarDays} description="Practices, games, tournaments, directions, and schedule-change alerts will live here in the next sprint."/>}
+import ScheduleView from"@/components/schedule/ScheduleView";export default function Page(){return <ScheduleView/>}
