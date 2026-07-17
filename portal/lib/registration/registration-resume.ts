@@ -63,5 +63,5 @@ export async function getRegistrationResumePath(userId: string) {
   }
 
   if (!document) return "/registration/documents";
-  return "/registration/success";
+  return "/dashboard";
 }

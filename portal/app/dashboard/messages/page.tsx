@@ -1,0 +1,1 @@
+import{MessageCircle}from"lucide-react";import E from"@/components/app/AppEmptyState";export default function P(){return <E title="Messages" icon={MessageCircle} description="The GroupMe-connected message hub is planned for a later phase."/>}

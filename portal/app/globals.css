@@ -29,6 +29,8 @@ body {
   color: var(--ink);
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
+.app-safe-top{padding-top:env(safe-area-inset-top)}
+@media(display-mode:standalone){body{overscroll-behavior-y:none}}
 
 a {
   color: inherit;

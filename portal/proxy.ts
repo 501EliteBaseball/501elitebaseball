@@ -28,7 +28,7 @@ function buildSupabaseClient(req: NextRequest, res: NextResponse) {
   });
 }
 
-export default async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname.startsWith("/_next") || pathname.startsWith("/favicon.ico") || pathname.includes(".")) {
@@ -40,7 +40,7 @@ export default async function middleware(req: NextRequest) {
   const { data } = await supabase.auth.getSession();
   const isAuthenticated = Boolean(data?.session);
 
-  if (PROTECTED_PAGES.some((path) => pathname === path)) {
+  if (PROTECTED_PAGES.some((path) => pathname === path || pathname.startsWith(`${path}/`))) {
     if (!isAuthenticated) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
@@ -56,5 +56,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/login", "/register", "/forgot-password"],
+  matcher: ["/dashboard/:path*", "/login", "/register", "/forgot-password"],
 };

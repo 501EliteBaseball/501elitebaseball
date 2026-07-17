@@ -145,11 +145,11 @@ export default function FinalRegistrationCelebration() {
             Continue to payment
           </a>
           <Link
-            href="/"
+            href="/dashboard"
             className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 font-bold transition hover:bg-white/15"
             style={{ color: "#ffffff" }}
           >
-            Finish for now
+            Open Family Home
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
