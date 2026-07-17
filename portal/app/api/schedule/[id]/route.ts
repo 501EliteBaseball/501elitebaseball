@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireScheduleStaff } from "@/lib/schedule/require-schedule-staff";
+import { sendPushNotification } from "@/lib/notifications/push";
 
 type Context = { params: Promise<{ id: string }> };
 
@@ -13,10 +14,20 @@ export async function PATCH(request: Request, { params }: Context) {
     return NextResponse.json({ error: "Invalid event status." }, { status: 400 });
   }
 
-  const { error } = await auth.s
+  const { data: event, error } = await auth.s
     .from("schedule_events")
     .update({ status: body.status, updated_at: new Date().toISOString() })
-    .eq("id", id);
+    .eq("id", id)
+    .select("title,audience")
+    .single();
+
+  if (!error && event.audience !== "staff") {
+    await sendPushNotification({
+      title: body.status === "cancelled" ? "Event cancelled" : "Event restored",
+      body: `${event.title} was ${body.status === "cancelled" ? "cancelled" : "restored"}.`,
+      url: "/dashboard/schedule",
+    });
+  }
 
   return error
     ? NextResponse.json({ error: error.message }, { status: 500 })
