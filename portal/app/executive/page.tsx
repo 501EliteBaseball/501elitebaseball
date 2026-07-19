@@ -1,4 +1,4 @@
-import { CalendarDays, Database, Megaphone, WalletCards } from "lucide-react";
+import { CalendarDays, Database, Download, Megaphone, WalletCards } from "lucide-react";
 import Link from "next/link";
 import ExecutiveDashboard from "@/components/executive/ExecutiveDashboard";
 
@@ -17,6 +17,7 @@ export default function ExecutivePage() {
           <Database className="h-4 w-4" />
           Records
         </Link>
+        <Link href="/executive/exports" style={{color:"#ffffff"}} className="col-span-2 inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-slate-700 px-4 text-sm font-bold text-white shadow-md sm:col-auto sm:px-5"><Download className="h-4 w-4"/>Exports</Link>
       </div>
       <ExecutiveDashboard />
     </main>
