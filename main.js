@@ -52,4 +52,28 @@
       if(window.innerWidth > 760) setMenu(false);
     });
   });
+
+  ready(function(){
+    const banner = document.querySelector('[data-os-launch-banner]');
+    const dismiss = document.querySelector('[data-os-launch-dismiss]');
+    if(!banner || !dismiss) return;
+
+    try {
+      if(window.localStorage.getItem('501elite-os-banner-dismissed') === 'true') {
+        banner.hidden = true;
+        return;
+      }
+    } catch(error) {
+      // The banner still works when storage is unavailable.
+    }
+
+    dismiss.addEventListener('click', function(){
+      banner.hidden = true;
+      try {
+        window.localStorage.setItem('501elite-os-banner-dismissed', 'true');
+      } catch(error) {
+        // Dismiss for this page view when storage is unavailable.
+      }
+    });
+  });
 })();
