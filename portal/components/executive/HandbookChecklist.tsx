@@ -1,18 +1,27 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { BookOpenCheck, CheckCircle2, Circle } from "lucide-react";
-import { loadExecutiveRegistrations } from "@/lib/executive/executive-service";
 
 const STORAGE_KEY = "501-elite-handbooks-received-2026-2027";
 
-type Athlete = {
-  id: string;
-  lastName: string;
-};
+const ATHLETES = [
+  "Brown",
+  "Chambers",
+  "Dawson",
+  "Frechette",
+  "French",
+  "George",
+  "Gillespie",
+  "Grimmett",
+  "Mills",
+  "Scott",
+  "Thomas",
+  "Wiley",
+  "Willingham",
+].map((lastName) => ({ id: lastName.toLowerCase(), lastName }));
 
 export default function HandbookChecklist() {
-  const [athletes, setAthletes] = useState<Athlete[]>([]);
   const [received, setReceived] = useState<Record<string, boolean>>(() => {
     if (typeof window === "undefined") return {};
 
@@ -24,31 +33,9 @@ export default function HandbookChecklist() {
       return {};
     }
   });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    void loadExecutiveRegistrations()
-      .then((registrations) => {
-        setAthletes(
-          registrations
-            .filter((registration) => registration.status === "submitted")
-            .map((registration) => ({
-              id: registration.player.id || registration.id,
-              lastName: registration.player.last_name || registration.playerName.split(" ").at(-1) || "Athlete",
-            }))
-            .sort((a, b) => a.lastName.localeCompare(b.lastName)),
-        );
-      })
-      .catch((loadError) => {
-        setError(loadError instanceof Error ? loadError.message : "The handbook list could not be loaded.");
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
   const completed = useMemo(
-    () => athletes.filter((athlete) => received[athlete.id]).length,
-    [athletes, received],
+    () => ATHLETES.filter((athlete) => received[athlete.id]).length,
+    [received],
   );
 
   function toggleAthlete(id: string) {
@@ -72,41 +59,32 @@ export default function HandbookChecklist() {
           </div>
         </div>
         <div className="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-[#123E74]">
-          {completed}/{athletes.length}
+          {completed}/{ATHLETES.length}
         </div>
       </div>
 
       <div className="p-4 sm:p-6">
-        {loading ? <p className="py-4 text-center text-sm text-slate-500">Loading roster…</p> : null}
-        {error ? <p className="rounded-2xl bg-red-50 p-4 text-sm text-red-700">{error}</p> : null}
-
-        {!loading && !error ? (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {athletes.map((athlete) => {
-              const checked = Boolean(received[athlete.id]);
-              return (
-                <button
-                  key={athlete.id}
-                  type="button"
-                  aria-pressed={checked}
-                  onClick={() => toggleAthlete(athlete.id)}
-                  className={`flex min-h-14 items-center gap-3 rounded-2xl border px-4 text-left text-base font-bold transition active:scale-[0.98] ${
-                    checked
-                      ? "border-emerald-300 bg-emerald-50 text-emerald-800"
-                      : "border-slate-200 bg-slate-50 text-slate-800"
-                  }`}
-                >
-                  {checked ? <CheckCircle2 className="h-6 w-6 shrink-0" /> : <Circle className="h-6 w-6 shrink-0 text-slate-400" />}
-                  <span className={checked ? "line-through opacity-75" : ""}>{athlete.lastName}</span>
-                </button>
-              );
-            })}
-          </div>
-        ) : null}
-
-        {!loading && !error && !athletes.length ? (
-          <p className="py-4 text-center text-sm text-slate-500">No submitted athletes were found.</p>
-        ) : null}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {ATHLETES.map((athlete) => {
+            const checked = Boolean(received[athlete.id]);
+            return (
+              <button
+                key={athlete.id}
+                type="button"
+                aria-pressed={checked}
+                onClick={() => toggleAthlete(athlete.id)}
+                className={`flex min-h-14 items-center gap-3 rounded-2xl border px-4 text-left text-base font-bold transition active:scale-[0.98] ${
+                  checked
+                    ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+                    : "border-slate-200 bg-slate-50 text-slate-800"
+                }`}
+              >
+                {checked ? <CheckCircle2 className="h-6 w-6 shrink-0" /> : <Circle className="h-6 w-6 shrink-0 text-slate-400" />}
+                <span className={checked ? "line-through opacity-75" : ""}>{athlete.lastName}</span>
+              </button>
+            );
+          })}
+        </div>
 
         <p className="mt-4 text-center text-xs text-slate-400">Saved automatically on this device.</p>
       </div>
