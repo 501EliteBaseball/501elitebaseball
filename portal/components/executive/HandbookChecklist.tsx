@@ -13,18 +13,21 @@ type Athlete = {
 
 export default function HandbookChecklist() {
   const [athletes, setAthletes] = useState<Athlete[]>([]);
-  const [received, setReceived] = useState<Record<string, boolean>>({});
+  const [received, setReceived] = useState<Record<string, boolean>>(() => {
+    if (typeof window === "undefined") return {};
+
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      return saved ? (JSON.parse(saved) as Record<string, boolean>) : {};
+    } catch {
+      window.localStorage.removeItem(STORAGE_KEY);
+      return {};
+    }
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) setReceived(JSON.parse(saved) as Record<string, boolean>);
-    } catch {
-      window.localStorage.removeItem(STORAGE_KEY);
-    }
-
     void loadExecutiveRegistrations()
       .then((registrations) => {
         setAthletes(
