@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, ShieldCheck } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase-browser";
+import { notifyExecutivesOfRegistration } from "@/lib/registration/registration-notifications";
 import BrandHeader from "@/components/registration/experience/BrandHeader";
 import SectionCompletePrompt from "@/components/registration/requirements/SectionCompletePrompt";
 import RegistrationProgress from "@/components/registration/experience/RegistrationProgress";
@@ -258,6 +259,10 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
           throw registrationInsertError;
         }
         draftRegistration = insertedRegistration;
+        await notifyExecutivesOfRegistration({
+          registrationId: insertedRegistration.id,
+          event: "started",
+        });
       }
 
       setRegistration(draftRegistration as RegistrationRecord | null);
@@ -856,12 +861,22 @@ export default function RegistrationWizard({ step }: RegistrationWizardProps) {
       if (!completedSteps.includes(currentStepNumber)) completedSteps.push(currentStepNumber);
 
       if (shouldSubmit) {
-        await supabaseBrowser.from("registrations").update({
-          status: "submitted",
-          submitted_at: new Date().toISOString(),
-          current_step: stepConfig.review.number,
-          completed_steps: completedSteps,
-        }).eq("id", currentRegistration.id);
+        const { error: submitError } = await supabaseBrowser
+          .from("registrations")
+          .update({
+            status: "submitted",
+            submitted_at: new Date().toISOString(),
+            current_step: stepConfig.review.number,
+            completed_steps: completedSteps,
+          })
+          .eq("id", currentRegistration.id);
+
+        if (submitError) throw submitError;
+
+        await notifyExecutivesOfRegistration({
+          registrationId: currentRegistration.id,
+          event: "completed",
+        });
         setAutosaveText("Registration submitted. Redirecting…");
         router.replace("/registration/complete");
         return;
