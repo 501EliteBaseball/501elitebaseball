@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, FileWarning, ShieldCheck, UsersRound } from "lucide-react";
+import NotificationCard from "@/components/app/NotificationCard";
 import {
   grantOrganizationAccess,
   loadCurrentMembership,
@@ -90,6 +91,10 @@ export default function ExecutiveDashboard() {
             value={registrations.length - completeRegistrations}
           />
         </div>
+      </div>
+
+      <div className="mt-5">
+        <NotificationCard />
       </div>
 
       <div className="mt-7 grid gap-4">
