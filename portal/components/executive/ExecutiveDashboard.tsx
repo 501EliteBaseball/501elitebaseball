@@ -418,3 +418,31 @@ function AccessManager({
           >
             <div>
               <p className="font-semibold capitalize">{member.role}</p>
+              <p className="mt-1 break-all text-xs text-slate-500">
+                {member.user_id}
+              </p>
+              <p className="mt-1 text-xs text-slate-500">
+                Medical: {member.can_view_medical ? "yes" : "no"} · Documents:{" "}
+                {member.can_view_documents ? "yes" : "no"} ·{" "}
+                {member.active ? "active" : "inactive"}
+              </p>
+            </div>
+
+            {member.active ? (
+              <button
+                type="button"
+                onClick={async () => {
+                  await revokeOrganizationAccess(member.user_id);
+                  await onChanged();
+                }}
+                className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-700"
+              >
+                Revoke
+              </button>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
