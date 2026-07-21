@@ -82,7 +82,7 @@ export async function POST(request: Request) {
   } as const;
 
   await sendPushNotification(
-    { ...messages[body.event as keyof typeof messages], url: `/executive/registrations/${body.registrationId}` },
+    { ...messages[body.event as keyof typeof messages], url: `/executive/records/${body.registrationId}` },
     { audience: "executives" },
   );
 
