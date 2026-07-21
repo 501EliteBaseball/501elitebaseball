@@ -37,6 +37,7 @@ export type ExecutiveRegistration = {
   season: string;
   submittedAt: string | null;
   createdAt: string | null;
+  archivedAt: string | null;
   familyName: string;
   parentName: string;
   parentEmail: string;
@@ -136,12 +137,18 @@ export async function loadOrganizationMembers(): Promise<OrganizationMember[]> {
   return (data ?? []) as OrganizationMember[];
 }
 
-export async function loadExecutiveRegistrations(): Promise<ExecutiveRegistration[]> {
-  const { data: registrations, error: registrationError } = await supabaseBrowser
+export async function loadExecutiveRegistrations(
+  scope: "active" | "archived" | "all" = "active",
+): Promise<ExecutiveRegistration[]> {
+  let registrationQuery = supabaseBrowser
     .from("registrations")
-    .select("id, family_id, player_id, status, season, submitted_at, created_at")
-    .is("archived_at", null)
-    .order("created_at", { ascending: false });
+    .select("id, family_id, player_id, status, season, submitted_at, created_at, archived_at");
+
+  if (scope === "active") registrationQuery = registrationQuery.is("archived_at", null);
+  if (scope === "archived") registrationQuery = registrationQuery.not("archived_at", "is", null);
+
+  const { data: registrations, error: registrationError } = await registrationQuery
+    .order(scope === "archived" ? "archived_at" : "created_at", { ascending: false });
 
   if (registrationError) throw registrationError;
   if (!registrations?.length) return [];
@@ -273,6 +280,7 @@ export async function loadExecutiveRegistrations(): Promise<ExecutiveRegistratio
       season: registration.season,
       submittedAt: registration.submitted_at,
       createdAt: registration.created_at,
+      archivedAt: registration.archived_at,
       familyName: family?.family_name || "Unnamed family",
       parentName,
       parentEmail: parent?.email || "Not provided",
