@@ -1,2 +1,2 @@
-import AccountingManager from "@/components/accounting/AccountingManager";
-export default function Page(){return <main className="min-h-screen bg-[#F4F7FC] px-4 py-8 text-slate-950 sm:px-6 sm:py-12"><AccountingManager/></main>}
+import { redirect } from "next/navigation";
+export default function Page(){redirect("/finance/accounts")}

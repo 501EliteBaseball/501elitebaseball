@@ -1,0 +1,1 @@
+import FinanceNavigation from "@/components/finance/FinanceNavigation";export default function FinanceLayout({children}:{children:React.ReactNode}){return <div className="min-h-dvh bg-[#F4F7FC] text-slate-950"><FinanceNavigation/><main className="mx-auto max-w-7xl px-4 pb-28 pt-6 sm:px-6 lg:pb-10">{children}</main></div>}
