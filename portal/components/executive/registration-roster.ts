@@ -83,7 +83,10 @@ function normalizeName(value: string) {
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase()
-    .replace(/[^a-z0-9]/g, "");
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean)
+    .map((part) => (part === "jr" ? "junior" : part))
+    .join("");
 }
 
 export function registrationForRosterPlayer(
