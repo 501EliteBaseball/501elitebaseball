@@ -123,8 +123,14 @@ export function registrationForRosterPlayer(
     ]
       .filter(Boolean)
       .join(" ");
+    const preferredName = [
+      registration.player.preferred_name,
+      registration.player.last_name,
+    ]
+      .filter(Boolean)
+      .join(" ");
 
-    return [structuredName, registration.playerName].some(
+    return [structuredName, preferredName, registration.playerName].some(
       (candidate) => normalizeName(candidate) === rosterName,
     );
   });
