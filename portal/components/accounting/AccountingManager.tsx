@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
 type Family = { id: string; family_name: string };
+type Player = { family_id: string; last_name: string };
 type Account = {
   id: string;
   family_id: string | null;
@@ -62,6 +63,7 @@ const money = (c: number) =>
   );
 export default function AccountingManager() {
   const [families, setFamilies] = useState<Family[]>([]),
+    [players, setPlayers] = useState<Player[]>([]),
     [accounts, setAccounts] = useState<Account[]>([]),
     [charges, setCharges] = useState<Charge[]>([]),
     [payments, setPayments] = useState<Payment[]>([]),
@@ -90,12 +92,21 @@ export default function AccountingManager() {
     );
   }
   async function load() {
-    const [{ data: f }, { data: a }, { data: c }, { data: p }] =
-      await Promise.all([
+    const [
+      { data: f },
+      { data: rosterPlayers },
+      { data: a },
+      { data: c },
+      { data: p },
+    ] = await Promise.all([
         supabaseBrowser
           .from("families")
           .select("id,family_name")
           .order("family_name"),
+        supabaseBrowser
+          .from("players")
+          .select("family_id,last_name")
+          .order("created_at"),
         supabaseBrowser
           .from("family_accounts")
           .select("id,family_id,account_number,display_name")
@@ -110,6 +121,7 @@ export default function AccountingManager() {
           .order("paid_at", { ascending: false }),
       ]);
     setFamilies((f ?? []) as Family[]);
+    setPlayers((rosterPlayers ?? []) as Player[]);
     setAccounts((a ?? []) as Account[]);
     setCharges((c ?? []) as Charge[]);
     setPayments((p ?? []) as Payment[]);
@@ -176,6 +188,14 @@ export default function AccountingManager() {
     return {
       ...a,
       name:
+        (a.family_id
+          ? (() => {
+              const surname = players.find(
+                (player) => player.family_id === a.family_id,
+              )?.last_name?.trim();
+              return surname ? `${surname} Family` : "";
+            })()
+          : "") ||
         a.display_name ||
         families.find((f) => f.id === a.family_id)?.family_name ||
         "Unnamed family",
