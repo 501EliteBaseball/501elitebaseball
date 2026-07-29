@@ -16,12 +16,13 @@ export const TEAM_ROSTER = [
   "Zeke French",
 ] as const;
 
-export type TeamRosterName = (typeof TEAM_ROSTER)[number];
+export type TeamRosterName = string;
 
 export type TeamRosterPlayer = {
   playerName: TeamRosterName;
   active: boolean;
   changedAt: string | null;
+  registrationOverride: boolean | null;
 };
 
 export type TeamRosterAuditEvent = {
@@ -31,51 +32,71 @@ export type TeamRosterAuditEvent = {
   occurred_at: string;
 };
 
-export function isTeamRosterName(value: unknown): value is TeamRosterName {
+export function isValidRosterPlayerName(value: unknown): value is string {
   return (
     typeof value === "string" &&
-    TEAM_ROSTER.some((playerName) => playerName === value)
+    value.trim().length >= 2 &&
+    value.trim().length <= 120
   );
 }
 
 export function rosterPlayersFromAudit(
   events: TeamRosterAuditEvent[],
 ): TeamRosterPlayer[] {
-  const latestState = new Map<
-    TeamRosterName,
-    { active: boolean; changedAt: string }
-  >();
+  const players = new Map<string, TeamRosterPlayer>(
+    TEAM_ROSTER.map((playerName) => [
+      playerName.toLocaleLowerCase(),
+      {
+        playerName,
+        active: true,
+        changedAt: null,
+        registrationOverride: null,
+      },
+    ]),
+  );
 
   for (const event of events) {
-    if (
-      event.action !== "roster.removed" &&
-      event.action !== "roster.restored"
-    ) {
-      continue;
-    }
-
     const details =
       event.details && typeof event.details === "object"
         ? (event.details as Record<string, unknown>)
         : null;
-    const playerName = details?.player_name;
+    const rawPlayerName = details?.player_name;
+    if (!isValidRosterPlayerName(rawPlayerName)) continue;
 
-    if (!isTeamRosterName(playerName)) continue;
+    const playerName = rawPlayerName.trim();
+    const key = playerName.toLocaleLowerCase();
+    const existing = players.get(key);
 
-    latestState.set(playerName, {
-      active: event.action === "roster.restored",
-      changedAt: event.occurred_at,
-    });
+    if (event.action === "roster.added") {
+      if (!existing) {
+        players.set(key, {
+          playerName,
+          active: true,
+          changedAt: event.occurred_at,
+          registrationOverride: null,
+        });
+      }
+      continue;
+    }
+
+    if (!existing) continue;
+
+    if (event.action === "roster.removed") {
+      players.set(key, { ...existing, active: false, changedAt: event.occurred_at });
+    } else if (event.action === "roster.restored") {
+      players.set(key, { ...existing, active: true, changedAt: event.occurred_at });
+    } else if (event.action === "registration.marked_registered") {
+      players.set(key, { ...existing, registrationOverride: true });
+    } else if (event.action === "registration.marked_unregistered") {
+      players.set(key, { ...existing, registrationOverride: false });
+    } else if (event.action === "registration.override_cleared") {
+      players.set(key, { ...existing, registrationOverride: null });
+    }
   }
 
-  return TEAM_ROSTER.map((playerName) => {
-    const state = latestState.get(playerName);
-    return {
-      playerName,
-      active: state?.active ?? true,
-      changedAt: state?.changedAt ?? null,
-    };
-  });
+  return [...players.values()].sort((a, b) =>
+    a.playerName.localeCompare(b.playerName),
+  );
 }
 
 function normalizeName(value: string) {

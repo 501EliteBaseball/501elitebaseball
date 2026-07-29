@@ -6,21 +6,34 @@ import {
 } from "@/components/executive/registration-roster";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
-export type TeamRosterAction = "remove" | "restore";
+export type TeamRosterAction =
+  | "add"
+  | "remove"
+  | "restore"
+  | "mark_registered"
+  | "mark_unregistered"
+  | "clear_registration_override";
+
+const AUDIT_ACTIONS = [
+  "roster.added",
+  "roster.removed",
+  "roster.restored",
+  "registration.marked_registered",
+  "registration.marked_unregistered",
+  "registration.override_cleared",
+];
 
 export async function loadTeamRoster(): Promise<TeamRosterPlayer[]> {
   const { data, error } = await supabaseBrowser
     .from("registration_audit_log")
     .select("id, action, details, occurred_at")
-    .in("action", ["roster.removed", "roster.restored"])
+    .in("action", AUDIT_ACTIONS)
     .order("occurred_at", { ascending: true })
     .order("id", { ascending: true });
 
   if (error) throw error;
 
-  return rosterPlayersFromAudit(
-    (data ?? []) as TeamRosterAuditEvent[],
-  );
+  return rosterPlayersFromAudit((data ?? []) as TeamRosterAuditEvent[]);
 }
 
 export async function updateTeamRosterPlayer(
