@@ -60,6 +60,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Registration not found." }, { status: 404 });
   }
 
+  if (player?.last_name?.trim()) {
+    const { error: accountSyncError } = await admin
+      .from("family_accounts")
+      .update({
+        display_name: `${player.last_name.trim()} Family`,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("family_id", ownedRegistration.family_id);
+
+    if (accountSyncError) {
+      return NextResponse.json(
+        { error: "The linked family account could not be updated." },
+        { status: 500 },
+      );
+    }
+  }
+
   const familyName = family.family_name || "A family";
   const playerName = player
     ? `${player.preferred_name || player.first_name} ${player.last_name}`.trim()
