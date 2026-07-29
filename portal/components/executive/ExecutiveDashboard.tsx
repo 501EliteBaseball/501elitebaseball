@@ -314,7 +314,7 @@ function RosterRegistrationTracker({
             Registration tracker
           </h2>
           <p className="mt-1 text-sm text-slate-500">
-            Automatically matched against Family OS registration records.
+            Automatically matched to Family OS, with manual controls when needed.
           </p>
           <p className="mt-2 text-xs font-medium text-slate-400">
             Removing a player only changes the active roster. Their records stay intact.
