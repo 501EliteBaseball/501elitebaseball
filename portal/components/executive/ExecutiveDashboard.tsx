@@ -6,6 +6,7 @@ import {
   CircleAlert,
   FileWarning,
   LoaderCircle,
+  Plus,
   RotateCcw,
   ShieldCheck,
   Trash2,
@@ -43,6 +44,7 @@ export default function ExecutiveDashboard() {
     useState<TeamRosterName | null>(null);
   const [rosterNotice, setRosterNotice] = useState("");
   const [rosterError, setRosterError] = useState("");
+  const [newPlayerName, setNewPlayerName] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -81,13 +83,21 @@ export default function ExecutiveDashboard() {
     () =>
       rosterPlayers
         .filter((player) => player.active)
-        .map(({ playerName }) => ({
-          playerName,
-          registration: registrationForRosterPlayer(playerName, registrations),
-        })),
+        .map((player) => {
+          const registration = registrationForRosterPlayer(
+            player.playerName,
+            registrations,
+          );
+          return {
+            ...player,
+            registration,
+            registered:
+              player.registrationOverride ?? Boolean(registration),
+          };
+        }),
     [registrations, rosterPlayers],
   );
-  const unregisteredPlayers = rosterStatus.filter((item) => !item.registration);
+  const unregisteredPlayers = rosterStatus.filter((item) => !item.registered);
   const registrationsStarted = rosterStatus.length - unregisteredPlayers.length;
   const completeRegistrations = rosterStatus.filter(
     ({ registration }) =>
@@ -106,11 +116,15 @@ export default function ExecutiveDashboard() {
       setRosterNotice("");
       await updateTeamRosterPlayer(playerName, action);
       setRosterPlayers(await loadTeamRoster());
-      setRosterNotice(
-        action === "remove"
-          ? `${playerName} was removed from the active roster. Their records were preserved.`
-          : `${playerName} was restored to the active roster.`,
-      );
+      const messages: Record<TeamRosterAction, string> = {
+        add: `${playerName} was added to the roster.`,
+        remove: `${playerName} was removed from the active roster. Their records were preserved.`,
+        restore: `${playerName} was restored to the active roster.`,
+        mark_registered: `${playerName} was manually marked registered.`,
+        mark_unregistered: `${playerName} was manually marked not registered.`,
+        clear_registration_override: `${playerName} now follows automatic registration matching.`,
+      };
+      setRosterNotice(messages[action]);
     } catch (actionError) {
       setRosterError(
         actionError instanceof Error
@@ -120,6 +134,14 @@ export default function ExecutiveDashboard() {
     } finally {
       setRosterActionPlayer(null);
     }
+  }
+
+  async function addRosterPlayer(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const playerName = newPlayerName.trim();
+    if (!playerName) return;
+    await changeRosterPlayer(playerName, "add");
+    setNewPlayerName("");
   }
 
   if (loading) {
@@ -159,6 +181,9 @@ export default function ExecutiveDashboard() {
         actionPlayer={rosterActionPlayer}
         notice={rosterNotice}
         error={rosterError}
+        newPlayerName={newPlayerName}
+        onNewPlayerNameChange={setNewPlayerName}
+        onAddPlayer={addRosterPlayer}
         onChange={changeRosterPlayer}
       />
 
@@ -236,6 +261,9 @@ function RosterRegistrationTracker({
   actionPlayer,
   notice,
   error,
+  newPlayerName,
+  onNewPlayerNameChange,
+  onAddPlayer,
   onChange,
 }: {
   registrations: ExecutiveRegistration[];
@@ -243,6 +271,9 @@ function RosterRegistrationTracker({
   actionPlayer: TeamRosterName | null;
   notice: string;
   error: string;
+  newPlayerName: string;
+  onNewPlayerNameChange: (value: string) => void;
+  onAddPlayer: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
   onChange: (
     playerName: TeamRosterName,
     action: TeamRosterAction,
@@ -250,13 +281,20 @@ function RosterRegistrationTracker({
 }) {
   const rosterStatus = rosterPlayers
     .filter((player) => player.active)
-    .map(({ playerName }) => ({
-      playerName,
-      registration: registrationForRosterPlayer(playerName, registrations),
-    }));
+    .map((player) => {
+      const registration = registrationForRosterPlayer(
+        player.playerName,
+        registrations,
+      );
+      return {
+        ...player,
+        registration,
+        registered: player.registrationOverride ?? Boolean(registration),
+      };
+    });
   const removedPlayers = rosterPlayers.filter((player) => !player.active);
-  const missing = rosterStatus.filter((item) => !item.registration);
-  const started = rosterStatus.filter((item) => item.registration);
+  const missing = rosterStatus.filter((item) => !item.registered);
+  const started = rosterStatus.filter((item) => item.registered);
 
   async function removePlayer(playerName: TeamRosterName) {
     const confirmed = window.confirm(
@@ -293,6 +331,30 @@ function RosterRegistrationTracker({
         </span>
       </div>
 
+      <form
+        onSubmit={onAddPlayer}
+        className="flex flex-col gap-3 border-b border-slate-200 bg-slate-50/70 p-6 sm:flex-row sm:p-8"
+      >
+        <input
+          type="text"
+          required
+          minLength={2}
+          maxLength={120}
+          value={newPlayerName}
+          onChange={(event) => onNewPlayerNameChange(event.target.value)}
+          placeholder="Player first and last name"
+          className="min-h-12 flex-1 rounded-2xl border border-slate-300 bg-white px-4 text-slate-950 outline-none focus:border-[#123E74]"
+        />
+        <button
+          type="submit"
+          disabled={Boolean(actionPlayer)}
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#123E74] px-5 font-bold text-white disabled:opacity-50"
+        >
+          <Plus className="h-4 w-4" />
+          Add player
+        </button>
+      </form>
+
       {notice || error ? (
         <div
           aria-live="polite"
@@ -322,11 +384,21 @@ function RosterRegistrationTracker({
                   <CircleAlert className="h-5 w-5 shrink-0 text-[#D7193F]" />
                   {playerName}
                 </span>
-                <RosterRemoveButton
-                  playerName={playerName}
-                  busy={actionPlayer === playerName}
-                  onRemove={removePlayer}
-                />
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    disabled={actionPlayer === playerName}
+                    onClick={() => void onChange(playerName, "mark_registered")}
+                    className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 disabled:opacity-50"
+                  >
+                    Mark registered
+                  </button>
+                  <RosterRemoveButton
+                    playerName={playerName}
+                    busy={actionPlayer === playerName}
+                    onRemove={removePlayer}
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -344,15 +416,37 @@ function RosterRegistrationTracker({
             View {started.length} matched player{started.length === 1 ? "" : "s"}
           </summary>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            {started.map(({ playerName, registration }) => (
-              <div key={playerName} className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
+            {started.map(({ playerName, registration, registrationOverride }) => (
+              <div key={playerName} className="flex flex-col gap-3 rounded-2xl bg-slate-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                 <span className="flex items-center gap-2 font-semibold text-slate-800">
                   <CheckCircle2 className="h-4 w-4 text-emerald-600" /> {playerName}
                 </span>
                 <span className="flex items-center gap-2">
                   <span className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    {registration?.status}
+                    {registrationOverride === true
+                      ? "manual"
+                      : registration?.status ?? "registered"}
                   </span>
+                  <button
+                    type="button"
+                    disabled={actionPlayer === playerName}
+                    onClick={() => void onChange(playerName, "mark_unregistered")}
+                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 disabled:opacity-50"
+                  >
+                    Mark not registered
+                  </button>
+                  {registrationOverride !== null ? (
+                    <button
+                      type="button"
+                      disabled={actionPlayer === playerName}
+                      onClick={() =>
+                        void onChange(playerName, "clear_registration_override")
+                      }
+                      className="text-xs font-bold text-[#123E74] underline"
+                    >
+                      Use automatic
+                    </button>
+                  ) : null}
                   <RosterRemoveButton
                     playerName={playerName}
                     busy={actionPlayer === playerName}
